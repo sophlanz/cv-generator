@@ -5,12 +5,13 @@ class AdditionalExperience extends React.Component {
         const experiences = this.props.experiences;
         const editExperience = this.props.editExperience;
         const addAnother = this.props.addAnother;
-        console.log(experiences)
+        const deleteExperience = this.props.deleteExperience;
+      
 
        return(
            <div>
             {experiences.map((experience,idx) => {
-            console.log(idx);
+         
             
             return(
                 <div key={idx}>
@@ -20,6 +21,12 @@ class AdditionalExperience extends React.Component {
                 <div>{experience.location}</div>
                 <div>{experience.description}</div>
                 <button value = {idx} onClick = {editExperience}>Edit</button>
+                {/*We don't want to add a delte button to the first experience */}
+                {idx > 0 ?
+                <button value={idx} onClick={deleteExperience}>Delete</button>
+                :
+                null
+                 }
             </div> 
             );
     })}
