@@ -122,7 +122,7 @@ class Experience extends React.Component {
        
         return(
             <div>
-                    <h1>Experience</h1>
+                    <h1>Work Experience</h1>
                  {/*what we want to display on the screen as the final product */}
                  {/*If there's only 1 experience, just show the [0] of experiences array */}
                  {additional === 1 ? 
