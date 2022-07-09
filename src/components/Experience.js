@@ -14,7 +14,7 @@ class Experience extends React.Component {
             location:"Remote",
             description:" Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ex turpis, iaculis sit amet tempor at, sollicitudin id lacus. Praesent ornare lobortis est a ultricies. Nulla ornare ante ut ligula lacinia luctus. Praesent ut neque turpis. Maecenas fringilla accumsan erat pellentesque luctus. ",
             edit:false,
-            index:"0",
+            index:0,
             id:uniqid()
            }],
            additional:1,
@@ -63,7 +63,7 @@ class Experience extends React.Component {
     addAnother = () => {
         //add another auto fill experience, the user can later edit
         //get additional state, and use that number to set new index
-       const index = this.state.additional.toString();
+       const index = this.state.additional;
        console.log(index);
        //create new experience object
         const newExperience= {

@@ -75,7 +75,6 @@ class Skills extends React.Component {
         }
         //reset all of the edits in state and the skill holder
         this.setState ({
-           
             addSkillTech:false,
             addSkillSoft:false,
             skill:" "
