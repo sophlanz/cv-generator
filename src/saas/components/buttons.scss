@@ -1,14 +1,57 @@
-.aboutButton, .skillsEditButton, button.project, button.education {
-    height:20px;
-    width:40px;
-    background-color:white;
-    display:none;
+.aboutButton, .skillsEditButton, button.project, button.education, button.experience {
+  background-image:url(../../images/edit.svg);
+    
+  background-repeat:no-repeat;
+  background-position:50% 50%;
+  display:none;
+  border:none;
+  background-color:white;
+
+/*make button a circle*/
+border-radius: 50%;
+  height:30px;
+    width:30px;
     }
     .aboutDisplay:hover button, .skillSection:hover button, .projectDisplay:hover button,
-    .educationDisplay:hover button {
-      display:block;
-      height:20px;
-    width:40px;
-    background-color:white;
-    float:right;
+    .educationDisplay:hover button, .experienceDisplay:hover button {
+     
+     display:block
+     
+  
     }
+
+   .submitButton,  button.addSkill, button.addSoftSkill,button.add{
+     background:transparent;
+     background-color:$lightBlue;
+     border:2px solid white;
+     color:rgb(100, 100, 100);
+     height:40px;
+     width:120px;
+     border-radius:.5rem;
+     letter-spacing: 3px;
+   }
+   .submitButton:hover,  button.addSkill:hover, button.addSoftSkill:hover, button.add:hover{
+    border:2px solid $gray;
+    color:$lightBlue;
+    background-color:white;
+   }
+   /*delete button*/
+   button.delete {
+     background-image:url(../../images/delete.svg);
+     display:none;
+     background-repeat:no-repeat;
+    background-position:50% 50%;
+    height:30px;
+    width:30px;
+    border:none;
+    background-color:white;
+    position: relative;
+    top: 0;
+    transition: top ease 0.5s;
+   }
+  
+button.delete:hover{
+  top:-5px;
+};
+  
+  

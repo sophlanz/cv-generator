@@ -122,12 +122,12 @@ class Skills extends React.Component {
         const{techSkills,softSkills} = this.state.skills
         const techSkillList = techSkills ? techSkills.map((skill,index)=> <li key={index}>{skill}</li>) : null
         const softSkillList = softSkills? softSkills.map((skill,index)=> <li key = {index}>{skill}</li>) : null
-        const techSkillListEdit = techSkills ? techSkills.map((skill,index)=><div> <li key={index}>{skill}</li> <button value={index} id="deleteTechSkill" onClick={this.deleteSkill}>Delete</button></div>) : null
-        const softSkillListEdit = softSkills? softSkills.map((skill,index)=> <div> <li key={index}>{skill}</li> <button value={index} id="deleteSoftSkill" onClick={this.deleteSkill}>Delete</button></div>) : null
+        const techSkillListEdit = techSkills ? techSkills.map((skill,index)=><div className="skillsDelete"> <li key={index}>{skill}</li> <button className= "delete" value={index} title="delete" id="deleteTechSkill" onClick={this.deleteSkill}></button></div>) : null
+        const softSkillListEdit = softSkills? softSkills.map((skill,index)=> <div className="skillsDelete"> <li key={index}>{skill}</li> <button className= "delete" value={index} title="delete" id="deleteSoftSkill" onClick={this.deleteSkill}></button></div>) : null
         return(
             
             <div className = "skillSection">
-                <h1>Skills</h1>
+               <div className="skillsEdit"> <h1>Skills</h1>  <button title = "edit" className = "skillsEditButton"onClick={this.editSkills}></button></div>
                   {/*Edit skills, re-map all of the skills and add a delete button */}
                   {edit ? 
                   <div className="skills" >
@@ -136,20 +136,24 @@ class Skills extends React.Component {
                         <ul className="techSkillList">
                         {techSkillListEdit}
                         </ul>
-                        <button onClick = {this.addSkillTech}>Add Tech Skill</button>
+                        
                     </div>
                    <div className="softSkills">
                         <h3>Soft Skills</h3>
                          <ul className="softSkillList">
                          {softSkillListEdit}
                          </ul>
-                         <button onClick = {this.addSkillSoft}>Add Soft Skill</button>
-                         <button onClick={this.finishDelete}>Finish</button>
+                         
                    </div>
-                    
+                   <div className="skillButtons">
+                   <button className="addSkill" onClick = {this.addSkillTech}>Add Tech Skill</button>
+                   <button className="addSoftSkill"onClick = {this.addSkillSoft}>Add Soft Skill</button>
+                   <button className="submitButton"onClick={this.finishDelete}>Submit</button>
+                   </div> 
                 </div>
                     :
                 <div className="skills">
+               
                     <div className="techSkills">
                         <h3>Tech Skills</h3>
                         <ul className="techSkillList">
@@ -162,32 +166,36 @@ class Skills extends React.Component {
                         {softSkillList}
                         </ul>
                     </div>
-                    <button className = "skillsEditButton"onClick={this.editSkills}>Edit</button>
+                    
                 </div>
                     }   
                
                 {/*if addTechSkill is true, display input field and submit
                 button that will call  */}
                 {addSkillTech ? 
-                    <div>
+                <form>
+                    <div className="addSkill"> 
                         <label htmlFor="addSkillTeck">Add Tech Skill
                         <input type="text" onChange ={this.handleChange}/>
                         </label>
-                        <button id={"submitTechSkill"} onClick = {this.submitAdd}>Add</button>
+                        <button id={"submitTechSkill"} className="add" title= "add" onClick = {this.submitAdd}>Add</button>
                     
                     </div>
+                 </form>
                     :
                     null
                 }
                  {/*if addSoftSkill is true, display input field and submit
                 button that will call  */}
                 {addSkillSoft ? 
-                    <div>
+                <form>
+                    <div className="addSkill">
                         <label htmlFor="addSkillSoft"> Add Soft Skill
                         <input type="text" onChange ={this.handleChange}/>
                         </label>
-                        <button id={"submitSoftSkill"} onClick = {this.submitAdd}>Add</button>
+                        <button id={"submitSoftSkill"} className="add" onClick = {this.submitAdd}>Add</button>
                     </div>
+                    </form>
                     :
                     null
                 }

@@ -14,7 +14,14 @@ class AdditionalEducation extends React.Component{
                 <div key={study.id}>
                 <div className="educationList">
                 <div className="uniDegree">
-                <h3>{study.university}</h3>
+               <div className="eduEditIcon"> 
+               <h3>{study.university}</h3>  
+               <button  className="education" value={idx} onClick = {editEducation}></button>
+                {/*we don't want to add a delte button to the first one */}
+                {idx > 0 ? 
+                 <button className = "delete" value={idx} onClick={deleteEducation}></button>
+                 : null
+                }</div>
                 <div className="degree">{study.degree}</div>
                 </div>
                 <div className="dateLocation">
@@ -23,17 +30,12 @@ class AdditionalEducation extends React.Component{
                 </div>
                
                 
-                <button  className="education" value={idx} onClick = {editEducation}>Edit</button>
-                {/*we don't want to add a delte button to the first one */}
-                {idx > 0 ? 
-                 <button className = "education" value={idx} onClick={deleteEducation}>Delete</button>
-                 : null
-                }
+               
                 </div>
                 </div>
         )
     })}
-             <button className= "education"onClick={addEducation}>Add Education</button>
+             
             
             </div>
         );

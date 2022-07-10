@@ -26,3 +26,12 @@
     display:flex;
     gap:10px;
 }
+/*div of project name and trashcan icon*/
+.projectDeleteIcon{
+    display:flex;
+   
+}
+.projectDeleteIcon:hover{
+    color:$lightBlue;
+}
+  

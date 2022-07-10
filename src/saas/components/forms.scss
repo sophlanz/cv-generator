@@ -1,0 +1,40 @@
+form {
+    background-color:$lightBlue;
+    border-radius:1rem;
+    border:2px solid $gray;
+    height:200px;
+    width:500px;
+    display:flex;
+    flex-direction:column;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    font-style:italic;
+    padding:10px;
+    gap:20px;
+    position:fixed;
+    left:30%;
+    top:50%;
+
+   
+}
+input{
+    border-radius:.5rem;
+    border:1px solid $gray;
+    background-color:white;
+    color:$lightBlue;
+    height:20px;
+    font-weight:600;
+    
+}
+input:focus {
+    background-color:$lightBlue;
+    color:rgb(100, 100, 100);
+    border:2px solid $lightBlue;
+
+}
+label{
+    display:div;
+    flex-direction:column;
+    flex-wrap:wrap;
+}

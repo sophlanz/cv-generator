@@ -60,7 +60,8 @@ class Experience extends React.Component {
       )
     }));
     };
-    addAnother = () => {
+    addAnother = (e) => {
+        e.preventDefault();
         //add another auto fill experience, the user can later edit
         //get additional state, and use that number to set new index
        const index = this.state.additional;
@@ -121,19 +122,30 @@ class Experience extends React.Component {
        
        
         return(
-            <div>
+            <div className="experienceDisplay">
                     <h1>Work Experience</h1>
                  {/*what we want to display on the screen as the final product */}
                  {/*If there's only 1 experience, just show the [0] of experiences array */}
                  {additional === 1 ? 
-                 <div>
-                    <div>{startDate}</div> - <div>{endDate}</div>
-                    <div>{company}</div>
-                    <div>{title}</div>
-                    <div>{location}</div>
-                    <div>{description}</div>
-                    <button value = "0" onClick = { this.editExperience}>Edit</button>
-                    <button onClick={this.addAnother}>Add Experience</button>
+                 <div className="experienceItem">
+                 <div className="generalInformation">
+                    <div className="companyTitle">
+                    <div className="expEditIcon">
+                    <h3>{company}</h3>
+                    <button className="experience" value = "0" onClick = { this.editExperience}></button>
+                    </div>
+                    <div >{title}</div>
+                    </div>
+                    <div className="dateLocationExp">
+                    <p>{location}</p>
+                   <div className="dateExperience"> <div>{startDate}</div> - <div>{endDate}</div></div>
+                    </div>
+                </div>
+                    <ul className="descriptionExperience">
+                    <li>{description}</li>
+                    </ul>
+                    
+                    
                     
                 </div> 
                 :    
@@ -151,6 +163,7 @@ class Experience extends React.Component {
                         index= experience.index;
                         return (
                         <div key={experience.id}>
+                        <form>
                         <label htmlFor="company">Company</label>
                         <input type= "text" id ={index} name="company" onChange = {this.handleChange}/>
                         <label htmlFor="title">Title</label>
@@ -163,7 +176,9 @@ class Experience extends React.Component {
                         <input type= "text" id ={index} name="location" onChange = {this.handleChange}/>
                         <label htmlFor="description">Description</label>
                         <input type= "text" id ={index}  name="description" onChange = {this.handleChange}/>
-                        <button value = {index} type = "text" onClick= {this.handleSubmit}>Submit Changes</button>
+                        <button className="add"  onClick={this.addAnother}>Add Experience</button>
+                        <button value = {index} className="submitButton" type = "text" onClick= {this.handleSubmit}>Submit Changes</button>
+                        </form>
                         </div>
                     )
                     };

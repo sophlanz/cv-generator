@@ -54,7 +54,6 @@ class About extends React.Component {
                     </div>
                     <h3 id="title" value={title}>{title}</h3>
                 </div>
-                
                 <div className="personalInformation">
                     <div id="phone"  value={phone} > <img src={phonePic}alt="pic"/>{phone}</div> |
                     <div id="city"  value={city} ><img src ={locationPic} alt="pic"/> {city}</div> |
@@ -62,51 +61,47 @@ class About extends React.Component {
                     <div id="github"  value={github} ><img src ={githubPic} alt="pic"/>{github}</div> |
                     <div id="email"  value={email} ><img src ={emailPic} alt="pic"/>{email}</div> 
                 </div>
-              
-   
-               
-              
-               <button className="aboutButton" onClick= {this.editAbout}>Edit</button>
+               <button className="aboutButton" title="Edit" onClick= {this.editAbout}></button>
             </div>
             {/*if the edit state is true, show the input fields*/ }
             {edit ? 
             <form onSubmit={this.handleSubmit}>
-                <label htmlFor="firstName">Name
-                <input name="firstName" type="text" onChange={this.handleChange}/>
+                <label htmlFor="firstName">
+                <input name="firstName" placeHolder="First Name" type="text" onChange={this.handleChange}/>
                 </label>
-                <label htmlFor="lastName">Name
-                <input name="lastName" type="text" onChange={this.handleChange}/>
+                <label htmlFor="lastName">
+                <input name="lastName" placeHolder="Last Name" type="text" onChange={this.handleChange}/>
                 </label>
                 
-                <label htmlFor="title">Position
-                <input name="title" type="text"  onChange= {this.handleChange}/>
+                <label htmlFor="title">
+                <input name="title" type="text" placeHolder="Position" onChange= {this.handleChange}/>
                 </label>
 
                  
-                <label htmlFor="phone">Phone Number
-                <input name="phone" type="text"  onChange= {this.handleChange}/>
+                <label htmlFor="phone">
+                <input name="phone" placeHolder="Phone Number" type="text"  onChange= {this.handleChange}/>
                 </label>
 
                  
-                <label htmlFor="city">City
-                <input name="city" type="text"  onChange= {this.handleChange}/>
+                <label htmlFor="city">
+                <input name="city" placeHolder="City" type="text"  onChange= {this.handleChange}/>
                 </label>
 
                  
-                <label htmlFor="linkedin">Linkedin
-                <input name="linkedin" type="text"  onChange= {this.handleChange}/>
+                <label htmlFor="linkedin">
+                <input name="linkedin" placeHolder="Linkedin" type="text"  onChange= {this.handleChange}/>
                 </label>
 
                  
-                <label htmlFor="github">Github
-                <input name="github" type="text"  onChange= {this.handleChange}/>
+                <label htmlFor="github">
+                <input name="github" type="text" placeHolder="Github" onChange= {this.handleChange}/>
                 </label>
 
                  
-                <label htmlFor="email">Email
-                <input name="email" type="text"  onChange= {this.handleChange}/>
+                <label htmlFor="email">
+                <input name="email" type="text" placeHolder="Email"  onChange= {this.handleChange}/>
                 </label>
-                <button type="submit">Submit Changes</button>
+                <button className="submitButton" type="submit">Submit</button>
             </form>
             : null
             }

@@ -25,7 +25,8 @@ class Projects extends React.Component {
         };
     };
 
-    addProject = () => {
+    addProject = (e) => {
+        e.preventDefault();
         //duplicate projects array
         const projects =[...this.state.projects]
         //get additional to find out what the new index should be
@@ -108,18 +109,18 @@ class Projects extends React.Component {
             return(
                 <div key={index}>
                 <div className="projectList">
-
                 
-                    <h3>{project.title}</h3>
-                    <li>{project.description}</li>
-                    <div className="techUsed"><p style={{fontStyle:"italic", fontWeight:"bold"}}>Technologies:</p><p>{project.technologiesUsed.join(', ')}</p></div>
-                    <button className="project" value={index} onClick={this.editProject}>Edit</button>
-                    {/*We don't want to give a delete button to the fist one */}
-                    {index !== 0 ? 
-                     <button className="project" value={index} onClick={this.deleteProject}>Delete</button>
+                
+                    <div className="projectDeleteIcon"><h3>{project.title}</h3><button className="project" title="Edit"value={index} onClick={this.editProject}></button> {index !== 0 ? 
+                     <button className="delete" value={index} title="Delete" onClick={this.deleteProject}></button>
                      :
                      null
-                    }
+                    }</div>
+                    <li>{project.description}</li>
+                    <div className="techUsed"><p style={{fontStyle:"italic", fontWeight:"bold"}}>Technologies:</p><p>{project.technologiesUsed.join(', ')}</p></div>
+                   
+                    {/*We don't want to give a delete button to the fist one */}
+                   
                     </div>
                 </div>
             )
@@ -132,12 +133,12 @@ class Projects extends React.Component {
             {projectList}
             </ul>
             
-            <button className="project" onClick={this.addProject}>Add Project</button>
+            
             {/*if edit, show input fields and submit button */}
             {edit ? 
-            <div>
+            <form>
                 <label htmlFor="title">Title
-                <input name="title" onChange = {this.handleChange}/>
+                <input name="title" placeHolder=""onChange = {this.handleChange}/>
                 </label>
                 <label htmlFor="description">Descritption
                 <input name="description" onChange = {this.handleChange}/>
@@ -145,8 +146,9 @@ class Projects extends React.Component {
                 <label htmlFor="technolgoies">Technologies Used
                 <input name="technologiesUsed" onChange = {this.handleChange}/>
                 </label>
-                <button onClick = {this.handleSubmit}>Submit Changes</button>
-            </div>
+                <button className="add" onClick={this.addProject}>Add Project</button>
+                <button className="submitButton" onClick = {this.handleSubmit}>Submit Changes</button>
+            </form>
             :
             null
             }

@@ -2,7 +2,7 @@
 
 @page {
   size: a4;
-  margin:.5cm;
+  margin:4(.5cm);
 
    /* change the margins as you want them to be. */
 }
@@ -11,7 +11,7 @@
   body, .paper{
     width: 210mm;
     height: 297mm;
-    margin:.5cm;
+    margin:4(.5cm);
    
       /* change the margins as you want them to be. */
  } 
@@ -22,14 +22,10 @@
   display:flex;
   justify-content:center;
   font-family: 'Libre Baskerville', serif;
- 
-
 }
 .paper {
-  
   display:grid;
   grid-template-rows:5(auto);
- 
   padding-left:20px;
   padding-right:20px;
 }

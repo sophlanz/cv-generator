@@ -1,0 +1,39 @@
+/*Company and position div*/
+.companyTitle {
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:5px;
+}
+/*location and date div*/
+.dateLocationExp{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:5px;
+}
+.dateLocationExp p{
+    color:$mainColor;
+}
+/*date dive*/
+.dateExperience{
+    display: flex;
+    font-style:italic;
+}
+/*display the top information of company,title,location,and date*/
+.generalInformation{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:5px;
+}
+.descriptionExperience {
+    text-align:left;
+}
+/*div of icon next to title*/
+.expEditIcon {
+    display:flex;
+}
+.expEditIcon:hover {
+    color:$lightBlue;
+
+}

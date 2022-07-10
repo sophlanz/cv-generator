@@ -59,7 +59,8 @@ class Education extends React.Component {
         }));
         //
     };
-    addEducation = () => {
+    addEducation = (e) => {
+        e.preventDefault();
           //add another auto fill experience, the user can later edit
         //get additional state, and use that number to set new index
        const index = this.state.additional
@@ -129,7 +130,10 @@ class Education extends React.Component {
                  {additional === 1 ? 
                     <div className="educationList">
                     <div className="uniDegree">
-                        <h3>{university}</h3>
+                        <div className="eduEditIcon">
+                        <h3>{university}</h3> 
+                        <button className="education"value="0" onClick = {this.editEducation}></button>
+                        </div>
                         <div className="degree">{degree}</div>
                     </div>
                    <div className="dateLocation"> 
@@ -137,8 +141,8 @@ class Education extends React.Component {
                    <div className="dateEdu"> <div>{startDate}</div> - <div>{endDate}</div></div>
                    </div>
                   
-                    <button className="education"value="0" onClick = {this.editEducation}>Edit</button>
-                    <button className="education" onClick={this.addEducation}>Add Education</button>
+                   
+                   
                 </div>
                 : 
                 
@@ -154,6 +158,7 @@ class Education extends React.Component {
                 index = study.index
                 return(
                 <div key={study.id}>
+                <form>
                  <label htmlFor="university">University</label>
                 <input type= "text" id={index} name="university" onChange = {this.handleChange}/>
                 <label htmlFor="degree">Degree</label>
@@ -164,7 +169,9 @@ class Education extends React.Component {
                 <input type= "text" id={index} name="endDate" onChange = {this.handleChange}/>
                 <label htmlFor="location">Location</label>
                 <input type= "text" id={index} name="location" onChange = {this.handleChange}/>
-                <button type = "text" id={index} onClick={this.handleSubmit}>Submit Changes</button>
+                <button className="add" onClick={this.addEducation}>Add Education</button>
+                <button className="submitButton"type = "text" id={index} onClick={this.handleSubmit}>Submit Changes</button>
+                </form>
                 </div>
                 )
                }
