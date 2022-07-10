@@ -121,22 +121,29 @@ class Education extends React.Component {
         console.log(this.state.education[0])
         
         return (
-            <div>
+            <div className="educationDisplay">
                     <h1>Education</h1>
                  {/*what we want to display on the screen as the final product */}
                  {/*display for if there's only 1 education listed */}
                 
                  {additional === 1 ? 
-                    <div>
-                    <div>{startDate}</div> - <div>{endDate}</div>
-                    <div>{degree}</div>
-                    <div>{university}</div>
-                    <div>{location}</div>
-                    <button value="0" onClick = {this.editEducation}>Edit</button>
-                    <button onClick={this.addEducation}>Add Education</button>
+                    <div className="educationList">
+                    <div className="uniDegree">
+                        <h3>{university}</h3>
+                        <div className="degree">{degree}</div>
+                    </div>
+                   <div className="dateLocation"> 
+                   <div className="locationEdu">{location}</div>
+                   <div className="dateEdu"> <div>{startDate}</div> - <div>{endDate}</div></div>
+                   </div>
+                  
+                    <button className="education"value="0" onClick = {this.editEducation}>Edit</button>
+                    <button className="education" onClick={this.addEducation}>Add Education</button>
                 </div>
                 : 
+                
                 <AdditionalEducation education={education} deleteEducation={this.deleteEducation} addEducation={this.addEducation} editEducation={this.editEducation}/>
+               
                  }
               
                 {/*the popup we want to display on the screen for editing */}

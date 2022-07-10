@@ -1,0 +1,25 @@
+ /*main  headers*/
+ .skillSection h1, .projectDisplay h1, .educationDisplay h1{
+    text-align:left;
+    font-size:1.6rem;
+    font-weight:700;
+    border-bottom:2px solid black;
+    color: $mainColor;
+    margin-bottom:10px;
+    margin-top:10px;
+  }
+  
+    /*sub headers*/
+    .skillSection h3, .projectDisplay h3, .uniDegree h3 {
+        font-weight:700;
+        margin-top:10px;
+        font-size:1.1rem;
+      }
+
+    .dateEdu{
+     
+      font-style:italic;
+    }
+    .locationEdu{
+      color:$mainColor
+    }

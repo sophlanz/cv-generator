@@ -1,0 +1,22 @@
+/*container for each item on education list*/
+.educationList {
+    display:flex;
+    justify-content:space-between;
+}
+/*container for university and degree display*/
+.uniDegree {
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:5px;
+   
+}
+.dateLocation {
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:5px;
+}
+.dateEdu{
+    display:flex;
+}

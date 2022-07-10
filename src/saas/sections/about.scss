@@ -1,0 +1,44 @@
+/*Main container*/
+.aboutDisplay {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  /*Container for all of the details, phone number, etc*/
+  .personalInformation{
+    display:flex;
+    gap:10px;
+  }
+  .personalInformation div {
+    display:flex;
+    align-items:center;
+    gap:3px;
+    font-weight:500;
+    font-size:.8rem;
+  }
+  /*Div for the first and last name, to put them side by side*/
+  .firstLastName {
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+    margin-bottom:0px;
+    font-size:2.4rem;
+  }
+  /*bolder last name than first name*/
+  .lastName{
+    font-weight:700;
+  }
+  /*div cotaining full name and position*/
+  .title{
+    display:flex;
+    flex-direction:column;
+    height:100px;
+  }
+  /*the position /title header*/
+  
+  .title h3{
+    margin-top:5px;
+    font-size:1.5rem;
+    font-weight:600;
+    color:$mainColor;
+  }

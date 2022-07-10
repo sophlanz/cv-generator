@@ -107,26 +107,32 @@ class Projects extends React.Component {
             //put project.title and project.description in a div
             return(
                 <div key={index}>
+                <div className="projectList">
+
+                
                     <h3>{project.title}</h3>
-                    <p>{project.description}</p>
-                    <p>Technologies Used:{project.technologiesUsed}</p>
-                    <button value={index} onClick={this.editProject}>Edit</button>
+                    <li>{project.description}</li>
+                    <div className="techUsed"><p style={{fontStyle:"italic", fontWeight:"bold"}}>Technologies:</p><p>{project.technologiesUsed.join(', ')}</p></div>
+                    <button className="project" value={index} onClick={this.editProject}>Edit</button>
                     {/*We don't want to give a delete button to the fist one */}
                     {index !== 0 ? 
-                     <button value={index} onClick={this.deleteProject}>Delete</button>
+                     <button className="project" value={index} onClick={this.deleteProject}>Delete</button>
                      :
                      null
                     }
-                    
+                    </div>
                 </div>
             )
         })
         return(
           
-        <div>
+        <div className="projectDisplay">
             <h1>Personal Projects</h1>
+            <ul className="projectContainer">
             {projectList}
-            <button onClick={this.addProject}>Add Project</button>
+            </ul>
+            
+            <button className="project" onClick={this.addProject}>Add Project</button>
             {/*if edit, show input fields and submit button */}
             {edit ? 
             <div>

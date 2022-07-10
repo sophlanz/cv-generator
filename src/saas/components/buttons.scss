@@ -1,0 +1,14 @@
+.aboutButton, .skillsEditButton, button.project, button.education {
+    height:20px;
+    width:40px;
+    background-color:white;
+    display:none;
+    }
+    .aboutDisplay:hover button, .skillSection:hover button, .projectDisplay:hover button,
+    .educationDisplay:hover button {
+      display:block;
+      height:20px;
+    width:40px;
+    background-color:white;
+    float:right;
+    }

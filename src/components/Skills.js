@@ -126,34 +126,43 @@ class Skills extends React.Component {
         const softSkillListEdit = softSkills? softSkills.map((skill,index)=> <div> <li key={index}>{skill}</li> <button value={index} id="deleteSoftSkill" onClick={this.deleteSkill}>Delete</button></div>) : null
         return(
             
-            <div>
+            <div className = "skillSection">
                 <h1>Skills</h1>
                   {/*Edit skills, re-map all of the skills and add a delete button */}
                   {edit ? 
-                  <div>
-                    <h3>Tech Skills</h3>
-                    <ul>
-                    {techSkillListEdit}
-                    </ul>
-                    <button onClick = {this.addSkillTech}>Add Tech Skill</button>
-                    <h3>Soft Skills</h3>
-                    <ul>
-                    {softSkillListEdit}
-                    </ul>
-                    <button onClick = {this.addSkillSoft}>Add Soft Skill</button>
-                    <button onClick={this.finishDelete}>Finish</button>
+                  <div className="skills" >
+                    <div className="techSkills">
+                        <h3>Tech Skills</h3>
+                        <ul className="techSkillList">
+                        {techSkillListEdit}
+                        </ul>
+                        <button onClick = {this.addSkillTech}>Add Tech Skill</button>
+                    </div>
+                   <div className="softSkills">
+                        <h3>Soft Skills</h3>
+                         <ul className="softSkillList">
+                         {softSkillListEdit}
+                         </ul>
+                         <button onClick = {this.addSkillSoft}>Add Soft Skill</button>
+                         <button onClick={this.finishDelete}>Finish</button>
+                   </div>
+                    
                 </div>
                     :
-                <div>
-                    <h3>Tech Skills</h3>
-                    <ul>
-                    {techSkillList}
-                    </ul>
-                    <h3>Soft Skills</h3>
-                    <ul>
-                    {softSkillList}
-                    </ul>
-                    <button onClick={this.editSkills}>Edit</button>
+                <div className="skills">
+                    <div className="techSkills">
+                        <h3>Tech Skills</h3>
+                        <ul className="techSkillList">
+                        {techSkillList}
+                        </ul>
+                    </div>
+                    <div className="softSkills">
+                        <h3>Soft Skills</h3>
+                        <ul className="softSkillList">
+                        {softSkillList}
+                        </ul>
+                    </div>
+                    <button className = "skillsEditButton"onClick={this.editSkills}>Edit</button>
                 </div>
                     }   
                

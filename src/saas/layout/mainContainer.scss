@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+@page {
+  size: a4;
+  margin:.5cm;
+
+   /* change the margins as you want them to be. */
+}
+
+@media print {
+  body, .paper{
+    width: 210mm;
+    height: 297mm;
+    margin:.5cm;
+   
+      /* change the margins as you want them to be. */
+ } 
+}
+.App 
+{
+  text-align: center;
+  display:flex;
+  justify-content:center;
+  font-family: 'Libre Baskerville', serif;
+ 
+
+}
+.paper {
+  
+  display:grid;
+  grid-template-rows:5(auto);
+ 
+  padding-left:20px;
+  padding-right:20px;
+}

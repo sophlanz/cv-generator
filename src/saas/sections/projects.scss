@@ -1,0 +1,28 @@
+/*main container*/
+.projectDisplay  {
+    display:flex;
+    flex-direction:column;
+    text-align:left;
+}
+/*project header*/
+.projectDisplay h1{
+    color:$mainColor;
+    
+}
+/*list of projects*/
+.projectContainer {
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+/*divs of specific projects*/
+.projectList {
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.techUsed {
+    display:flex;
+    gap:10px;
+}

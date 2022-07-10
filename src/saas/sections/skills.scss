@@ -1,0 +1,25 @@
+/*main container*/
+.skillSection  {
+    display:flex;
+    flex-direction:column
+  }
+  /*container with tech and soft skills*/
+  .skills{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+ 
+  /*container for skill and list*/
+  .techSkills, .softSkills{
+    display:flex;
+    gap:20px;
+  }
+/*list items*/
+  .techSkillList, .softSkillList {
+    display:flex;
+    gap:30px;
+    font-size:.9rem;
+    align-items:center;
+    
+  }

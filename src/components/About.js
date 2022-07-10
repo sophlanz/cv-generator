@@ -1,11 +1,17 @@
 import React from "react";
+import  phonePic from "../images/phone.svg";
+import locationPic from "../images/location.svg";
+import linkedinPic from "../images/linkedin.svg";
+import githubPic from "../images/github.svg";
+import emailPic from "../images/email.svg";
 
 class About extends React.Component {
     constructor(props){
         super(props);
         //initialize state with the variables we will be collecting
         this.state = {
-            name: "First and Last Name",
+            firstName: "First",
+            lastName:"Last",
             title: "Position",
             edit:false,
             phone:"(555)555-5555",
@@ -37,24 +43,39 @@ class About extends React.Component {
 
     render() {
         
-        const {name,title,edit,phone,city,linkedin,github,email} = this.state;
+        const {firstName,lastName,title,edit,phone,city,linkedin,github,email} = this.state;
         return(
             <div>
-            <form>
-                <h1 id="name" value={name} >{name}</h1>
-                <h2 id="title" value={title}>{title}</h2>
-                <div id="phone"  value={phone} >{phone}</div>
-                <div id="city"  value={city} >{city}</div>
-                <div id="linkedin"  value={linkedin} >{linkedin}</div>
-                <div id="github"  value={github} >{github}</div>
-                <div id="email"  value={email} >{email}</div>
-                <button onClick= {this.editAbout}>Edit</button>
-            </form>
+            <div className="aboutDisplay">
+                <div className="title">
+                    <div className="firstLastName">
+                        <h2 className = "firstName" id="name" value={firstName} > {firstName} </h2>
+                        <h2 className = "lastName" id="name" value={lastName} > {lastName}</h2>
+                    </div>
+                    <h3 id="title" value={title}>{title}</h3>
+                </div>
+                
+                <div className="personalInformation">
+                    <div id="phone"  value={phone} > <img src={phonePic}alt="pic"/>{phone}</div> |
+                    <div id="city"  value={city} ><img src ={locationPic} alt="pic"/> {city}</div> |
+                    <div id="linkedin"  value={linkedin} ><img src ={linkedinPic} alt="pic"/>{linkedin}</div> |
+                    <div id="github"  value={github} ><img src ={githubPic} alt="pic"/>{github}</div> |
+                    <div id="email"  value={email} ><img src ={emailPic} alt="pic"/>{email}</div> 
+                </div>
+              
+   
+               
+              
+               <button className="aboutButton" onClick= {this.editAbout}>Edit</button>
+            </div>
             {/*if the edit state is true, show the input fields*/ }
             {edit ? 
             <form onSubmit={this.handleSubmit}>
-                <label htmlFor="name">Name
-                <input name="name" type="text" onChange={this.handleChange}/>
+                <label htmlFor="firstName">Name
+                <input name="firstName" type="text" onChange={this.handleChange}/>
+                </label>
+                <label htmlFor="lastName">Name
+                <input name="lastName" type="text" onChange={this.handleChange}/>
                 </label>
                 
                 <label htmlFor="title">Position
