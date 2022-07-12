@@ -300,12 +300,14 @@ class Projects extends React.Component {
             }
          {/*if we're editing the bullet point, we want to display the form */}
             {editBullet? 
-            <form>
+            
+            <form className="editBulletContainer">
             <label htmlFor="editBullet">Edit Bullet Point
                 <textarea rows="4"cols="50" name="editBullet" className= "editBullet"onChange = {this.handleChangeBullet}/>
                 <button className="submitButton" onClick = {this.submitEditBullet}>Submit Changes</button>
             </label>
             </form>
+            
             :
             null
             }

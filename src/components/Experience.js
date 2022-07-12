@@ -283,8 +283,8 @@ class Experience extends React.Component {
               
              {/*if edit bullet, display form */}
            {editBullet ? 
-           <form>
-           <label htmlFor="experienceBullet">Update Bullet
+           <form className="editBulletContainer">
+           <label htmlFor="experienceBullet">Edit Bullet Point
             <textarea rows="8"cols="100" type= "text" className="editBullet" name="experienceBullet" onChange = {this.handleChangeBullet}/>
             <button className="submitButton" onClick = {this.submitEditBullet}>Submit Changes</button>
             </label>

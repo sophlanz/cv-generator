@@ -10,8 +10,8 @@ class About extends React.Component {
         super(props);
         //initialize state with the variables we will be collecting
         this.state = {
-            firstName: "First",
-            lastName:"Last",
+            firstName: "Your",
+            lastName:"Name",
             title: "Position",
             edit:false,
             phone:"(555)555-5555",
@@ -47,6 +47,7 @@ class About extends React.Component {
         return(
             <div>
             <div className="aboutDisplay">
+            <button className="printButton" onClick={()=> window.print()}>Print</button>
                 <div className="title">
                     <div className="firstLastName">
                         <h2 className = "firstName" id="name" value={firstName} > {firstName} </h2>

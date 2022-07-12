@@ -74,3 +74,30 @@ button.delete:hover{
 .projectDeleteIcon:hover {
   color:$lightBlue;
 }
+
+/*print button, don't show display*/
+.printButton {
+  display:none;
+  background:transparent;
+  background-color:white;
+  border:2px solid $lightBlue;
+  color:rgb(100, 100, 100);
+  height:40px;
+  width:120px;
+  border-radius:.5rem;
+  letter-spacing: 3px;
+  margin-top:10px;
+  font-size:1rem;
+  font-weight:700;
+}
+.printButton:hover {
+  border:2px solid $gray;
+    color:$lightBlue;
+    background-color:white;
+}
+
+@media print {
+  button {
+    display:none !important;
+  }
+}
