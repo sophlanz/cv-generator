@@ -1,3 +1,4 @@
+/*edit buttons*/
 .aboutButton, .skillsEditButton, button.project, button.education, button.experience {
   background-image:url(../../images/edit.svg);
     
@@ -12,14 +13,19 @@ border-radius: 50%;
   height:30px;
     width:30px;
     }
-    .aboutDisplay:hover button, .skillSection:hover button, .projectDisplay:hover button,
+
+    .aboutDisplay:hover button, .skillSection:hover button, 
+    .projectDisplay:hover button,
     .educationDisplay:hover button, .experienceDisplay:hover button {
-     
-     display:block
-     
-  
+      
+      display:block
     }
 
+
+
+
+
+/*submit form buttons*/
    .submitButton,  button.addSkill, button.addSoftSkill,button.add{
      background:transparent;
      background-color:$lightBlue;
@@ -35,7 +41,8 @@ border-radius: 50%;
     color:$lightBlue;
     background-color:white;
    }
-   /*delete button*/
+
+   /*delete buttons*/
    button.delete {
      background-image:url(../../images/delete.svg);
      display:none;
@@ -53,5 +60,17 @@ border-radius: 50%;
 button.delete:hover{
   top:-5px;
 };
+
   
-  
+/*div container form buttons*/
+.formButtons{
+  display:flex;
+  gap:30px;
+  flex-wrap:wrap;
+  width:300px;
+}
+
+/*on hover over edit div, turn color blue*/
+.projectDeleteIcon:hover {
+  color:$lightBlue;
+}

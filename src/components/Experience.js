@@ -12,14 +12,18 @@ class Experience extends React.Component {
             startDate: "July 2022",
             endDate: "Current",
             location:"Remote",
-            description:" Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ex turpis, iaculis sit amet tempor at, sollicitudin id lacus. Praesent ornare lobortis est a ultricies. Nulla ornare ante ut ligula lacinia luctus. Praesent ut neque turpis. Maecenas fringilla accumsan erat pellentesque luctus. ",
+            description:[" Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ex turpis, iaculis sit amet tempor at, sollicitudin id lacus. Praesent ornare lobortis est a ultricies. Nulla ornare ante ut ligula lacinia luctus. Praesent ut neque turpis. Maecenas fringilla accumsan erat pellentesque luctus. "],
             edit:false,
             index:0,
             id:uniqid()
            }],
            additional:1,
            //monitor to be used for displaying text inputs
-           edit:false
+           edit:false,
+           editBullet:false,
+           editExperienceIndex:0,
+           editBulletIndex:0
+           
          
         };
     };
@@ -73,7 +77,7 @@ class Experience extends React.Component {
                 startDate: "July 2020",
                 endDate: "July2022",
                 location:"Miami, FL",
-                description:" Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ex turpis, iaculis sit amet tempor at, sollicitudin id lacus. Praesent ornare lobortis est a ultricies. Nulla ornare ante ut ligula lacinia luctus. Praesent ut neque turpis. Maecenas fringilla accumsan erat pellentesque luctus. ",
+                description:[" Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ex turpis, iaculis sit amet tempor at, sollicitudin id lacus. Praesent ornare lobortis est a ultricies. Nulla ornare ante ut ligula lacinia luctus. Praesent ut neque turpis. Maecenas fringilla accumsan erat pellentesque luctus. "],
                 edit:false,
                 index:index,
                 id:uniqid()
@@ -116,41 +120,178 @@ class Experience extends React.Component {
      
     
     }
-    render() {
-        const {company, title, startDate,endDate,location,description} = this.state.experiences[0];
-        const {additional,experiences,edit} = this.state;
+    addBullet =(e) => {
+        e.preventDefault();
+        //we saved the index of the experience in the add bullet button under value
+        const index=Number(e.target.value)
+        //new bullet text 
+        const newText="In ex turpis, iaculis sit amet tempor at, sollicitudin id lacus. Praesent ornare lobortis est a ultricies. Nulla ornare ante ut ligula lacinia luctus. Praesent ut neque turpis. Maecenas fringilla accumsan erat pellentesque luctus."
+        //we will store the old bullets and new one in here
+        let newDescription = "";
+        
+        //we need to get the experience that matches the index
+        //then we want to get it's description, and unshift it into the new description array
+        const experiences=[...this.state.experiences];
+        experiences.forEach((experience) => {
+            if(experience.index===index) {
+               let oldDescription= experience.description;
+                newDescription = Array.from(oldDescription);
+               console.log(newDescription);
+               newDescription.push(newText);
+               
+            }
+        }
+        );
+        //now we need to reset the state with the new description array
+        this.setState(prevState=> ({
+            experiences:prevState.experiences.map(
+                experience => (experience.index===index ? {...experience, description:newDescription} : experience))
+        }),()=>(console.log(this.state.experiences)));
+    }
+    deleteBullet=(e)=> {
+        //we saved the index to be deleted from description in button value
+        const indexDescription = Number(e.target.value);
+        //we saved the index of the experience array we want under name
+        const indexExperience = Number(e.target.name);
+        //get array of experiences
+        const experiences = [...this.state.experiences]
+        //find experience with matching index. 
+        //save to new array
+        let updatedDescription = "";
+        experiences.map(
+            experience => experience.index === indexExperience ?  updatedDescription= Array.from(experience.description) : experience
+        );
+       //split array by index
+       updatedDescription.splice(indexDescription,1);
+       //reset state using the index again to find the experience
+       this.setState(prevState => ({
+           experiences:prevState.experiences.map(
+               experience => experience.index === indexExperience ? {...experience,description:updatedDescription} : null
+           )
+       }));
+    }
+   editBullet=(e) => {
+       //get the experience index from target name
+       const indexExperience = Number(e.target.name);
+       //get the bullet index from target value
+       const indexBullet = Number(e.target.value);
+       //set state to access these values later
+       //set edit bullet to true so form displays
+       this.setState({
+           editExperienceIndex:indexExperience,
+           editBulletIndex:indexBullet,
+           editBullet:true
+       },()=>console.log(this.state));
        
+   }
+   handleChangeBullet = (e) => {
+    //get the previously saved index values in set
+    const indexExperience = this.state.editExperienceIndex;
+    const indexBullet = this.state.editBulletIndex;
+    //updated bullet of target value
+    const updatedBullet = e.target.value;
+    //we'll save the new description/bullet points in here
+    let description = ''
+    //map through experiences and get the experience of the matching index
+    //we want to get the description
+    let experiences =[...this.state.experiences];
+    experiences.forEach((experience) => {
+        if(experience.index === indexExperience) {
+            //set description to delcared description
+            description=experience.description
+            //splice description to get rid of old bullet
+            description.splice(indexBullet,1);
+            //splice again to add in new bullet
+            description.splice(indexBullet,0,updatedBullet)
+        }
+    })
+    //now reset prev state
+    if(this.state.experiences) {
+        this.setState(prevState => ({
+            experiences:prevState.experiences.map(
+                experience => experience.index === indexExperience ? {...experience, description:description} : experience
+            )
+        }));
+    }
+  
+   };
+   submitEditBullet = () => {
+       //reset state values so form closes, and index are ready
+       this.setState({
+        editExperienceIndex:0,
+        editBulletIndex:0,
+        editBullet:false
+       })
+   };
+    render() {
+        
+        const {additional,experiences,edit,editBullet} = this.state;
+       const experiencesList = 
+           //map  through the experiences and return the data
+        experiences.map((experience,idx) => {
+            //index of experience to pass to button
+            const indexExperience=experience.index
+            return(
+                <div key={idx} className="experienceItem">
+                <div className="generalInformation">
+               <div className="companyTitle">
+               <div className="expEditIcon">
+               <h3>{experience.company}</h3>
+               <button className="experience" value = {idx} onClick = { this.editExperience}></button>
+               </div>
+               <div >{experience.title}</div>
+               </div>
+               <div className="dateLocationExp">
+               <p>{experience.location}</p>
+              <div className="dateExperience"> <div>{experience.startDate}</div> - <div>{experience.endDate}</div></div>
+               </div>
+           </div>
+           <ul>
+            {/*map through the description array and lay out the data in an unordered list */}
+            {experience.description.map((bullet,idx)=> {
+                return (
+                    <div className="bulletEditDiv" key={idx}>
+                    <li >
+                    {bullet}
+                    </li>
+                    <button title= "edit" value = {idx} name={indexExperience} className="experience" onClick={this.editBullet}></button>
+                    {idx !==0 ? 
+                        <button className="delete" name={indexExperience} value={idx}onClick={this.deleteBullet}></button>
+                            :null
+                            }
+                    </div>
+                   
+                    
+                )
+            })}
+            
+            </ul>
+    
+           </div> 
+            )});
+        
        
         return(
             <div className="experienceDisplay">
                     <h1>Work Experience</h1>
                  {/*what we want to display on the screen as the final product */}
                  {/*If there's only 1 experience, just show the [0] of experiences array */}
-                 {additional === 1 ? 
-                 <div className="experienceItem">
-                 <div className="generalInformation">
-                    <div className="companyTitle">
-                    <div className="expEditIcon">
-                    <h3>{company}</h3>
-                    <button className="experience" value = "0" onClick = { this.editExperience}></button>
-                    </div>
-                    <div >{title}</div>
-                    </div>
-                    <div className="dateLocationExp">
-                    <p>{location}</p>
-                   <div className="dateExperience"> <div>{startDate}</div> - <div>{endDate}</div></div>
-                    </div>
+                <div>
+                {experiencesList}
                 </div>
-                    <ul className="descriptionExperience">
-                    <li>{description}</li>
-                    </ul>
-                    
-                    
-                    
-                </div> 
-                :    
-                <AdditionalExperience experiences={experiences} deleteExperience={this.deleteExperience} editExperience={this.editExperience} addAnother={this.addAnother}/>
-                 } 
+                 
+              
+             {/*if edit bullet, display form */}
+           {editBullet ? 
+           <form>
+           <label htmlFor="experienceBullet">Update Bullet
+            <textarea rows="8"cols="100" type= "text" className="editBullet" name="experienceBullet" onChange = {this.handleChangeBullet}/>
+            <button className="submitButton" onClick = {this.submitEditBullet}>Submit Changes</button>
+            </label>
+           </form>
+           :
+           null
+           }
                 {/*the popup we want to display on the screen for editing */}
            {edit ? 
            <div>
@@ -164,29 +305,46 @@ class Experience extends React.Component {
                         return (
                         <div key={experience.id}>
                         <form>
-                        <label htmlFor="company">Company</label>
+                        <label htmlFor="company">Company
                         <input type= "text" id ={index} name="company" onChange = {this.handleChange}/>
-                        <label htmlFor="title">Title</label>
-                        <input type= "text" id ={index} name="title" onChange = {this.handleChange} />
-                        <label htmlFor="startDate">Start Date</label>
+                        </label>
+                       <label htmlFor="title">Title
+                       <input type= "text" id ={index} name="title" onChange = {this.handleChange} />
+                       </label>
+                       
+                        <label htmlFor="startDate">Start Date
                         <input type= "text" id ={index} name="startDate" onChange = {this.handleChange}/>
-                        <label htmlFor="endDate">End Date</label>
+                        </label>
+                        
+                        <label htmlFor="endDate">End Date
                         <input type= "text" id ={index} name="endDate" onChange = {this.handleChange}/>
-                        <label htmlFor="location">Location</label>
+                        </label>
+                        
+                        <label htmlFor="location">Location
                         <input type= "text" id ={index} name="location" onChange = {this.handleChange}/>
-                        <label htmlFor="description">Description</label>
+                        </label>
+                        
+                        <label htmlFor="description">Description
                         <input type= "text" id ={index}  name="description" onChange = {this.handleChange}/>
+                        </label>
+                        
+                        <div className="formButtons">
                         <button className="add"  onClick={this.addAnother}>Add Experience</button>
                         <button value = {index} className="submitButton" type = "text" onClick= {this.handleSubmit}>Submit Changes</button>
+                        <button className="add" value = {index}onClick={this.addBullet}>Add Bullet</button>
+                        </div>
+              
                         </form>
                         </div>
                     )
-                    };
+                    }
                     
-                })}
+                }
+                )}
                 </div>
             : null    
            }
+         
             </div>
         );
     };

@@ -52,7 +52,7 @@ class About extends React.Component {
                         <h2 className = "firstName" id="name" value={firstName} > {firstName} </h2>
                         <h2 className = "lastName" id="name" value={lastName} > {lastName}</h2>
                     </div>
-                    <h3 id="title" value={title}>{title}</h3>
+                    <h3 className="aboutEditIcon"id="title" value={title}>{title} <button className="aboutButton" title="Edit" onClick= {this.editAbout}></button> </h3>
                 </div>
                 <div className="personalInformation">
                     <div id="phone"  value={phone} > <img src={phonePic}alt="pic"/>{phone}</div> |
@@ -60,8 +60,9 @@ class About extends React.Component {
                     <div id="linkedin"  value={linkedin} ><img src ={linkedinPic} alt="pic"/>{linkedin}</div> |
                     <div id="github"  value={github} ><img src ={githubPic} alt="pic"/>{github}</div> |
                     <div id="email"  value={email} ><img src ={emailPic} alt="pic"/>{email}</div> 
+                    
                 </div>
-               <button className="aboutButton" title="Edit" onClick= {this.editAbout}></button>
+              
             </div>
             {/*if the edit state is true, show the input fields*/ }
             {edit ? 
@@ -101,6 +102,7 @@ class About extends React.Component {
                 <label htmlFor="email">
                 <input name="email" type="text" placeHolder="Email"  onChange= {this.handleChange}/>
                 </label>
+                
                 <button className="submitButton" type="submit">Submit</button>
             </form>
             : null

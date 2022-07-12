@@ -1,6 +1,8 @@
 /*bullet points*/
 ul{
     list-style:none;
+   
+    
   }
   ul li:before{
     content: "\2022";
@@ -8,4 +10,9 @@ ul{
     font-weight:bolder;
     padding:5px;
   }
-  
+  li {
+    display:flex;
+    text-align:left;
+    line-height:1.6
+  }
+ 

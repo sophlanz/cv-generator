@@ -35,7 +35,14 @@ class AdditionalExperience extends React.Component {
                     </div>
                 </div>
                     <ul className="descriptionExperience">
-                    <li>{experience.description}</li>
+                    {experience.description.map((bullet,idx)=> {
+                        return (
+                            <li key={idx}>
+                            {bullet}
+                            </li>
+                        )
+                    })}
+                   
                     </ul>
                     </div>
     

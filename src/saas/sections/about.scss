@@ -25,6 +25,7 @@
     margin-bottom:0px;
     font-size:2.4rem;
   }
+ 
   /*bolder last name than first name*/
   .lastName{
     font-weight:700;
@@ -34,6 +35,7 @@
     display:flex;
     flex-direction:column;
     height:100px;
+    align-items:center;
   }
   /*the position /title header*/
   
@@ -42,4 +44,10 @@
     font-size:1.5rem;
     font-weight:600;
     color:$mainColor;
+  }
+  .aboutEditIcon {
+    display:flex;
+  }
+  .aboutEditIcon:hover {
+    color:$lightBlue;
   }

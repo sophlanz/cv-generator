@@ -159,18 +159,28 @@ class Education extends React.Component {
                 return(
                 <div key={study.id}>
                 <form>
-                 <label htmlFor="university">University</label>
+                <div className="formItems">
+                <label htmlFor="university">University
                 <input type= "text" id={index} name="university" onChange = {this.handleChange}/>
-                <label htmlFor="degree">Degree</label>
+                </label>
+                <label htmlFor="degree">Degree
                 <input type= "text" id={index} name="degree" onChange = {this.handleChange} />
-                <label htmlFor="startDate">Start Date</label>
+                </label>
+                <label htmlFor="startDate">Start Date
                 <input type= "text" id={index} name="startDate" onChange = {this.handleChange}/>
-                <label htmlFor="endDate">End Date</label>
+                </label>
+                <label htmlFor="endDate">End Date
                 <input type= "text" id={index} name="endDate" onChange = {this.handleChange}/>
-                <label htmlFor="location">Location</label>
+                </label>
+                <label htmlFor="location">Location
                 <input type= "text" id={index} name="location" onChange = {this.handleChange}/>
+                </label>
+                </div>
+                <div className="formButtons">
                 <button className="add" onClick={this.addEducation}>Add Education</button>
                 <button className="submitButton"type = "text" id={index} onClick={this.handleSubmit}>Submit Changes</button>
+                </div>
+
                 </form>
                 </div>
                 )

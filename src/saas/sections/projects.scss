@@ -31,7 +31,13 @@
     display:flex;
    
 }
-.projectDeleteIcon:hover{
-    color:$lightBlue;
-}
-  
+
+/*div of bullet and trashcan*/
+  .bulletDelete {
+      display:flex;
+      align-items:center;
+  }
+  /**/
+  .bulletDelete:hover {
+    color:$lightBlue
+  }

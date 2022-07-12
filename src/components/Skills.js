@@ -127,7 +127,7 @@ class Skills extends React.Component {
         return(
             
             <div className = "skillSection">
-               <div className="skillsEdit"> <h1>Skills</h1>  <button title = "edit" className = "skillsEditButton"onClick={this.editSkills}></button></div>
+               <div > <h1 className="skillsEdit">Skills <button title = "edit" className = "skillsEditButton"onClick={this.editSkills}></button></h1>  </div>
                   {/*Edit skills, re-map all of the skills and add a delete button */}
                   {edit ? 
                   <div className="skills" >
