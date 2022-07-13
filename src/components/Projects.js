@@ -7,7 +7,8 @@ class Projects extends React.Component {
             projects:[
                 {title:"Weather App",
                 description:["Fetches weather from the open weather API, and displays it with a user friendly interface."],
-                technologiesUsed:["Open Weather Api", "Vanialla Javascript", "HTML & CSS"],
+                technologies:["Open Weather Api", "Vanialla Javascript", "HTML & CSS"],
+                liveDemo:"superdev.github.io/weatherApp/",
                 edit:false,
                 index:0,
                 
@@ -15,7 +16,8 @@ class Projects extends React.Component {
             },
             {title: "Mock Facebook",
             description:["Personal twist on mock Facebook site, with new UI"],
-            technologiesUsed:["Javascript","React","HTML & CSS"],
+            technologies:["Javascript, React , HTML & CSS"],
+            liveDemo:"superdev.github.io/mockFacebook/",
             edit:false,
             index:1,
            
@@ -45,7 +47,7 @@ class Projects extends React.Component {
         const newProject = {
                 title:"Clothing Store",
                 description:["Clothing store website made with React"],
-                technologiesUsed:["Javascript","React","HTML & CSS", "Jest", "Webpack"],
+                technologies:["Javascript","React","HTML & CSS", "Jest", "Webpack"],
                 edit:false,
                 index:index
         };
@@ -79,10 +81,11 @@ class Projects extends React.Component {
         const name = e.target.name;
         //get index we saved we we clicked edit 
         const index = this.state.index;
+        const updateValue=e.target.value
         //map through state and look for matching index, change those values
         this.setState(prevState => ({
             projects:prevState.projects.map(
-                project => (project.index === index ? Object.assign(project,{[name]: e.target.value}): project)
+                project => project.index === index ? {...project, [name]: [updateValue]} : project
             )
         }),()=>{console.log(this.state)})
     };
@@ -255,8 +258,8 @@ class Projects extends React.Component {
                     :
                     null
                     }
-                    <div className="techUsed"><p style={{fontStyle:"italic", fontWeight:"bold"}}>Technologies:</p><p>{project.technologiesUsed.join(', ')}</p></div>
-                   
+                    <div className="techUsed"><p style={{fontStyle:"italic", fontWeight:"", fontSize:"1.1rem"}}>Technologies:</p><p>{project.technologies.join(', ')}</p></div>
+                   <div className="liveDemo"><p style={{fontStyle:"bold", fontWeight:"bold",fontSize:"1.1rem"}}>Live Demo: </p><a href={`https://${project.liveDemo}`} target="_blank"><p>{project.liveDemo}</p></a></div>
                     {/*We don't want to give a delete button to the fist one */}
                     </div>
                 </div>
@@ -271,23 +274,16 @@ class Projects extends React.Component {
             </ul>
             {/*if edit, show input fields and submit button */}
             {edit ? 
-            <form>
+            <form className="projects">
                 <label htmlFor="title">Title
                 <input name="title" placeHolder=""onChange = {this.handleChange}/>
                 </label>
-                <label htmlFor="description">Descritption
-                <input name="description" onChange = {this.handleChange}/>
-                </label>
                 <label htmlFor="technolgoies">Technologies Used
-                <input name="technologiesUsed" onChange = {this.handleChange}/>
+                <textarea rows="10"cols="20" name="technologies" onChange = {this.handleChange}/>
                 </label>
-                {addBullet ? 
-                <label htmlFor="addBullet">Descritption
-                <input name="description" onChange = {this.handleChange}/>
+                <label htmlFor="liveDemo">Live Demo
+                <input name="liveDemo" placeHolder="user.github.io/project"onChange = {this.handleChange}/>
                 </label>
-                :
-                null
-                }
                 <div className="formButtons">
                 <button className="add" onClick={this.addProject}>Add Project</button>
                 <button className="submitButton" onClick = {this.handleSubmit}>Submit Changes</button>

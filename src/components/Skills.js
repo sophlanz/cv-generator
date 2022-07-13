@@ -176,7 +176,7 @@ class Skills extends React.Component {
                 <form>
                     <div className="addSkill"> 
                         <label htmlFor="addSkillTeck">Add Tech Skill
-                        <input type="text" onChange ={this.handleChange}/>
+                        <textarea cols="30" rows="5" type="text" onChange ={this.handleChange}/>
                         </label>
                         <button id={"submitTechSkill"} className="add" title= "add" onClick = {this.submitAdd}>Add</button>
                     
@@ -191,7 +191,7 @@ class Skills extends React.Component {
                 <form>
                     <div className="addSkill">
                         <label htmlFor="addSkillSoft"> Add Soft Skill
-                        <input type="text" onChange ={this.handleChange}/>
+                        <textarea cols="30" rows="5" type="text" onChange ={this.handleChange}/>
                         </label>
                         <button id={"submitSoftSkill"} className="add" onClick = {this.submitAdd}>Add</button>
                     </div>

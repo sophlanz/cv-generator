@@ -13,8 +13,8 @@ function App() {
       <Modal/>
         <About/>
         <Skills/>
-        <Experience/>
         <Projects/>
+        <Experience/>
         <Education/>
       </div>
         

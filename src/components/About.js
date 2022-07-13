@@ -12,13 +12,15 @@ class About extends React.Component {
         this.state = {
             firstName: "Your",
             lastName:"Name",
-            title: "Position",
+            title: "Frontend Engineer",
             edit:false,
             phone:"(555)555-5555",
             email:"superdev@gmail.com",
             city: "New York",
             linkedin:"linkedin.com/in/superdev",
-            github:"github.com/superdev"
+            linkedinLink:"",
+            github:"github.com/superdev",
+            githubLink: ""
         };
     };
     editAbout = (e) => {
@@ -43,11 +45,15 @@ class About extends React.Component {
 
     render() {
         
-        const {firstName,lastName,title,edit,phone,city,linkedin,github,email} = this.state;
+        const {firstName,lastName,title,edit,phone,city,linkedin,github,email,linkedinLink,githubLink} = this.state;
+      const host=window.location.host
+      const server=window.location.href
+
         return(
             <div>
             <div className="aboutDisplay">
             <button className="printButton" onClick={()=> window.print()}>Print</button>
+           
                 <div className="title">
                     <div className="firstLastName">
                         <h2 className = "firstName" id="name" value={firstName} > {firstName} </h2>
@@ -58,8 +64,8 @@ class About extends React.Component {
                 <div className="personalInformation">
                     <div id="phone"  value={phone} > <img src={phonePic}alt="pic"/>{phone}</div> |
                     <div id="city"  value={city} ><img src ={locationPic} alt="pic"/> {city}</div> |
-                    <div id="linkedin"  value={linkedin} ><img src ={linkedinPic} alt="pic"/>{linkedin}</div> |
-                    <div id="github"  value={github} ><img src ={githubPic} alt="pic"/>{github}</div> |
+                    <a href = {`https://${linkedin}` } target="_blank"><div id="linkedin"  value={linkedin} ><img src ={linkedinPic} alt="pic"/>{linkedin}</div></a> |
+                    <a href={`https://${github}` } target="_blank"><div id="github"  value={github} ><img src ={githubPic} alt="pic"/>{github}</div></a> |
                     <div id="email"  value={email} ><img src ={emailPic} alt="pic"/>{email}</div> 
                     
                 </div>
@@ -68,40 +74,40 @@ class About extends React.Component {
             {/*if the edit state is true, show the input fields*/ }
             {edit ? 
             <form onSubmit={this.handleSubmit}>
-                <label htmlFor="firstName">
-                <input name="firstName" placeHolder="First Name" type="text" onChange={this.handleChange}/>
+                <label htmlFor="firstName">First Name
+                <input name="firstName"  type="text" onChange={this.handleChange}/>
                 </label>
-                <label htmlFor="lastName">
-                <input name="lastName" placeHolder="Last Name" type="text" onChange={this.handleChange}/>
+                <label htmlFor="lastName">Last Name
+                <input name="lastName" type="text" onChange={this.handleChange}/>
                 </label>
                 
-                <label htmlFor="title">
-                <input name="title" type="text" placeHolder="Position" onChange= {this.handleChange}/>
+                <label htmlFor="title">Title
+                <input name="title" type="text" onChange= {this.handleChange}/>
                 </label>
 
                  
-                <label htmlFor="phone">
-                <input name="phone" placeHolder="Phone Number" type="text"  onChange= {this.handleChange}/>
+                <label htmlFor="phone">Phone Number
+                <input name="phone"  type="tel"  onChange= {this.handleChange} />
                 </label>
 
                  
-                <label htmlFor="city">
-                <input name="city" placeHolder="City" type="text"  onChange= {this.handleChange}/>
+                <label htmlFor="city">Location
+                <input name="city"  type="text"  onChange= {this.handleChange}/>
                 </label>
 
                  
-                <label htmlFor="linkedin">
-                <input name="linkedin" placeHolder="Linkedin" type="text"  onChange= {this.handleChange}/>
+                <label htmlFor="linkedin">Linkedin
+                <input name="linkedin" placeHolder="linkedin.com/..." type="text"  onChange= {this.handleChange}/>
                 </label>
 
-                 
-                <label htmlFor="github">
-                <input name="github" type="text" placeHolder="Github" onChange= {this.handleChange}/>
-                </label>
 
                  
-                <label htmlFor="email">
-                <input name="email" type="text" placeHolder="Email"  onChange= {this.handleChange}/>
+                <label htmlFor="github">Github
+                <input name="github" type="text" placeHolder="github.com/..." onChange= {this.handleChange}/>
+                </label>
+                 
+                <label htmlFor="email">Email
+                <input name="email" type="text"  onChange= {this.handleChange}/>
                 </label>
                 
                 <button className="submitButton" type="submit">Submit</button>

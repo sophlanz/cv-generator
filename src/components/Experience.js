@@ -346,9 +346,7 @@ class Experience extends React.Component {
                         <input type= "text" id ={index} name="location" onChange = {this.handleChange}/>
                         </label>
                         
-                        <label htmlFor="description">Description
-                        <input type= "text" id ={index}  name="description" onChange = {this.handleChange}/>
-                        </label>
+                       
                         
                         <div className="formButtons">
                         <button className="add"  onClick={this.addAnother}>Add Experience</button>

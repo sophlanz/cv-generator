@@ -27,12 +27,12 @@ class Modal extends React.Component {
                     <li>Hover over the various areas of the resume, and click the pencil
                     icon to edit the content.</li>
                     <li>To add an additional experience, project, education, or skill, click
-                    "add". You can then edit the content.</li>
+                    "Add". You can then edit the content.</li>
                     <li>To add a bullet point, click on the corresponding title, then
                     click "Add Bullet".</li>
                     <li>Complete the form fields to your liking, and click "Submit". </li>
                     <li>To delete content, click on the trashcan icon.</li>
-                    <li>To print, click on the print button at the top of the
+                    <li>To print or download, click on the print button at the top of the
                     contact information section. Alternatively, you can print
                     using CMND + P (mac) or CTRL + P (windows)</li>
                     <li>Happy CV generating! :)</li>
