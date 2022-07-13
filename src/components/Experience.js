@@ -7,17 +7,32 @@ class Experience extends React.Component {
         this.state={
             //array of experience objects
             experiences:[{ 
-            company: "Amazing Startup",
+            company: "Netflix",
             title:"Senior Web Developer",
             startDate: "July 2022",
             endDate: "Current",
             location:"Remote",
-            description:[" Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ex turpis, iaculis sit amet tempor at, sollicitudin id lacus. Praesent ornare lobortis est a ultricies. Nulla ornare ante ut ligula lacinia luctus. Praesent ut neque turpis. Maecenas fringilla accumsan erat pellentesque luctus. "],
+            description:[" Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ex turpis, iaculis sit amet tempor at, sollicitudin id lacus. Praesent ornare lobortis est a ultricies. Nulla ornare ante ut ligula lacinia luctus. Praesent ut neque turpis. Maecenas fringilla accumsan erat pellentesque luctus. ",
+                        "Aenean dictum turpis sit amet feugiat dapibus. Mauris eu diam at dolor sodales vulputate. In hac habitasse platea dictumst. Fusce sit amet leo vitae quam sollicitudin mollis. Sed hendrerit aliquam orci vitae eleifend. Nunc tempor semper est, cursus aliquam mi hendrerit eget."],
             edit:false,
             index:0,
             id:uniqid()
-           }],
-           additional:1,
+           },{
+            company: "Uber",
+            title:"Junior Developer",
+            startDate: "July 2020",
+            endDate: "July2022",
+            location:"Miami, FL",
+            description:[" Quisque sit amet ante at nunc feugiat ultrices. Proin in neque auctor, dignissim lorem id, interdum felis. Duis malesuada vitae ligula sed ullamcorper. Duis blandit ullamcorper augue. Fusce aliquet laoreet interdum. Integer convallis ornare est, eget efficitur ipsum lobortis ut. ",
+                        "Donec a est dictum, vestibulum sem a, hendrerit massa. Mauris ac libero nisl. Fusce sodales suscipit nunc non pretium. Praesent eros nulla, varius vitae ipsum sit amet, hendrerit tempus massa."],
+            
+            edit:false,
+            index:1,
+            id:uniqid()
+    }
+          
+        ],
+           additional:2,
            //monitor to be used for displaying text inputs
            edit:false,
            editBullet:false,
@@ -72,8 +87,8 @@ class Experience extends React.Component {
        console.log(index);
        //create new experience object
         const newExperience= {
-                company: "Cool Startup",
-                title:"Junior Developer",
+                company: "Google",
+                title:"Software Engineer Intern",
                 startDate: "July 2020",
                 endDate: "July2022",
                 location:"Miami, FL",
@@ -166,7 +181,7 @@ class Experience extends React.Component {
        //reset state using the index again to find the experience
        this.setState(prevState => ({
            experiences:prevState.experiences.map(
-               experience => experience.index === indexExperience ? {...experience,description:updatedDescription} : null
+               experience => experience.index === indexExperience ? {...experience,description:updatedDescription} : experience
            )
        }));
     }
@@ -237,7 +252,14 @@ class Experience extends React.Component {
                <div className="companyTitle">
                <div className="expEditIcon">
                <h3>{experience.company}</h3>
-               <button className="experience" value = {idx} onClick = { this.editExperience}></button>
+               <button title="edit" className="experience" value = {idx} onClick = { this.editExperience}></button>
+               {idx !== 0 ?
+                <button title = "delete"className="delete" value={idx} onClick={this.deleteExperience}></button>
+                :
+                null
+               }
+              
+               
                </div>
                <div >{experience.title}</div>
                </div>

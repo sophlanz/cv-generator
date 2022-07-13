@@ -18,8 +18,9 @@
     padding-bottom:20px;
     border: 10px solid $lightBlue;
     width: 50%; 
-    height:50%;
+    min-height:50%;
     color:rgb(100, 100, 100);
+    max-height:80%;
   }
   
   /* The Close Button */
@@ -40,8 +41,15 @@
   .modalContent h1{
       font-size:2rem;
       font-weight:600;
+    text-decoration:underline;
+    text-decoration-color:$lightBlue;
   }
   .modalContent li {
       font-size:1.5rem;
       display:list-item;
+  }
+  .modalContent li::marker {
+    color:$lightBlue;
+    font-weight:800;
+    font-size:1.7rem;
   }

@@ -26,6 +26,8 @@ class Modal extends React.Component {
                 <ol>
                     <li>Hover over the various areas of the resume, and click the pencil
                     icon to edit the content.</li>
+                    <li>To add an additional experience, project, education, or skill, click
+                    "add". You can then edit the content.</li>
                     <li>To add a bullet point, click on the corresponding title, then
                     click "Add Bullet".</li>
                     <li>Complete the form fields to your liking, and click "Submit". </li>

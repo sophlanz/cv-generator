@@ -13,9 +13,9 @@ function App() {
       <Modal/>
         <About/>
         <Skills/>
+        <Experience/>
         <Projects/>
         <Education/>
-        <Experience/>
       </div>
         
     </div>
