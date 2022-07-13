@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/cv-generator/static/css/main.9923ea64.css",
+    "main.js": "/cv-generator/static/js/main.3f72d547.js",
+    "static/js/787.34a20539.chunk.js": "/cv-generator/static/js/787.34a20539.chunk.js",
+    "static/media/email.svg": "/cv-generator/static/media/email.446f1e6695ac3bc6f8c42f57df5bf573.svg",
+    "static/media/linkedin.svg": "/cv-generator/static/media/linkedin.3c952a2f52cee63f5ab31e0e875a97d0.svg",
+    "static/media/delete.svg": "/cv-generator/static/media/delete.d9f07cc249ee98e3c9c5.svg",
+    "static/media/phone.svg": "/cv-generator/static/media/phone.4db7d21e50b5b3e42b6c4d0a443ebbaf.svg",
+    "static/media/edit.svg": "/cv-generator/static/media/edit.30f32c75cb323cb0d8b3.svg",
+    "static/media/github.svg": "/cv-generator/static/media/github.cfce3b1634ef555964b45c3283b0ff6c.svg",
+    "index.html": "/cv-generator/index.html",
+    "static/media/location.svg": "/cv-generator/static/media/location.08ceefa54db2f73891c8045ac0f88cc2.svg",
+    "main.9923ea64.css.map": "/cv-generator/static/css/main.9923ea64.css.map",
+    "main.3f72d547.js.map": "/cv-generator/static/js/main.3f72d547.js.map",
+    "787.34a20539.chunk.js.map": "/cv-generator/static/js/787.34a20539.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9923ea64.css",
+    "static/js/main.3f72d547.js"
+  ]
+}
