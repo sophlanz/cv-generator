@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/cv-generator/static/css/main.bc02dd85.css",
+    "main.css": "/cv-generator/static/css/main.1dc58f63.css",
     "main.js": "/cv-generator/static/js/main.d92cddc8.js",
     "static/js/787.34a20539.chunk.js": "/cv-generator/static/js/787.34a20539.chunk.js",
     "static/media/email.svg": "/cv-generator/static/media/email.446f1e6695ac3bc6f8c42f57df5bf573.svg",
@@ -11,12 +11,12 @@
     "static/media/github.svg": "/cv-generator/static/media/github.cfce3b1634ef555964b45c3283b0ff6c.svg",
     "index.html": "/cv-generator/index.html",
     "static/media/location.svg": "/cv-generator/static/media/location.08ceefa54db2f73891c8045ac0f88cc2.svg",
-    "main.bc02dd85.css.map": "/cv-generator/static/css/main.bc02dd85.css.map",
+    "main.1dc58f63.css.map": "/cv-generator/static/css/main.1dc58f63.css.map",
     "main.d92cddc8.js.map": "/cv-generator/static/js/main.d92cddc8.js.map",
     "787.34a20539.chunk.js.map": "/cv-generator/static/js/787.34a20539.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.bc02dd85.css",
+    "static/css/main.1dc58f63.css",
     "static/js/main.d92cddc8.js"
   ]
 }
