@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/cv-generator/static/css/main.eb28797e.css",
-    "main.js": "/cv-generator/static/js/main.1166dd00.js",
+    "main.css": "/cv-generator/static/css/main.bc02dd85.css",
+    "main.js": "/cv-generator/static/js/main.d92cddc8.js",
     "static/js/787.34a20539.chunk.js": "/cv-generator/static/js/787.34a20539.chunk.js",
     "static/media/email.svg": "/cv-generator/static/media/email.446f1e6695ac3bc6f8c42f57df5bf573.svg",
     "static/media/linkedin.svg": "/cv-generator/static/media/linkedin.3c952a2f52cee63f5ab31e0e875a97d0.svg",
@@ -11,12 +11,12 @@
     "static/media/github.svg": "/cv-generator/static/media/github.cfce3b1634ef555964b45c3283b0ff6c.svg",
     "index.html": "/cv-generator/index.html",
     "static/media/location.svg": "/cv-generator/static/media/location.08ceefa54db2f73891c8045ac0f88cc2.svg",
-    "main.eb28797e.css.map": "/cv-generator/static/css/main.eb28797e.css.map",
-    "main.1166dd00.js.map": "/cv-generator/static/js/main.1166dd00.js.map",
+    "main.bc02dd85.css.map": "/cv-generator/static/css/main.bc02dd85.css.map",
+    "main.d92cddc8.js.map": "/cv-generator/static/js/main.d92cddc8.js.map",
     "787.34a20539.chunk.js.map": "/cv-generator/static/js/787.34a20539.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.eb28797e.css",
-    "static/js/main.1166dd00.js"
+    "static/css/main.bc02dd85.css",
+    "static/js/main.d92cddc8.js"
   ]
 }
