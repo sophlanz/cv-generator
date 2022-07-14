@@ -1,67 +1,53 @@
 /*edit buttons*/
 .aboutButton, .skillsEditButton, button.project, button.education, button.experience {
   background-image:url(../../images/edit.svg);
-    
   background-repeat:no-repeat;
   background-position:50% 50%;
   display:none;
   border:none;
   background-color:white;
-
-/*make button a circle*/
-border-radius: 50%;
+  /*make button a circle*/  
+  border-radius: 50%;
   height:30px;
-    width:30px;
-    }
-
-    .aboutDisplay:hover button, .skillSection:hover button, 
-    .projectDisplay:hover button,
-    .educationDisplay:hover button, .experienceDisplay:hover button {
-      
-      display:block
-    }
-
-
-
-
-
+  width:30px;
+    };
+.aboutDisplay:hover button, .skillSection:hover button, 
+.projectDisplay:hover button,.educationDisplay:hover button, 
+.experienceDisplay:hover button {
+  display:block
+    };
 /*submit form buttons*/
-   .submitButton,  button.addSkill, button.addSoftSkill,button.add{
-     background:transparent;
-     background-color:$lightBlue;
-     border:2px solid white;
-     color:rgb(100, 100, 100);
-     height:40px;
-     width:120px;
-     border-radius:.5rem;
-     letter-spacing: 3px;
-   }
-   .submitButton:hover,  button.addSkill:hover, button.addSoftSkill:hover, button.add:hover{
-    border:2px solid $gray;
-    color:$lightBlue;
-    background-color:white;
-   }
-
-   /*delete buttons*/
-   button.delete {
-     background-image:url(../../images/delete.svg);
-     display:none;
-     background-repeat:no-repeat;
-    background-position:50% 50%;
-    height:30px;
-    width:30px;
-    border:none;
-    background-color:white;
-    position: relative;
-    top: 0;
-    transition: top ease 0.5s;
-   }
-  
+.submitButton,  button.addSkill, button.addSoftSkill,button.add{
+  background:transparent;
+  background-color:$lightBlue;
+  border:2px solid white;
+  color:$darkGray;
+  height:40px;
+  width:120px;
+  border-radius:.5rem;
+  letter-spacing: 3px;
+   };
+.submitButton:hover,  button.addSkill:hover, button.addSoftSkill:hover, button.add:hover{
+  font-weight:700;
+  border:4px solid white;
+   };
+  /*delete buttons*/
+  button.delete {
+  background-image:url(../../images/delete.svg);
+  display:none;
+  background-repeat:no-repeat;
+  background-position:50% 50%;
+  height:30px;
+  width:30px;
+  border:none;
+  background-color:white;
+  position: relative;
+  top: 0;
+  transition: top ease 0.5s;
+   };
 button.delete:hover{
   top:-5px;
 };
-
-  
 /*div container form buttons*/
 .formButtons{
   display:flex;
@@ -73,20 +59,18 @@ button.delete:hover{
   flex-direction:column;
   height:225px;
   width:75px;
-}
-
+};
 /*on hover over edit div, turn color blue*/
 .projectDeleteIcon:hover {
   color:$lightBlue;
-}
-
+};
 /*print button, don't show display*/
 .printButton {
   display:none;
   background:transparent;
   background-color:white;
   border:2px solid $lightBlue;
-  color:rgb(100, 100, 100);
+  color:$darkGray;
   height:40px;
   width:120px;
   border-radius:.5rem;
@@ -94,15 +78,13 @@ button.delete:hover{
   margin-top:10px;
   font-size:1rem;
   font-weight:700;
-}
+};
 .printButton:hover {
-  border:2px solid $gray;
-    color:$lightBlue;
-    background-color:white;
-}
-
+  border:4px solid $lightBlue;
+  font-weight:700;
+};
 @media print {
   button {
     display:none !important;
   }
-}
+};

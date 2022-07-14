@@ -11,8 +11,6 @@ class Projects extends React.Component {
                 liveDemo:"superdev.github.io/weatherApp/",
                 edit:false,
                 index:0,
-                
-                
             },
             {title: "Mock Facebook",
             description:["Personal twist on mock Facebook site, with new UI"],
@@ -20,7 +18,6 @@ class Projects extends React.Component {
             liveDemo:"superdev.github.io/mockFacebook/",
             edit:false,
             index:1,
-           
             }
             ],
             edit:false,
@@ -30,13 +27,9 @@ class Projects extends React.Component {
             addBullet:false,
             editBullet:false,
             editBulletIndex:0,
-            editProjectIndex:0,
-            
-            
-            
+            editProjectIndex:0,  
         };
     };
-
     addProject = (e) => {
         e.preventDefault();
         //duplicate projects array
@@ -68,7 +61,7 @@ class Projects extends React.Component {
         this.setState({
             edit:true,
             index:index
-        },()=>(console.log(this.state))); 
+        }); 
         //set edit to true under specific project
         this.setState(prevState => ({
             projects:prevState.projects.map(
@@ -87,7 +80,7 @@ class Projects extends React.Component {
             projects:prevState.projects.map(
                 project => project.index === index ? {...project, [name]: [updateValue]} : project
             )
-        }),()=>{console.log(this.state)})
+        }))
     };
     handleSubmit = () => {
         //set edit back to false
@@ -120,7 +113,7 @@ class Projects extends React.Component {
           this.setState(prevState => ({
               additional:prevState.additional-1
           }))
-    }
+    };
     addBullet =(e)=>{
         e.preventDefault();
        //get new bullet we set in state
@@ -132,12 +125,10 @@ class Projects extends React.Component {
            if(project.edit) {
                //set description
                description=project.description
-               console.log(description);
            }
        });
        //add new bullet to description array
        description.push(newBullet);
-       console.log(description);
        //set state with new description
        if(this.state.projects) {
         this.setState(prevState => ({
@@ -169,7 +160,7 @@ class Projects extends React.Component {
                
             )
         }))
-   }
+   };
    editBullet = (e) => {
        //index of edit project
        const projectIndex = Number(e.target.name)
@@ -194,7 +185,7 @@ class Projects extends React.Component {
     //loop over projects to set new array
     let projects = [...this.state.projects]
     let updateDescription ="";
-    projects.map((project) => {
+    projects.forEach((project) => {
         if( project.index === projectIndex ) {
               //we want to get the description into a new array
          updateDescription = Array.from(project.description)
@@ -220,53 +211,50 @@ class Projects extends React.Component {
          editBulletIndex: 0,
          editProjectIndex: 0
      });
-}
+};
     render() {
         //title for setting title of delete button
         let indexProject="";
-        const {projects,edit,addBullet,editBullet} = this.state;
+        const {projects,edit,editBullet} = this.state;
         const projectList = projects.map((project,index)=> {
             //put project.title and project.description in a div
             indexProject=project.index
             return(
-               
                 <div key={index}>
-                <div className="projectList">
-                <div className="projectDeleteIcon"><h3>{project.title}</h3><button className="project" title="Edit"value={index} onClick={this.editProject}></button>
-                     {index !== 0 ? 
-                     <button className="delete" value={index} title="Delete" onClick={this.deleteProject}></button>
-                     :
-                     null
-                    }
-                    </div>
-                    { project.description ? 
-                    project.description.map((item,idx) => {
-                        return(
-                            <div  key ={uniqid()}className="bulletDelete">
-                            <li>
-                            {item}
-                            </li>
-                            <button title = "edit" onClick = {this.editBullet} className="project" name={indexProject}value={idx}></button>
-                            {idx !==0 ? 
-                                <button title = "delete" className="delete" name={indexProject} value={idx}onClick={this.deleteBullet}></button>
-                                
-                            :null
+                    <div className="projectList">
+                        <div className="projectDeleteIcon"><h3>{project.title}</h3><button className="project" title="Edit"value={index} onClick={this.editProject}></button>
+                          {index !== 0 ? 
+                             <button className="delete" value={index} title="Delete" onClick={this.deleteProject}></button>
+                            :
+                             null
                             }
+                         </div>
+                        { project.description ? 
+                        project.description.map((item,idx) => {
+                            return(
+                            <div  key ={uniqid()}className="bulletDelete">
+                                 <li>
+                                 {item}
+                                </li>
+                                <button title = "edit" onClick = {this.editBullet} className="project" name={indexProject}value={idx}></button>
+                                {idx !==0 ? 
+                                <button title = "delete" className="delete" name={indexProject} value={idx}onClick={this.deleteBullet}></button>
+                                :null
+                                }
                             </div>
-                        )
-                    })
-                    :
-                    null
+                             )
+                        })
+                        :
+                        null
                     }
                     <div className="techUsed"><p className="techLabel">Technologies:</p><p>{project.technologies.join(', ')}</p></div>
-                   <div className="liveDemo"><p style={{fontStyle:"bold", fontWeight:"bold",fontSize:"1.1rem"}}>Live Demo: </p><a href={`https://${project.liveDemo}`} target="_blank"><p>{project.liveDemo}</p></a></div>
-                    {/*We don't want to give a delete button to the fist one */}
+                        <div className="liveDemo"><p style={{fontStyle:"bold", fontWeight:"bold",fontSize:"1.1rem"}}>Live Demo: </p><a href={`https://${project.liveDemo}`} target="_blank" rel="noreferrer" ><p>{project.liveDemo}</p></a></div>
+                         {/*We don't want to give a delete button to the fist one */}
                     </div>
                 </div>
             );
         });
         return(
-          
         <div className="projectDisplay">
             <h1>Personal Projects</h1>
             <ul className="projectContainer">
@@ -276,39 +264,36 @@ class Projects extends React.Component {
             {edit ? 
             <form className="projects">
                 <label htmlFor="title">Title
-                <input name="title" placeHolder=""onChange = {this.handleChange}/>
+                     <input name="title" placeHolder=""onChange = {this.handleChange}/>
                 </label>
                 <label htmlFor="technolgoies">Technologies Used
-                <textarea rows="3"cols="20" name="technologies" onChange = {this.handleChange}/>
+                    <textarea rows="3"cols="20" name="technologies" onChange = {this.handleChange}/>
                 </label>
                 <label htmlFor="liveDemo">Live Demo
-                <input name="liveDemo" placeHolder="user.github.io/project"onChange = {this.handleChange}/>
+                    <input name="liveDemo" placeHolder="user.github.io/project"onChange = {this.handleChange}/>
                 </label>
                 <div className="formButtons">
-                <button className="add" onClick={this.addProject}>Add Project</button>
-                <button className="add" onClick={this.addBullet}>Add Bullet</button>
-                <button className="submitButton" onClick = {this.handleSubmit}>Submit Changes</button>
+                    <button className="add" onClick={this.addProject}>Add Project</button>
+                    <button className="add" onClick={this.addBullet}>Add Bullet</button>
+                    <button className="submitButton" onClick = {this.handleSubmit}>Submit Changes</button>
                 </div>
-
             </form>
             :
             null
             }
          {/*if we're editing the bullet point, we want to display the form */}
             {editBullet? 
-            
             <form className="editBulletContainer">
-            <label htmlFor="editBullet">Edit Bullet Point
-                <textarea rows="4"cols="50" name="editBullet" className= "editBullet"onChange = {this.handleChangeBullet}/>
-                <button className="submitButton" onClick = {this.submitEditBullet}>Submit Changes</button>
-            </label>
+                 <label htmlFor="editBullet">Edit Bullet Point
+                    <textarea rows="4"cols="50" name="editBullet" className= "editBullet"onChange = {this.handleChangeBullet}/>
+                    <button className="submitButton" onClick = {this.submitEditBullet}>Submit Changes</button>
+                </label>
             </form>
-            
             :
             null
             }
         </div>
         );
-    }
+    };
 };
 export default Projects;

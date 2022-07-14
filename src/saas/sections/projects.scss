@@ -3,49 +3,44 @@
     display:flex;
     flex-direction:column;
     text-align:left;
-}
+};
 /*project header*/
 .projectDisplay h1{
     color:$mainColor;
-    
-}
+};
 /*list of projects*/
 .projectContainer {
     display:flex;
     flex-direction:column;
-    
-}
+};
 /*divs of specific projects*/
 .projectList {
     display:flex;
     flex-direction:column;
     gap:3px;
-   
-}
-
+};
 .techUsed {
     display:flex;
     gap:10px;
-}
+};
 .techLabel{
     border-bottom: 2px solid black;
-}
+};
 /*div of project name and trashcan icon*/
 .projectDeleteIcon{
     display:flex;
-   
-}
-
+};
 /*div of bullet and trashcan*/
   .bulletDelete {
-      display:flex;
-      align-items:center;
-  }
+    display:flex;
+    align-items:center;
+  };
   /**/
-  .bulletDelete:hover {
-    color:$lightBlue
-  }
-  .liveDemo{
-      display:flex;
-      gap:5px;
-  }
+.bulletDelete:hover {
+    color:$lightBlue;
+    font-weight:700;
+  };
+.liveDemo{
+    display:flex;
+    gap:5px;
+  };

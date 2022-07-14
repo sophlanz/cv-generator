@@ -38,85 +38,64 @@ class About extends React.Component {
             [name]:e.target.value
         })
     };
-    handleSubmit = (e) => {
+    handleSubmit = () => {
         //turn edit to false so the popup window will disappear
         this.setState({edit:false});
     };
-
     render() {
-        
-        const {firstName,lastName,title,edit,phone,city,linkedin,github,email,linkedinLink,githubLink} = this.state;
-      const host=window.location.host
-      const server=window.location.href
-
+        const {firstName,lastName,title,edit,phone,city,linkedin,github,email} = this.state;
         return(
             <div>
-            <div className="aboutDisplay">
-            <button className="printButton" onClick={()=> window.print()}>Print</button>
-           
-                <div className="title">
-                    <div className="firstLastName">
-                        <h2 className = "firstName" id="name" value={firstName} > {firstName} </h2>
-                        <h2 className = "lastName" id="name" value={lastName} > {lastName}</h2>
+                <div className="aboutDisplay">
+                <button className="printButton" onClick={()=> window.print()}>Print</button>
+                    <div className="title">
+                        <div className="firstLastName">
+                            <h2 className = "firstName" id="name" value={firstName} > {firstName} </h2>
+                            <h2 className = "lastName" id="name" value={lastName} > {lastName}</h2>
+                        </div>
+                        <h3 className="aboutEditIcon"id="title" value={title}>{title} <button className="aboutButton" title="Edit" onClick= {this.editAbout}></button> </h3>
                     </div>
-                    <h3 className="aboutEditIcon"id="title" value={title}>{title} <button className="aboutButton" title="Edit" onClick= {this.editAbout}></button> </h3>
+                    <div className="personalInformation">
+                        <div id="phone"  value={phone} > <img src={phonePic}alt="pic"/>{phone}</div> |
+                        <div id="city"  value={city} ><img src ={locationPic} alt="pic"/> {city}</div> |
+                        <a href = {`https://${linkedin}` } target="_blank"><div id="linkedin"  value={linkedin} ><img src ={linkedinPic} alt="pic"/>{linkedin}</div></a> |
+                        <a href={`https://${github}` } target="_blank"><div id="github"  value={github} ><img src ={githubPic} alt="pic"/>{github}</div></a> |
+                        <div id="email"  value={email} ><img src ={emailPic} alt="pic"/>{email}</div> 
+                    </div>
                 </div>
-                <div className="personalInformation">
-                    <div id="phone"  value={phone} > <img src={phonePic}alt="pic"/>{phone}</div> |
-                    <div id="city"  value={city} ><img src ={locationPic} alt="pic"/> {city}</div> |
-                    <a href = {`https://${linkedin}` } target="_blank"><div id="linkedin"  value={linkedin} ><img src ={linkedinPic} alt="pic"/>{linkedin}</div></a> |
-                    <a href={`https://${github}` } target="_blank"><div id="github"  value={github} ><img src ={githubPic} alt="pic"/>{github}</div></a> |
-                    <div id="email"  value={email} ><img src ={emailPic} alt="pic"/>{email}</div> 
-                    
-                </div>
-              
-            </div>
             {/*if the edit state is true, show the input fields*/ }
             {edit ? 
             <form class="about" onSubmit={this.handleSubmit}>
                 <label htmlFor="firstName">First Name
-                <input name="firstName"  type="text" onChange={this.handleChange}/>
+                    <input name="firstName"  type="text" onChange={this.handleChange}/>
                 </label>
                 <label htmlFor="lastName">Last Name
-                <input name="lastName" type="text" onChange={this.handleChange}/>
+                    <input name="lastName" type="text" onChange={this.handleChange}/>
                 </label>
-                
                 <label htmlFor="title">Title
-                <input name="title" type="text" onChange= {this.handleChange}/>
+                    <input name="title" type="text" onChange= {this.handleChange}/>
                 </label>
-
-                 
                 <label htmlFor="phone">Phone Number
-                <input name="phone"  type="tel"  onChange= {this.handleChange} />
+                     <input name="phone"  type="tel"  onChange= {this.handleChange} />
                 </label>
-
-                 
                 <label htmlFor="city">Location
-                <input name="city"  type="text"  onChange= {this.handleChange}/>
+                    <input name="city"  type="text"  onChange= {this.handleChange}/>
                 </label>
-
-                 
                 <label htmlFor="linkedin">Linkedin
-                <input name="linkedin" placeHolder="linkedin.com/..." type="text"  onChange= {this.handleChange}/>
+                    <input name="linkedin" placeHolder="linkedin.com/..." type="text"  onChange= {this.handleChange}/>
                 </label>
-
-
-                 
                 <label htmlFor="github">Github
-                <input name="github" type="text" placeHolder="github.com/..." onChange= {this.handleChange}/>
+                    <input name="github" type="text" placeHolder="github.com/..." onChange= {this.handleChange}/>
                 </label>
-                 
                 <label htmlFor="email">Email
-                <input name="email" type="text"  onChange= {this.handleChange}/>
+                    <input name="email" type="text"  onChange= {this.handleChange}/>
                 </label>
-                
                 <button className="submitButton" type="submit">Submit</button>
             </form>
             : null
             }
-               
             </div>
-        )
-    }
-}
+            )
+        };
+};  
 export default About;

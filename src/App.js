@@ -10,16 +10,15 @@ function App() {
   return (
     <div className="App">
       <div className="paper">
-      <Modal/>
+        <Modal/>
         <About/>
         <Skills/>
         <Projects/>
         <Experience/>
         <Education/>
       </div>
-        
     </div>
   );
-}
+};
 
 export default App;

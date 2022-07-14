@@ -1,65 +1,60 @@
 /*main container*/
 .skillSection  {
-    display:flex;
-    flex-direction:column
-  }
-  /*container with tech and soft skills*/
-  .skills{
-    display:flex;
-    flex-direction:column;
-    gap:2px;
-  }
- 
-  /*container for skill and list*/
-  .techSkills, .softSkills{
-    display:flex;
-    gap:20px;
-  }
+  display:flex;
+  flex-direction:column
+  };
+/*container with tech and soft skills*/
+.skills{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  };
+/*container for skill and list*/
+.techSkills, .softSkills{
+  display:flex;
+  gap:20px;
+  };
 /*list items*/
-  .techSkillList, .softSkillList {
-    display:flex;
-    gap:30px;
-    font-size:.9rem;
-    align-items:center;
-    
-  }
+.techSkillList, .softSkillList {
+  display:flex;
+  gap:30px;
+  font-size:.9rem;
+  align-items:center;
+  };
 /*div of skill and trashcan*/ 
 .skillsDelete {
   display:flex;
   justify-content:center;
   align-items:center;
   gap:1px;
-  
-}
+};
 .skillsDelete:hover{
   margin-top:-10px;
   height:110%;
- 
-}
+};
 /*div of buttons*/
 .skillButtons {
 display:flex;
 position:relative;
 left:40%;
-}
+};
 /*form add skill*/ 
 .addSkill {
   display:flex;
   flex-wrap:wrap;
-}
+};
 .skillsEdit{
   display:flex;
-}
+};
 .skillsEdit:hover{
   color:$lightBlue;
-  
-}
+};
 .addSkill {
   display:flex;
   justify-content:center;
   align-items:center;
   gap:10px;
-}
+};
 
 
 
