@@ -13,18 +13,22 @@
 .projectContainer {
     display:flex;
     flex-direction:column;
-    gap:10px;
+    
 }
 /*divs of specific projects*/
 .projectList {
     display:flex;
     flex-direction:column;
-    gap:10px;
+    gap:3px;
+   
 }
 
 .techUsed {
     display:flex;
     gap:10px;
+}
+.techLabel{
+    border-bottom: 2px solid black;
 }
 /*div of project name and trashcan icon*/
 .projectDeleteIcon{

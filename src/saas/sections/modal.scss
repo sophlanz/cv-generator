@@ -11,7 +11,7 @@
 /* Modal Content/Box */
 .modalContent {
     background-color: white;
-    margin:15% auto;
+    margin:10% auto;
     padding-left: 50px;
     padding-right: 50px;
     padding-top:20px;
@@ -45,11 +45,11 @@
     text-decoration-color:$lightBlue;
   }
   .modalContent li {
-      font-size:1.5rem;
+      font-size:1rem;
       display:list-item;
   }
   .modalContent li::marker {
     color:$lightBlue;
     font-weight:800;
-    font-size:1.7rem;
+    font-size:1.2rem;
   }

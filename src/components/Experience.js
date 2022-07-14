@@ -326,7 +326,7 @@ class Experience extends React.Component {
                         index= experience.index;
                         return (
                         <div key={experience.id}>
-                        <form>
+                        <form class="experience">
                         <label htmlFor="company">Company
                         <input type= "text" id ={index} name="company" onChange = {this.handleChange}/>
                         </label>
@@ -350,8 +350,8 @@ class Experience extends React.Component {
                         
                         <div className="formButtons">
                         <button className="add"  onClick={this.addAnother}>Add Experience</button>
-                        <button value = {index} className="submitButton" type = "text" onClick= {this.handleSubmit}>Submit Changes</button>
                         <button className="add" value = {index}onClick={this.addBullet}>Add Bullet</button>
+                        <button value = {index} className="submitButton" type = "text" onClick= {this.handleSubmit}>Submit Changes</button>
                         </div>
               
                         </form>

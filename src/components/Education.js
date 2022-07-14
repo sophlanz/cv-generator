@@ -158,7 +158,7 @@ class Education extends React.Component {
                 index = study.index
                 return(
                 <div key={study.id}>
-                <form>
+                <form className="education"> 
                 <div className="formItems">
                 <label htmlFor="university">University
                 <input type= "text" id={index} name="university" onChange = {this.handleChange}/>

@@ -258,7 +258,7 @@ class Projects extends React.Component {
                     :
                     null
                     }
-                    <div className="techUsed"><p style={{fontStyle:"italic", fontWeight:"", fontSize:"1.1rem"}}>Technologies:</p><p>{project.technologies.join(', ')}</p></div>
+                    <div className="techUsed"><p className="techLabel">Technologies:</p><p>{project.technologies.join(', ')}</p></div>
                    <div className="liveDemo"><p style={{fontStyle:"bold", fontWeight:"bold",fontSize:"1.1rem"}}>Live Demo: </p><a href={`https://${project.liveDemo}`} target="_blank"><p>{project.liveDemo}</p></a></div>
                     {/*We don't want to give a delete button to the fist one */}
                     </div>
@@ -279,15 +279,15 @@ class Projects extends React.Component {
                 <input name="title" placeHolder=""onChange = {this.handleChange}/>
                 </label>
                 <label htmlFor="technolgoies">Technologies Used
-                <textarea rows="10"cols="20" name="technologies" onChange = {this.handleChange}/>
+                <textarea rows="3"cols="20" name="technologies" onChange = {this.handleChange}/>
                 </label>
                 <label htmlFor="liveDemo">Live Demo
                 <input name="liveDemo" placeHolder="user.github.io/project"onChange = {this.handleChange}/>
                 </label>
                 <div className="formButtons">
                 <button className="add" onClick={this.addProject}>Add Project</button>
-                <button className="submitButton" onClick = {this.handleSubmit}>Submit Changes</button>
                 <button className="add" onClick={this.addBullet}>Add Bullet</button>
+                <button className="submitButton" onClick = {this.handleSubmit}>Submit Changes</button>
                 </div>
 
             </form>

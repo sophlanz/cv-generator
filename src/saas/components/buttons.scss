@@ -69,6 +69,10 @@ button.delete:hover{
   flex-wrap:wrap;
   width:300px;
   justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  height:225px;
+  width:75px;
 }
 
 /*on hover over edit div, turn color blue*/

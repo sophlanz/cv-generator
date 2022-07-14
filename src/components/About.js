@@ -73,7 +73,7 @@ class About extends React.Component {
             </div>
             {/*if the edit state is true, show the input fields*/ }
             {edit ? 
-            <form onSubmit={this.handleSubmit}>
+            <form class="about" onSubmit={this.handleSubmit}>
                 <label htmlFor="firstName">First Name
                 <input name="firstName"  type="text" onChange={this.handleChange}/>
                 </label>
