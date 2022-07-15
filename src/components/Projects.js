@@ -227,7 +227,7 @@ class Projects extends React.Component {
                              <button className="delete" value={index} title="Delete" onClick={this.deleteProject}></button>
                             :
                              null
-                            }
+                            } 
                          </div>
                         { project.description ? 
                         project.description.map((item,idx) => {

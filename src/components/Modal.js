@@ -21,7 +21,7 @@ class Modal extends React.Component {
           {show ?
             <div className="modal">
                 <div className="modalContent">
-                    <span class="close" onClick={this.close}>&times;</span>
+                    <span className ="close" onClick={this.close}>&times;</span>
                     <h1>Instructions</h1>
                     <ol>
                         <li>Hover over the various areas of the resume, and click the pencil
