@@ -8,8 +8,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy;
+require('dotenv').config();
 var app = express();
-
+const secret = process.env.SECRET;
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -19,10 +20,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+//connect db
+const dbConnect = require('./config/database')
+dbConnect();
 //require user model for passport
 const User = require('./models/Users')
 //config passport
+app.use(require('express-session')({
+  secret: secret,
+  saveUninitialized: true,
+  resave: true,
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
