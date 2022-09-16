@@ -1,59 +1,95 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import  phonePic from "../images/phone.svg";
 import locationPic from "../images/location.svg";
 import linkedinPic from "../images/linkedin.svg";
 import githubPic from "../images/github.svg";
 import emailPic from "../images/email.svg";
+import { aboutSection } from '../redux/cvSlice';
+import { useDispatch } from 'react-redux';
 
-class About extends React.Component {
-    constructor(props){
-        super(props);
-        //initialize state with the variables we will be collecting
-        this.state = {
-            firstName: "Your",
-            lastName:"Name",
-            title: "Frontend Engineer",
-            edit:false,
-            phone:"(555)555-5555",
-            email:"superdev@gmail.com",
-            city: "New York",
-            linkedin:"linkedin.com/in/superdev",
-            linkedinLink:"",
-            github:"github.com/superdev",
-            githubLink: ""
-        };
-    };
-    editAbout = (e) => {
+export default function About() {
+    //states
+    const [firstName, setFirstName] = useState("Your");
+    const [lastName, setLastName] = useState("Name");
+    const [title, setTitle] = useState("Frontend Engineer");
+    const [phone, setPhone] = useState("(555)555-5555");
+    const [email, setEmail] = useState("superdev@gmail.com");
+    const [city, setCity] = useState("New York");
+    const [linkedin, setLinkedin] = useState("linkedin.com/in/superdev");
+    const [github, setGithub] = useState("github.com/superdev");
+    const [edit, setEdit] = useState(false);
+    //hooks
+    const dispatch = useDispatch();
+    const editAbout = (e) => {
         //prevent page from reloading
         e.preventDefault();
         //set the edit to true, the popup window will appear
-       this.setState({edit:true});
+     setEdit(true);
     };
-    handleChange = (e) => {
+    const handleChange = (e) => {
+       
         e.preventDefault();
         //get the target name to get the name we want to change
         const name=e.target.name;
-        //set state based on the name from the target, and target value
-        this.setState({
-            [name]:e.target.value
-        })
+        //switch based on name to set state
+        switch(name) {
+            case "firstName":
+                setFirstName(e.target.value)
+                break;
+            case "lastName" :
+                setLastName(e.target.value)
+                break;
+            case "title": 
+                setTitle(e.target.value)
+                break;
+            case "phone":
+                setPhone(e.target.value)
+                break;
+            case "email":
+                setEmail(e.target.value)
+                break;
+            case "city" :
+                setCity(e.target.value)
+                break;
+            case 'linkedin' :
+                setLinkedin(e.target.value)
+                break;
+            case 'github' :
+                setGithub(e.target.value)
+                break;
+        }
+       
     };
-    handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+       
         //turn edit to false so the popup window will disappear
-        this.setState({edit:false});
+        setEdit(false);
+        //dispatch state
+        dispatch(
+            aboutSection({
+                firstName: firstName,
+                lastName:lastName,
+                title: title,
+                phone:phone,
+                email:email,
+                city: city,
+                linkedin:linkedin,
+                github:github,
+            })
+        )
+        
     };
-    render() {
-        const {firstName,lastName,title,edit,phone,city,linkedin,github,email} = this.state;
-        return(
-            <div>
-                <div className="aboutDisplay">
+    return (
+        <div>
+              <div className="aboutDisplay">
                 <button className="printButton" onClick={()=> window.print()}>Print</button>
                     <div className="title">
                         <div className="firstLastName">
                             <h2 className = "firstName" id="name" value={firstName} > {firstName} </h2>
                             <h2 className = "lastName" id="name" value={lastName} > {lastName}</h2>
                         </div>
-                        <h3 className="aboutEditIcon"id="title" value={title}>{title} <button className="aboutButton" title="Edit" onClick= {this.editAbout}></button> </h3>
+                        <h3 className="aboutEditIcon"id="title" value={title}>{title} <button className="aboutButton" title="Edit" onClick= {editAbout}></button> </h3>
                     </div>
                     <div className="personalInformation">
                         <div id="phone"  value={phone} > <img src={phonePic}alt="pic"/>{phone}</div> |
@@ -64,38 +100,96 @@ class About extends React.Component {
                     </div>
                 </div>
             {/*if the edit state is true, show the input fields*/ }
-            {edit ? 
-            <form class="about" onSubmit={this.handleSubmit}>
+            {edit === true ? 
+            <form class="about" onSubmit={handleSubmit}>
                 <label htmlFor="firstName">First Name
-                    <input name="firstName"  type="text" onChange={this.handleChange}/>
+                    <input name="firstName"  type="text" onChange={handleChange}/>
                 </label>
                 <label htmlFor="lastName">Last Name
-                    <input name="lastName" type="text" onChange={this.handleChange}/>
+                    <input name="lastName" type="text" onChange={handleChange}/>
                 </label>
                 <label htmlFor="title">Title
-                    <input name="title" type="text" onChange= {this.handleChange}/>
+                    <input name="title" type="text" onChange= {handleChange}/>
                 </label>
                 <label htmlFor="phone">Phone Number
-                     <input name="phone"  type="tel"  onChange= {this.handleChange} />
+                     <input name="phone"  type="tel"  onChange= {handleChange} />
                 </label>
                 <label htmlFor="city">Location
-                    <input name="city"  type="text"  onChange= {this.handleChange}/>
+                    <input name="city"  type="text"  onChange= {handleChange}/>
                 </label>
                 <label htmlFor="linkedin">Linkedin
-                    <input name="linkedin" placeHolder="linkedin.com/..." type="text"  onChange= {this.handleChange}/>
+                    <input name="linkedin" placeHolder="linkedin.com/..." type="text"  onChange= {handleChange}/>
                 </label>
                 <label htmlFor="github">Github
-                    <input name="github" type="text" placeHolder="github.com/..." onChange= {this.handleChange}/>
+                    <input name="github" type="text" placeHolder="github.com/..." onChange= {handleChange}/>
                 </label>
                 <label htmlFor="email">Email
-                    <input name="email" type="text"  onChange= {this.handleChange}/>
+                    <input name="email" type="text"  onChange= {handleChange}/>
                 </label>
                 <button className="submitButton" type="submit">Submit</button>
             </form>
             : null
             }
+        </div>
+    )
+}
+
+/* 
+class About extends React.Component {
+    
+    constructor(props){
+        super(props);
+        //initialize state with the variables we will be collecting
+       
+    };
+   
+    editAbout = (e) => {
+        //prevent page from reloading
+        e.preventDefault();
+        //set the edit to true, the popup window will appear
+       this.setState({edit:true});
+    };
+    handleChange = (e) => {
+       
+        e.preventDefault();
+        //get the target name to get the name we want to change
+        const name=e.target.name;
+        //set state based on the name from the target, and target value
+        this.setState({
+            [name]:e.target.value
+        })
+      
+    };
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const dispatch = useDispatch();
+        //turn edit to false so the popup window will disappear
+        this.setState({edit:false});
+        //dispatch state
+        dispatch(
+            aboutSection({
+                firstName: this.state.firstName,
+                lastName:this.state.lastName,
+                title: this.state.title,
+                phone:this.state.phone,
+                email:this.state.email,
+                city: this.state.city,
+                linkedin:this.state.linkedin,
+                github:this.state.github,
+
+            })
+        )
+        
+    };
+   
+   
+    render() {
+        const {firstName,lastName,title,edit,phone,city,linkedin,github,email} = this.state;
+        return(
+            <div>
+              
             </div>
             )
         };
 };  
-export default About;
+export default About; */
