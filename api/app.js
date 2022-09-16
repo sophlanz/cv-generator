@@ -4,8 +4,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+//route imports
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var resumeRouter = require('./routes/resume');
+//passport imports
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy;
 require('dotenv').config();
@@ -37,9 +40,10 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-
+//include routes
 app.use('/', indexRouter);
 app.use('/', usersRouter);
+app.use('/', resumeRouter );
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const passportLocalMongoose = require('passport-local-mongoose');
-
+const Cv = require('./Cv');
 const User = new Schema({
     username: {
         type:String,
@@ -19,6 +19,13 @@ const User = new Schema({
         default: ()=> Date.now(),
         
     },
+    cv: [
+        {
+            type:Schema.Types.ObjectId,
+            ref:"Cv"
+            
+        }
+    ]
 });
 
 User.plugin(passportLocalMongoose);

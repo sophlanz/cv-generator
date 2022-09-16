@@ -1,7 +1,10 @@
+
 var express = require('express');
 var router = express.Router();
 const User = require('../models/Users');
 const passport = require('passport');
+const Cv= require('../models/Cv');
+
 router.post('/register',  async (req,res)=> {
     try {
       //get user info from request body
@@ -77,4 +80,28 @@ res.redirect('/messages')
 console.log(err);
 }
 }); 
+router.post('/savecv', async (req,res) => {
+  try{
+  //find the user that matches the username saved in the redux store
+  const username = req.body.username
+  const user = await User.findOne({
+  username:username
+});
+//create data using Cv schema, and the data passed to the req
+let data =  new Cv(req.body.cv);
+//add the data to the User schema using the data id
+user.cv.push(data)
+console.log(user.cv);
+user.save().then(() => {
+  console.log('Your CV has been saved');
+})
+.catch((err)=> {
+  res.status(400).send('Unable to save CV');
+})
+  //find the CV's saved by that user
+  } catch (err) {
+   console.log(err)
+  }
+})
+
 module.exports = router;

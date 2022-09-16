@@ -6,17 +6,26 @@ import Skills from './Skills';
 import Projects from './Projects';
 import Modal from './Modal';
 import { useSelector } from 'react-redux';
-
+import axios from 'axios';
 export default function CV() {
     //get cv from state
-    const cvData = useSelector((state)=> state.cv)
+    const cv = useSelector((state)=> state.cv);
     const userData = useSelector((state) => state.user)
-    const data = useSelector((state)=> state);
-    console.log(cvData);
+    const username = userData[0].username;
+    const cvData = cv.about[0];
     const saveData = () => {
-     console.log(cvData)
-    console.log(userData)
-    console.log(data);
+   const body = {
+       username:username,
+       cv:cvData
+   }
+  
+   axios.post('http://localhost:9000/savecv',body )
+   .then((results)=> {
+       console.log(results);
+   })
+   .catch((err)=> {
+       console.log(err.response);
+   });
         
     }
     return (
