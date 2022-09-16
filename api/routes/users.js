@@ -43,7 +43,7 @@ router.post('/login',  (req,res)=> {
      console.log(err)
    } else {
       passport.authenticate('local')(req,res,function() {
-        res.redirect('/messages');
+        console.log('successfully logged in!')
       });
    }
  })

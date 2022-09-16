@@ -10,9 +10,13 @@ import { useSelector } from 'react-redux';
 export default function CV() {
     //get cv from state
     const cvData = useSelector((state)=> state.cv)
+    const userData = useSelector((state) => state.user)
+    const data = useSelector((state)=> state);
     console.log(cvData);
     const saveData = () => {
-       console.log(cvData);
+     console.log(cvData)
+    console.log(userData)
+    console.log(data);
         
     }
     return (
