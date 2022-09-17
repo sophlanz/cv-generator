@@ -8,6 +8,7 @@ export default class Welcome extends Component {
                 <li><Link to={'/register'}>Register</Link></li>
                 <li><Link to={'/login'}>Login</Link></li>
                 <li><Link to={'/create-cv'}>Start Creating </Link></li>
+                <li><Link to={'/workstation'}>Work Station</Link></li>
             </div>
         )
     }

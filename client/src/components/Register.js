@@ -18,7 +18,7 @@ export default function Register() {
         //send  request, then redirect
         axios.post('http://localhost:9000/register',body)
         .then(()=> {
-            alert('user registered!')
+            console.log('user registered!')
         })
           .catch((err) => {
               setError(true)

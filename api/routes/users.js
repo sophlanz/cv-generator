@@ -26,7 +26,7 @@ router.post('/register',  async (req,res)=> {
           
         } else {
           passport.authenticate('local')(req,res,function() {
-            console.log("Your account has been saved")
+            console.log("Your account has been saved");
             
           })
         }
@@ -46,7 +46,7 @@ router.post('/login',  (req,res)=> {
      console.log(err)
    } else {
       passport.authenticate('local')(req,res,function() {
-        console.log('successfully logged in!')
+        res.send(req.user)
       });
    }
  })
@@ -80,28 +80,5 @@ res.redirect('/messages')
 console.log(err);
 }
 }); 
-router.post('/savecv', async (req,res) => {
-  try{
-  //find the user that matches the username saved in the redux store
-  const username = req.body.username
-  const user = await User.findOne({
-  username:username
-});
-//create data using Cv schema, and the data passed to the req
-let data =  new Cv(req.body.cv);
-//add the data to the User schema using the data id
-user.cv.push(data)
-console.log(user.cv);
-user.save().then(() => {
-  console.log('Your CV has been saved');
-})
-.catch((err)=> {
-  res.status(400).send('Unable to save CV');
-})
-  //find the CV's saved by that user
-  } catch (err) {
-   console.log(err)
-  }
-})
 
 module.exports = router;

@@ -13,6 +13,7 @@ var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy;
 require('dotenv').config();
 var app = express();
+app.use(express.json());
 const secret = process.env.SECRET;
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

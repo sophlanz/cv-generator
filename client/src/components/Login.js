@@ -6,9 +6,12 @@ import { addUserName } from '../redux/userSlice';
 export default function Login() {
     const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null);
+    const [userId, setuserId] = useState(null);
     const[error,setError] = useState(null);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    //save id from response
+    let id = '';
     const handleChange = (e) => {
         if(e.target.name === 'username') {
             setUsername(e.target.value)
@@ -18,30 +21,38 @@ export default function Login() {
        
       
     }
-    const handleSubmit =()=> {
-        const body = {
-            username:username,
-            password:password
-        }
-        axios.post('http://localhost:9000/login',body)
-        .then(()=> {
-            alert('Successfully logged in!')
-        })
-        .catch((err)=> {
-            setError(true)
-            console.log(err)
-        })
-        if(error !== true) {
-           navigate('/create-cv')
-           dispatch(
-            addUserName({
-                username: username
+    const handleSubmit = async () => {
+        try{
+            const body = {
+                username:username,
+                password:password
+            }
+           await axios.post('http://localhost:9000/login',body)
+            .then((response)=> {
+                id=response.data._id
+                
             })
-          )
+            .then(()=> {
+                 
+                    navigate('/workstation')
+                    console.log(id);
+                    dispatch(
+                     addUserName({
+                         username: username,
+                         id: id
+                     })
+                   )
+                   
+            })
+            .catch((err)=> {
+                setError(true)
+                console.log(err)
+            })
            
-            //dispatch username so we can access it later, when we send post request to save cv
-          
-        }   
+        } catch(err) {
+            console.log(err.message)
+        }
+  
         }
       
     return (

@@ -5,12 +5,13 @@ export const userSlice = createSlice({
     ],
     reducers: {
         addUserName: (state,action) => {
-            const userName = {
-                username: action.payload.username
+            const userData = {
+                username: action.payload.username,
+                id: action.payload.id
             }
             //clear state
             state.length = 0;
-            state.push(userName);
+            state.push(userData);
             console.log(current(state));
         }
     }
