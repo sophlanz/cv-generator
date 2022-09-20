@@ -11,6 +11,10 @@ const Cv = new Schema({
     city:String, 
     linkedin:String,
     github:String,
+    fileName:{
+        type:String,
+        required:true
+    },
 
 });
 

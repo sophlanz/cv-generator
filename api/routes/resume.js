@@ -14,8 +14,9 @@ router.post('/savecv', async (req,res) => {
 });
 console.log(req.body.resume)
 //create data using Cv schema, and the data passed to the req
-const data = await new Cv(req.body.resume).save()
+let data = await new Cv(req.body.resume).save()
 console.log(data);
+
 //add the data to the User schema using the data id
 user.resume.push(data)
 
