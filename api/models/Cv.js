@@ -11,6 +11,7 @@ const Cv = new Schema({
     city:String, 
     linkedin:String,
     github:String,
+
 });
 
 Cv.plugin(passportLocalMongoose);

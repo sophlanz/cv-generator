@@ -16,7 +16,7 @@ export default function CV() {
     const saveData = () => {
    const body = {
        username:username,
-       cv:cvData
+       resume:cvData
    }
   
    axios.post('http://localhost:9000/savecv',body )

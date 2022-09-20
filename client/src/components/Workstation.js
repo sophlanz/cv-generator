@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import { useSelector } from 'react-redux'
+import {Link} from 'react-router-dom';
 export default function Workstation() {
     //get username from user reducer, saved in an object 
     const username = useSelector((state) => state.user[0].username)
@@ -19,7 +20,7 @@ export default function Workstation() {
         axios.get(`http://localhost:9000/savecv/${userId}`,body)
         .then((response)=> {
             setUserData(response.data);
-            console.log(response.data);
+            console.log(response.data.resume[0]);
             
         })
         .catch((error)=> {
@@ -29,8 +30,10 @@ export default function Workstation() {
     }
     return (
         <div>
-            <button>Create New Cv</button>
+            <button><Link to={"/create-cv"}>Create New Cv</Link></button>
             <button onClick={getCvs}>View Saved Cv's</button>
+            {/*Display the response of the CV, allow to click and send the data to the CV*/}
+            {/**/}
         </div>
     )
 }

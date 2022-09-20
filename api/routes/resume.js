@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 const User =require('../models/Users');
 const Cv= require('../models/Cv');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+
 //send resume data to the server
 router.post('/savecv', async (req,res) => {
   try{
@@ -11,12 +12,14 @@ router.post('/savecv', async (req,res) => {
   const user = await User.findOne({
   username:username
 });
+console.log(req.body.resume)
 //create data using Cv schema, and the data passed to the req
-let data =  new Cv(req.body.cv);
+const data = await new Cv(req.body.resume).save()
+console.log(data);
 //add the data to the User schema using the data id
-user.cv.push(data)
-console.log(user.cv);
-user.save().then(() => {
+user.resume.push(data)
+
+await user.save().then(() => {
   console.log('Your CV has been saved');
 })
 .catch((err)=> {
@@ -31,12 +34,20 @@ user.save().then(() => {
 router.get('/savecv/:id', async (req,res)=> {
   try{
     console.log(req.params.id);
-
+    
     //get user using id, and populated
-    const user =  await User.findById(req.params.id).populate({path:'Cv', strictPopulate: false})
-    console.log(user)
+     User.findById(req.params.id).populate({path:'resume', model:'Cv'}).exec((err, user)=> {
+      if(err) {
+        console.log(err.message)
+      } else {
+        res.status(200).json(user)
+        console.log(user)
+      }
+    })
+
+  
     //populate user using id
-    res.send(user)
+ 
     //find each one, and put to an array of CV's
     //send response 
   } catch(err) {

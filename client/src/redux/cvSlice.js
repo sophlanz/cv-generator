@@ -6,14 +6,11 @@ export const cvSlice = createSlice({
         //initialize object with the category names we will be using
         id:uuidv4(),
         about:[
-
         ],
         education:null,
         experience:null,
         projects:null,
         skills:null
-
-
     },
     reducers: {
         aboutSection: (state, action) => {
@@ -34,8 +31,6 @@ export const cvSlice = createSlice({
            state.about.push(about);
            console.log(current(state.about));
         },
-
-      
 }});
 export const { editCv, aboutSection } = cvSlice.actions
 export default cvSlice.reducer;
