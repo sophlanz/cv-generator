@@ -5,18 +5,47 @@ import linkedinPic from "../images/linkedin.svg";
 import githubPic from "../images/github.svg";
 import emailPic from "../images/email.svg";
 import { aboutSection } from '../redux/cvSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-export default function About() {
-    //states
-    const [firstName, setFirstName] = useState("Your");
-    const [lastName, setLastName] = useState("Name");
-    const [title, setTitle] = useState("Frontend Engineer");
-    const [phone, setPhone] = useState("(555)555-5555");
-    const [email, setEmail] = useState("superdev@gmail.com");
-    const [city, setCity] = useState("New York");
-    const [linkedin, setLinkedin] = useState("linkedin.com/in/superdev");
-    const [github, setGithub] = useState("github.com/superdev");
+export default function About(props) {
+    //check to see if details have been saved to the store
+   const savedCv = useSelector((state)=> state.cv);
+   console.log(savedCv)
+   console.log(savedCv.about.length);
+   //state where we'll keep track if the user wants to view saved data
+   const [savedData, setSavedData] = useState(savedCv.about.length === 0 ? false : true)
+    const defaultValues = {
+        firstname: "Your",
+        lastName: "Name",
+        title:"Frontend Developer",
+        phone:"555-555-5555",
+        email:"superdev@gmail.com",
+        city:"New York",
+        linkedin:'linkedin.com/in/superdev',
+        github:"github.com/superdev"
+    };
+   //check value of savedData, if true set savedCv data, false use defaults
+  const checkForData = (field) => {
+      console.log(savedData);
+      let info =  savedCv.about;
+    if(savedData === true) {
+        //return savedCv.about.field
+       return (info[0][field]);
+       
+    } else {
+        //return defaultvalues
+       return (defaultValues[field])
+    }
+  }
+    //states, if savedData is true, use the savedCv data, else default values
+    const [firstName, setFirstName] = useState(()=> checkForData('firstName') )
+    const [lastName, setLastName] = useState(()=> checkForData('lastName') )
+    const [title, setTitle] = useState(()=> checkForData('title') )
+    const [phone, setPhone] = useState(()=> checkForData('phone') )
+    const [email, setEmail] = useState(()=> checkForData('email') );
+    const [city, setCity] = useState(()=> checkForData('city') );
+    const [linkedin, setLinkedin] = useState(()=> checkForData('linkedin') );
+    const [github, setGithub] = useState(()=> checkForData('github') );
     const [edit, setEdit] = useState(false);
     //hooks
     const dispatch = useDispatch();
@@ -80,6 +109,7 @@ export default function About() {
         )
         
     };
+
     return (
         <div>
               <div className="aboutDisplay">

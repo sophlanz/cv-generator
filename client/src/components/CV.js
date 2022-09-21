@@ -1,4 +1,5 @@
 import React, { Component, useState } from 'react'
+import { useLocation } from 'react-router-dom';
 import About from "./About";
 import Education from "./Education";
 import Experience from "./Experience";
@@ -8,6 +9,7 @@ import Modal from './Modal';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 export default function CV() {
+
     //state for title
     const [fileName, setfileName] = useState(null);
     //get cv from state
@@ -39,7 +41,7 @@ export default function CV() {
     }  
     return (
         <div className="paper">
-        <Modal/>
+        <Modal />
         <About/>
         <Skills/>
         <Projects/>

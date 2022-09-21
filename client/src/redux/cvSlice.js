@@ -31,6 +31,16 @@ export const cvSlice = createSlice({
            state.about.push(about);
            console.log(current(state.about));
         },
+        reset: (state, action) => {
+            //clear about
+            state.about.length=0
+            state.education = "";
+            state.experience= "";
+            state.projects="";
+            state.skills=""
+            console.log(state);
+            
+        }
 }});
-export const { editCv, aboutSection } = cvSlice.actions
+export const { editCv, aboutSection, reset } = cvSlice.actions
 export default cvSlice.reducer;
