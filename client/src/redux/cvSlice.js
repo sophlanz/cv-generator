@@ -10,7 +10,8 @@ export const cvSlice = createSlice({
         education:null,
         experience:null,
         projects:null,
-        skills:null
+        skills:null,
+        fileName:""
     },
     reducers: {
         aboutSection: (state, action) => {
@@ -31,6 +32,12 @@ export const cvSlice = createSlice({
            state.about.push(about);
            console.log(current(state.about));
         },
+        addFileName: (state,action) => {
+            console.log(state)
+         return {...state, fileName:action.payload.fileName}
+          
+            
+        },
         reset: (state, action) => {
             //clear about
             state.about.length=0
@@ -38,9 +45,10 @@ export const cvSlice = createSlice({
             state.experience= "";
             state.projects="";
             state.skills=""
+            state.fileName=""
             console.log(state);
             
         }
 }});
-export const { editCv, aboutSection, reset } = cvSlice.actions
+export const { editCv, aboutSection, reset, addFileName } = cvSlice.actions
 export default cvSlice.reducer;
