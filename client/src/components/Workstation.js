@@ -3,13 +3,14 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux'
 import {Link} from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import { aboutSection, addFileName } from '../redux/cvSlice';
+import { aboutSection, addFileName, addId } from '../redux/cvSlice';
 import { reset } from '../redux/cvSlice';
 export default function Workstation() {
     //get username from user reducer, saved in an object 
     const username = useSelector((state) => state.user[0].username)
     const userId = useSelector((state)=> state.user[0].id);
     console.log(userId);
+    //will store resume data we retrieved from db
     const [userData, setUserData] = useState(null)
    const dispatch = useDispatch();
    
@@ -22,8 +23,9 @@ export default function Workstation() {
         console.log(userId);
         axios.get(`http://localhost:9000/savecv/${userId}`,body)
         .then((response)=> {
+            //save just the resumes
             setUserData(response.data.resume);
-            console.log(response.data.resume);
+            console.log(response.data);
             
         })
         .catch((error)=> {
@@ -34,6 +36,7 @@ export default function Workstation() {
   const sendDispatchHandler=(resume)=> {
       //use resume to get values, and send to redux store
       console.log(resume.fileName);
+      console.log(resume._id)
     dispatch(
         aboutSection ({
             firstName:resume.firstName,
@@ -49,6 +52,11 @@ export default function Workstation() {
     dispatch(
         addFileName ({
             fileName:resume.fileName
+        })
+    )
+    dispatch(
+        addId({
+            id:resume._id
         })
     )
 

@@ -3,18 +3,31 @@ const Schema = mongoose.Schema;
 const passportLocalMongoose = require('passport-local-mongoose');
 
 const Cv = new Schema({
-    firstName: String,
-    lastName: String, 
-    title:String,
-    phone:String,
-    email:String,
-    city:String, 
-    linkedin:String,
-    github:String,
+    
+        firstName: String,
+        lastName: String, 
+        title:String,
+        phone:String,
+        email:String,
+        city:String, 
+        linkedin:String,
+        github:String,
     fileName:{
         type:String,
         required:true
     },
+    education: [
+        {
+        university: String,
+        degree:String,
+        startDate: String,
+        endDate: String,
+        location: String,
+        index:String,
+        id:String,
+        additional:String
+        }
+    ]
 
 },{timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }});
 
