@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux'
 import {Link} from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import { aboutSection, addFileName, addId } from '../redux/cvSlice';
+import { aboutSection, addFileName, addId, educationSection } from '../redux/cvSlice';
 import { reset } from '../redux/cvSlice';
 export default function Workstation() {
     //get username from user reducer, saved in an object 
@@ -37,7 +37,11 @@ export default function Workstation() {
       //use resume to get values, and send to redux store
       console.log(resume.fileName);
       console.log(resume._id)
+    //education array of ojbects
+      const education = resume.education
+      
     dispatch(
+        /*send data to redux to be rendered in components */
         aboutSection ({
             firstName:resume.firstName,
             lastName:resume.lastName,
@@ -49,6 +53,7 @@ export default function Workstation() {
             github:resume.github
         }),
     )
+  
     dispatch(
         addFileName ({
             fileName:resume.fileName
@@ -59,6 +64,22 @@ export default function Workstation() {
             id:resume._id
         })
     )
+    education.map((study)=> {
+        console.log(study)
+        dispatch(
+            educationSection({
+                university: study.university,
+                degree:study.degree,
+                startDate: study.startDate,
+                endDate: study.endDate,
+                location: study.location,
+                index:study.index,
+                id:study.id,
+                additional:study.additional
+
+            })
+        )
+    })
 
   }
   const handleReset = () => {

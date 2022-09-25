@@ -48,12 +48,13 @@ export const cvSlice = createSlice({
             }
             console.log(current(state))
             //if the index already exists , get the index of the education object and delete it to replace it with the new one
-            const i = state.education.findIndex(study => study.index === action.payload.index)
+            const i = state.education.findIndex(study => study.id === action.payload.id)
+            console.log(action.payload.id)
            console.log(i);
             //if > -1 it exists, delete it
             if(i > -1) {
                 //splice state at this index, so we can then push the new object
-                const newEducation = state.education.filter(study => study.index !== action.payload.index)
+                const newEducation = state.education.filter(study => study.id !== action.payload.id)
                 console.log(newEducation);
                 //splice in the declared education object using the index
                 newEducation.splice(i,0,education)
@@ -62,7 +63,7 @@ export const cvSlice = createSlice({
                 state.education = [];
                 //map and push into index to avoid push an array into index 0
                 newEducation.map((study)=> {
-                    state.education.push(study)
+                   return state.education.push(study)
                 })
                 
 

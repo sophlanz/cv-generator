@@ -30,7 +30,7 @@ export default function CV() {
     const cvData = cv.about[0];
     console.log(cv);
     const saveData = () => {
-        const data = {...cvData, fileName:fileName}
+        const data = {...cv, fileName:fileName}
         console.log(data);
         //send filename to store
         dispatch(
@@ -58,7 +58,7 @@ export default function CV() {
     }  
     const updateData = () => {
         //get the data from the cv, and add in the filename
-        const data = {...cvData, fileName:cv.fileName}
+        let data = {...cv, fileName:cv.fileName,...cv.about[0]}
        const body = {
            resume: data
         };
@@ -81,6 +81,7 @@ export default function CV() {
             setNewFile(false)
         }
     },[])
+    console.log(newFile);
     return (
         <div className="paper">
         <Modal />
@@ -93,7 +94,7 @@ export default function CV() {
         <div>
          {/*if it's a new file, allow for a file name, otherwise save and update */}
         {  
-            newFile===true ?
+            newFile ===true ?
             <label>Name your file:
             <input onChange={(e)=> handleChange(e)}/>
             </label>

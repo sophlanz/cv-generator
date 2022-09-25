@@ -2,52 +2,65 @@ import React from 'react';
 import AdditionalEducation from './AdditionalEducation';
 import uniqid from 'uniqid';
 import { educationSection, postDelete } from '../redux/cvSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 export default function Education() {
     const dispatch = useDispatch();
-    const [education, setEducation] = useState([
-        {
-        university: "Fun University",
-        degree:"B.S. Web Development",
-        startDate: "August 2018",
-        endDate: "May 2022",
-        location: "Miami,FL",
-        index:0,
-        id:uniqid(),
+     //check to see if details have been saved to the store
+   const savedCv = useSelector((state)=> state.cv);
+   console.log(savedCv)
+   console.log(savedCv.education.length);
+   //state where we'll keep track if the user wants to view saved data
+   //if the education array is empty, there's no saved data, we want to use default values
+   const [savedData, setSavedData] = useState(savedCv.education.length === 0 ? false : true)
+
+  //if savedData is true,map the education array, else use the default values and just add one object
+    const [education, setEducation] = useState(()=> savedData === true ? savedCv.education.map((study)=> ({
+      
+        university: study.university,
+        degree:study.degree,
+        startDate: study.startDate,
+        endDate: study.endDate,
+        location: study.location,
+        index:Number(study.index),
+        id:study.id,
         edit:false
-    }
-    ])
+       
+    }))
+    :
+    {
+    university: 'university',
+    degree:"B.S. Web Development",
+    startDate: "August 2018",
+    endDate: "May 2022",
+    location: "Miami,FL",
+    index:0,
+    id:uniqid(),
+    edit:false,
+    
+}
+)
+
     const [edit, setEdit] = useState(false);
-    //additional is the number of education items
-    const [additional, setAdditional] = useState(1);
-/*         this.state={
-            education:[{
-                university: "Fun University",
-                degree:"B.S. Web Development",
-                startDate: "August 2018",
-                endDate: "May 2022",
-                location: "Miami,FL",
-                edit:false,
-                index:0,
-                id:uniqid()
-            }],
-            edit:false,
-            additional:1
-        };
-    }; */
+    //if saved data is true, additional is the length of the education array, else it's just 1 as that's the default
+    const [additional, setAdditional] = useState(()=> savedData === true ? savedCv.education.length : 1 );
+    //set edit state to true of education array and the specific study object
     const editEducation = (e) => {
 
         //get index from the value of target
         let index = Number(e.target.value)
+        console.log(index);
         //map through the education and find one that matches the index. change edit to true
         setEducation(prevState => prevState.map(
-            study => (study.index === index ? Object.assign(study,{edit:true}) : study)
+            
+            study => (study.index === index ? Object.assign(study,{edit:true}) : study) 
         ));
+        console.log(education);
        
        //also change the edit property in the general object, so jsx can detext the change
        setEdit(true);
     };
+    //use values from input to set state
     const handleChange = (e) => {
         //get name to be changed from the event target
         const change = e.target.name;
@@ -58,30 +71,8 @@ export default function Education() {
             )
         );
     };
-    //function for dispatching eduaction, refactoring
-    const dispatchEducation = (field) => {
-        console.log(education)
-    //dispatch to redux store for when it is saved later and sent to the server
-    education.forEach((study)=> { 
-    console.log(study);
-    dispatch(
-        //the function name has been passed into the field parameter
-    field(
-        //map through education array and dispatch the objects
-        {
-        university: study.university,
-        degree:study.degree,
-        startDate: study.startDate,
-        endDate: study.endDate,
-        location: study.location,
-        index:study.index,
-        id:study.id,
-        additional:study.additional
-        }      
-    )
-     )
-})
-    }
+   
+    //set edit to false and send state to redux
    const handleSubmit = () => {
        
         //change the edit state back to false so the pop up disappears
@@ -91,9 +82,30 @@ export default function Education() {
                 study => (study.edit  ? Object.assign(study,{edit:false}):study)
             )
         );
-        //dispatch education state to store
-      dispatchEducation(educationSection)
+        console.log(education);
+          //dispatch to redux store for when it is saved later and sent to the server
+    education.forEach((study)=> { 
+        console.log(study);
+        dispatch(
+            //the function name has been passed into the field parameter
+        educationSection(
+            //map through education array and dispatch the objects
+            {
+            university: study.university,
+            degree:study.degree,
+            startDate: study.startDate,
+            endDate: study.endDate,
+            location: study.location,
+            index:study.index,
+            id:study.id,
+            additional:study.additional
+            }      
+        )
+         )
+    })
+      
     };
+    //add new education object to state
    const addEducation = (e) => {
         e.preventDefault();
           //add another auto fill experience, the user can later edit
@@ -121,6 +133,7 @@ export default function Education() {
        
       
     };
+    //remove education object from state and update redux
     const deleteEducation =  async (e) => {
         //get the value from the target to get the index
         const index = e.target.value;
@@ -156,7 +169,12 @@ export default function Education() {
         });
     };
   
- 
+ useEffect(()=> {
+     //if there's saved data, map out the data in the education state array upon render
+     if(savedData ===true) {
+
+     }
+ })
   console.log(education)
     return (
         
