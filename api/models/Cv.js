@@ -27,6 +27,15 @@ const Cv = new Schema({
         id:String,
         additional:String
         }
+    ],
+    projects: [
+        {
+            title:String,
+            description:String,
+            technology:String,
+            index:String,
+            id:String
+        }
     ]
 
 },{timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }});
