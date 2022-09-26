@@ -1,127 +1,127 @@
-import React from 'react';
-class Skills extends React.Component {
-    constructor(props){
-        super(props);
-        //skills  object which holds soft skills and technical skills array of strings
-        this.state={
-            skills:{
-                techSkills:["Javascript", "React", "HTML", "CSS", "MySQL", "MongoDB", "Git","Jest","Webpack"],
-                softSkills:["Advanced Spanish",
-                "Strong Written and Oral Communication", 
-                "Abundant Leadership Experience",
-                "Lifelong Learner"
-            ]
-            },
-            edit:false,
-            addSkillTech:false,
-            addSkillSoft:false,
-            skill: " "
-        };
-    };
-    editSkills = ()=> {
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+
+export default function Skills() {
+//get data from cv redux store, to see if there's saved data
+const cv = useSelector((state)=> state.cv);
+//if skills object is empty set false
+const [savedData, setSavedData] = useState(Object.entries(cv.skills).length > 0 ? true : false)
+//declare states
+//skills should be an object that contains array of tech and soft skills
+//check to see if we want to use saved data or default values
+const [skills, setSkills] = useState(()=>  savedData === true ? {
+    techSkills:cv.skills.techSkills,
+    softSkills:cv.skills.softSkills
+}
+
+:
+ {
+    techSkills:["Javascript", "React", "HTML", "CSS", "MySQL", "MongoDB", "Git","Jest","Webpack"],
+    softSkills:["Advanced Spanish",
+    "Strong Written and Oral Communication", 
+    "Abundant Leadership Experience",
+    "Lifelong Learner"],
+});
+const[edit, setEdit] = useState(false);
+const[addSkillTech, setAddSkillTech] = useState(false);
+const [addSkillSoft, setAddSkillSoft] = useState(false);
+const [ skill, setSkill] = useState('');
+   
+
+
+    const editSkills = ()=> {
         //change edit state to true so inputs appear
-        this.setState({
-            edit:true
-        });
+        setEdit(true);
     };
-    addSkillTech = ()=> {
+    const addSkillTechEdit = ()=> {
         //set addSkill state to true
-        this.setState({
-            addSkillTech:true
-        });
+        setAddSkillTech(true)
+     
     };
-    addSkillSoft = ()=> {
-        this.setState({
-            addSkillSoft:true
-        });
+    const addSkillSoftEdit = ()=> {
+        setAddSkillSoft(true);
     };
-    handleChange = (e) => {
+    const handleChange = (e) => {
         //set the value of the target to skill in state
-        this.setState({
-            skill:e.target.value
-        })
+        setSkill(e.target.value)
     };
-    submitAdd = (e) => {
+    const submitAdd = (e) => {
         const skillType = e.target.id;
         //get array of soft skills and tech skills
-        const softSkills = [...this.state.skills.softSkills];
-        const techSkills = [...this.state.skills.techSkills];
+        const softSkills = [...skills.softSkills];
+        const techSkills = [...skills.techSkills];
+        //if we're updating tech skills
         if(skillType==="submitTechSkill") {
-            //get array of tech skills
-            const techSkills = [...this.state.skills.techSkills];
-            const softSkills = [...this.state.skills.softSkills];
+
             //push the value saved in state under skill to the array
-            const newSkill = this.state.skill;
+            const newSkill = skill;
             techSkills.push(newSkill);
             //reset state of techSkills using updated array
-            this.setState({
-                skills:{techSkills:techSkills,
-                        softSkills:softSkills
-                }
-            });
+            setSkills({
+                techSkills:techSkills,
+                softSkills:softSkills
+            })
+     
+            //updating soft skills
         } else {
              //push the value saved in state under skill to the array
-             const newSkill = this.state.skill;
+             const newSkill = skill;
              softSkills.push(newSkill);
              //reset state of techSkills using updated array
-             this.setState({
-                 skills:{softSkills:softSkills,
-                        techSkills:techSkills
-                }
-             });
+             setSkills({
+                techSkills:techSkills,
+                softSkills:softSkills
+            })
         }
         //reset all of the edits in state and the skill holder
-        this.setState ({
-            addSkillTech:false,
-            addSkillSoft:false,
-            skill:" "
-        });
+        setSkill("");
+        setAddSkillSoft(false);
+        setAddSkillTech(false);
+   
     };
-     deleteSkill = (e) =>  {
+     const deleteSkill = (e) =>  {
          //check the id "deleteTechSkill" or soft skill from the target, so we know which array to update
         const skillType = e.target.id
          //get index from value of target so we now which skill to delete
         const index = e.target.value;
         //dubplicate arrays to be update
-        let techSkills = [...this.state.skills.techSkills];
-        let softSkills = [...this.state.skills.softSkills];
+        let techSkills = [...skills.techSkills];
+        let softSkills = [...skills.softSkills];
+        //if tech skill
         if(skillType==="deleteTechSkill") {
             //use the index to splice from array
             techSkills.splice(index,1);
             //update state
-            this.setState({
-                skills:{
-                    techSkills:techSkills,
-                    softSkills:softSkills
-                }
+            setSkills({
+                techSkills:techSkills,
+                softSkills:softSkills
             })
+         
         } else {
             //use the index to splice from array
             softSkills.splice(index,1);
             //update state
-            this.setState({
-                skills:{
-                    techSkills:techSkills,
-                    softSkills:softSkills
-                }
-            })
+            setSkills({
+                techSkills:techSkills,
+                softSkills:softSkills
+            });
+ 
         }
      };
-  finishDelete = () => {
-      this.setState({
-          edit:false
-      })
+  const finishDelete = () => {
+      setEdit(false)
+
   };
-    render(){
-        const {edit, addSkillTech,addSkillSoft} = this.state
-        const{techSkills,softSkills} = this.state.skills
-        const techSkillList = techSkills ? techSkills.map((skill,index)=> <li key={index}>{skill}</li>) : null
-        const softSkillList = softSkills? softSkills.map((skill,index)=> <li key = {index}>{skill}</li>) : null
-        const techSkillListEdit = techSkills ? techSkills.map((skill,index)=><div className="skillsDelete"> <li key={index}>{skill}</li> <button className= "delete" value={index} title="delete" id="deleteTechSkill" onClick={this.deleteSkill}></button></div>) : null
-        const softSkillListEdit = softSkills? softSkills.map((skill,index)=> <div className="skillsDelete"> <li key={index}>{skill}</li> <button className= "delete" value={index} title="delete" id="deleteSoftSkill" onClick={this.deleteSkill}></button></div>) : null
-        return(
-            <div className = "skillSection">
-               <div ><h1 className="skillsEdit">Skills <button title = "edit" className = "skillsEditButton"onClick={this.editSkills}></button></h1></div>
+  
+
+    const techSkillList = skills.techSkills ? skills.techSkills.map((skill,index)=> <li key={index}>{skill}</li>) : null
+    const softSkillList = skills.softSkills? skills.softSkills.map((skill,index)=> <li key = {index}>{skill}</li>) : null
+    const techSkillListEdit = skills.techSkills ? skills.techSkills.map((skill,index)=><div className="skillsDelete"> <li key={index}>{skill}</li> <button className= "delete" value={index} title="delete" id="deleteTechSkill" onClick={(e)=> deleteSkill(e)}></button></div>) : null
+    const softSkillListEdit = skills.softSkills? skills.softSkills.map((skill,index)=> <div className="skillsDelete"> <li key={index}>{skill}</li> <button className= "delete" value={index} title="delete" id="deleteSoftSkill" onClick={(e)=> deleteSkill(e)}></button></div>) : null
+    return (
+        <div>
+               <div className = "skillSection">
+               <div ><h1 className="skillsEdit">Skills <button title = "edit" className = "skillsEditButton"onClick={editSkills}></button></h1></div>
                   {/*Edit skills, re-map all of the skills and add a delete button */}
                   {edit ? 
                 <div className="skills" >
@@ -138,9 +138,9 @@ class Skills extends React.Component {
                         </ul>
                    </div>
                    <div className="skillButtons">
-                        <button className="addSkill" onClick = {this.addSkillTech}>Add Tech Skill</button>
-                        <button className="addSoftSkill"onClick = {this.addSkillSoft}>Add Soft Skill</button>
-                        <button className="submitButton"onClick={this.finishDelete}>Submit</button>
+                        <button className="addSkill" onClick = {addSkillTechEdit}>Add Tech Skill</button>
+                        <button className="addSoftSkill"onClick = {addSkillSoftEdit}>Add Soft Skill</button>
+                        <button className="submitButton"onClick={finishDelete}>Submit</button>
                    </div> 
                 </div>
                     :
@@ -165,9 +165,9 @@ class Skills extends React.Component {
                 <form>
                     <div className="addSkill"> 
                         <label htmlFor="addSkillTeck">Add Tech Skill
-                            <textarea cols="30" rows="5" type="text" onChange ={this.handleChange}/>
+                            <textarea cols="30" rows="5" type="text" onChange ={(e)=> handleChange(e)}/>
                         </label>
-                        <button id={"submitTechSkill"} className="add" title= "add" onClick = {this.submitAdd}>Add</button>
+                        <button id={"submitTechSkill"} className="add" title= "add" onClick = {(e)=>submitAdd(e)}>Add</button>
                     </div>
                  </form>
                     :
@@ -179,16 +179,15 @@ class Skills extends React.Component {
                 <form>
                     <div className="addSkill">
                         <label htmlFor="addSkillSoft"> Add Soft Skill
-                            <textarea cols="30" rows="5" type="text" onChange ={this.handleChange}/>
+                            <textarea cols="30" rows="5" type="text" onChange ={handleChange}/>
                         </label>
-                        <button id={"submitSoftSkill"} className="add" onClick = {this.submitAdd}>Add</button>
+                        <button id={"submitSoftSkill"} className="add" onClick = {(e)=>submitAdd(e)}>Add</button>
                     </div>
                 </form>
                     :
                     null
                 }
             </div>
-        )
-    };
-};
-export default Skills;
+        </div>
+    )
+}

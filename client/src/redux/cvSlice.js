@@ -7,10 +7,12 @@ export const cvSlice = createSlice({
         id:uuidv4(),
         about:[
         ],
+        //arrays of objects
         education:[ ],
         experiences:[ ],
         projects:[ ],
-        skills:null,
+        //skills is an object of 2 arrays
+        skills:{},
         fileName:"",
         
         
@@ -120,7 +122,7 @@ export const cvSlice = createSlice({
             state.education = [ ];
             state.experiences=[ ] ;
             state.projects=[ ];
-            state.skills=""
+            state.skills={ };
             state.fileName=""
             state.id=""
             console.log(state);
