@@ -8,7 +8,7 @@ export const cvSlice = createSlice({
         about:[
         ],
         education:[ ],
-        experience:null,
+        experiences:[ ],
         projects:[ ],
         skills:null,
         fileName:"",
@@ -118,7 +118,7 @@ export const cvSlice = createSlice({
             //clear about
             state.about.length=0
             state.education = [ ];
-            state.experience= "";
+            state.experiences=[ ] ;
             state.projects=[ ];
             state.skills=""
             state.fileName=""

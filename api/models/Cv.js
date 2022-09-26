@@ -31,12 +31,24 @@ const Cv = new Schema({
     projects: [
         {
             title:String,
-            description:String,
-            technology:String,
-            index:String,
+            description:[{type:String}],
+            technologies:[{type:String}],
+            index:Number,
             id:String
         }
-    ]
+    ],
+    experiences: [ 
+        {
+            company: String,
+            title:String,
+            startDate:String,
+            endDate: String,
+            location:String,
+            description:[{type:String}],
+            index:Number,
+            id:String
+        }
+     ],
 
 },{timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }});
 
