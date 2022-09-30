@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { skillSection } from "../redux/cvSlice"
 export default function Skills() {
+const dispatch = useDispatch();
 //get data from cv redux store, to see if there's saved data
 const cv = useSelector((state)=> state.cv);
 //if skills object is empty set false
@@ -47,6 +48,7 @@ const [ skill, setSkill] = useState('');
     };
     const submitAdd = (e) => {
         const skillType = e.target.id;
+        console.log(skill);
         //get array of soft skills and tech skills
         const softSkills = [...skills.softSkills];
         const techSkills = [...skills.techSkills];
@@ -61,6 +63,7 @@ const [ skill, setSkill] = useState('');
                 techSkills:techSkills,
                 softSkills:softSkills
             })
+       
      
             //updating soft skills
         } else {
@@ -72,11 +75,20 @@ const [ skill, setSkill] = useState('');
                 techSkills:techSkills,
                 softSkills:softSkills
             })
+         
         }
         //reset all of the edits in state and the skill holder
         setSkill("");
         setAddSkillSoft(false);
         setAddSkillTech(false);
+             //dispatch to redux store
+             dispatch(
+                skillSection({
+                    techSkills: techSkills,
+                    softSkills:softSkills,
+                    
+                })
+            )
    
     };
      const deleteSkill = (e) =>  {

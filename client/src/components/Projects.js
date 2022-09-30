@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState,  } from 'react';
 import uniqid from 'uniqid'
 import { useSelector, useDispatch } from 'react-redux';
-
+import { projectSection, projectDelete } from '../redux/cvSlice';
 export default function Projects() {
 //redux imports
 const dispatch = useDispatch();
@@ -32,7 +32,7 @@ console.log(savedCv.projects.length);
    [
    {title:"Weather App",
    description:["Fetches weather from the open weather API, and displays it with a user friendly interface."],
-   technologies:["Open Weather Api", "Vanialla Javascript", "HTML & CSS"],
+   technologies:["Open Weather Api, Vanialla Javascript, HTML & CSS"],
    liveDemo:"superdev.github.io/weatherApp/",
    edit:false,
    index:0,
@@ -62,31 +62,55 @@ const [editBullets, setEditBullets] = useState({
     editBulletIndex:0,
     editProjectIndex:0
 });
-
-
-
     const addProject = (e) => {
         e.preventDefault();
-        //duplicate projects array 
-        const projectsDup =[...projects];
-        //get additional to find out what the new index should be
-        console.log(projectsDup.length+1);
-        const index = projectsDup.length;
-        //create another project object
-        const newProject = {
-                title:"Clothing Store",
-                description:["Clothing store website made with React"],
-                technologies:["Javascript","React","HTML & CSS", "Jest", "Webpack"],
-                liveDemo:"superdev.github.io/clothing-store/",
-                edit:false,
-                index:index
-        };
-        //push object to projects array
-        projectsDup.push(newProject);
+        //get length of projects to find out what the new index should be
+        const index = projects.length
+        
+         //create another project object
+         const newProject = {
+            title:"Clothing Store",
+            description:["Clothing store website made with React"],
+            technologies:["Javascript","React","HTML & CSS", "Jest", "Webpack"],
+            liveDemo:"superdev.github.io/clothing-store/",
+            edit:false,
+            index:index,
+            id:uniqid()
+    };
+    //will store udpated project we want to send to redux store in here
+    let sendProjects = null;
+           //duplicate projects array , push object to projects array
+           const projectsDup =()=> {
+           const updatedProjects =  [...projects]
+            updatedProjects.push(newProject)
+            console.log(updatedProjects)
+            sendProjects = updatedProjects;
+            console.log(sendProjects);
+            return updatedProjects;
+           }
         //set projects state with new array
         //increase additional value by 1
-        setProjects(projectsDup)
-        setAdditional(projectsDup.length+1) 
+        setProjects(projectsDup())
+        setAdditional(projectsDup().length+1) 
+   
+            console.log(sendProjects);
+            sendProjects.map((project)=> (
+                
+                dispatch(
+                    
+                    projectSection({
+                        title:project.title,
+                        description:project.description,
+                        technologies:project.technologies,
+                        liveDemo:project.liveDemo,
+                        index:project.index,
+                        id:project.id
+                    })
+                )
+                
+            ))
+          
+     
     };
     const editProject = (e) => {
         //get index of project to be edited from value
@@ -122,6 +146,19 @@ const [editBullets, setEditBullets] = useState({
         ));
       setEdit(false);
       //dispatch to redux
+           //dispatch projects to redux store using map so we can later send the data to the db
+     projects.map((project)=> (
+        dispatch(
+           projectSection({
+               title:project.title,
+               description:project.description,
+               technologies:project.technologies,
+               liveDemo:project.liveDemo,
+               index:project.index,
+               id:project.id
+           })
+        )
+    ))
 
     };
     const deleteProject = (e) => {
@@ -134,11 +171,25 @@ const [editBullets, setEditBullets] = useState({
         //remap the array and reset the indexes
         projectsDup.map((project,index)=>(
             project.index = index
+            //dispatch changes to the redux store
         ));
         //reset the projects state with the new array
         setProjects(projectsDup)
           //decrease by 1 the additional state
           setAdditional((prevState)=> prevState -1)
+          
+          projectsDup.map((project)=> (
+              dispatch(
+                  projectDelete({
+                    title:project.title,
+                    description:project.description,
+                    technologies:project.technologies,
+                    liveDemo:project.liveDemo,
+                    index:project.index,
+                    id:project.id
+                  })
+              )
+          ))
     };
     const addBullet =(e)=>{
         e.preventDefault();
@@ -148,13 +199,24 @@ const [editBullets, setEditBullets] = useState({
        //get current description array for project being edited
        const projectsDup=[...projects];
        projectsDup.forEach((project)=> {
+           console.log(project);
            if(project.edit) {
                //set description
-               description=project.description
+                //if length greater than one map it out
+               if ( project.description.length === 1) {
+                    description.push(project.description[0])
+                }else {
+                    project.description.map((bullet)=> (
+                        
+                        description.push(bullet)
+                    ))
+                }
            }
        });
+       console.log(description)
        //add new bullet to description array
        description.push(newBullet);
+       console.log(description)
        //set state with new description
        console.log(projects);
        if(projects) {
@@ -175,14 +237,35 @@ const [editBullets, setEditBullets] = useState({
        //map through projects, find the matching title, and save the current description
        const projectsDup =[...projects]
        projectsDup.map((project)  => (
-        project.index === indexProject ? description=project.description : null 
-       ));
+           //map description and push to description array
+        project.index === indexProject ? project.description.map((bullet)=> (
+            description.push(bullet)
+       ))  : null )
+       );
         //splice  the index from the description
-        description.splice(1,indexDescription);
+        console.log(description);
+        description.splice(indexDescription,1);
+        console.log(description)
         //reset state of project with new description
-        setProjects((prevState)=> prevState.map(
-            project =>(project.index === indexProject ? {...project, description:description} : project)
+        const newProjectsArray = projects.map((project)=> (
+            project.index === indexProject ? {...project, description:description} : project
+        ));
+        setProjects(newProjectsArray)
+        //dispatch changes to redux store
+        newProjectsArray.map((project)=> (
+            dispatch(
+                projectDelete({
+                  title:project.title,
+                  description:project.description,
+                  technologies:project.technologies,
+                  liveDemo:project.liveDemo,
+                  index:project.index,
+                  id:project.id
+                })
+            )
         ))
+        
+    
 
    };
    const editBullet = (e) => {
@@ -240,6 +323,19 @@ const [editBullets, setEditBullets] = useState({
         editBulletIndex: 0,
         editProjectIndex: 0
      })
+     //dispatch projects to redux store using map so we can later send the data to the db
+     projects.map((project)=> (
+         dispatch(
+            projectSection({
+                title:project.title,
+                description:project.description,
+                technologies:project.technologies,
+                liveDemo:project.liveDemo,
+                index:project.index,
+                id:project.id
+            })
+         )
+     ))
    
 };
      //title for setting title of delete button
@@ -277,13 +373,14 @@ const [editBullets, setEditBullets] = useState({
                      :
                      null
                  }
-                 <div className="techUsed"><p className="techLabel">Technologies:</p><p>{project.technologies.join(', ')}</p></div>
+                 <div className="techUsed"><p className="techLabel">Technologies:</p><p>{project.technologies}</p></div>
                      <div className="liveDemo"><p style={{fontStyle:"bold", fontWeight:"bold",fontSize:"1.1rem"}}>Live Demo: </p><a href={`https://${project.liveDemo}`} target="_blank" rel="noreferrer" ><p>{project.liveDemo}</p></a></div>
                       {/*We don't want to give a delete button to the fist one */}
                  </div>
              </div>
          );
      });
+
      return(
      <div className="projectDisplay">
          <h1>Personal Projects</h1>

@@ -29,6 +29,7 @@ export default function CV() {
     //resume object
     const cvData = cv.about[0];
     console.log(cv);
+    //send data to db, for new file
     const saveData = () => {
         const data = {...cv, fileName:fileName}
         console.log(data);
@@ -56,6 +57,7 @@ export default function CV() {
         const value = e.target.value
         setfileName(value);
     }  
+    //send data to db for old file
     const updateData = () => {
         //get the data from the cv, and add in the filename
         let data = {...cv, fileName:cv.fileName,...cv.about[0]}

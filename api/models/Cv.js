@@ -49,6 +49,10 @@ const Cv = new Schema({
             id:String
         }
      ],
+     skills: {
+         techSkills:[{type:String}],
+         softSkills:[{type:String}]
+     },
 
 },{timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }});
 

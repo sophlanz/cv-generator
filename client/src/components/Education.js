@@ -169,12 +169,7 @@ export default function Education() {
         });
     };
   
- useEffect(()=> {
-     //if there's saved data, map out the data in the education state array upon render
-     if(savedData ===true) {
 
-     }
- })
   console.log(education)
     return (
         

@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import uniqid from 'uniqid';
 import { useSelector, useDispatch } from 'react-redux';
+import { experiencesSection, experienceDelete } from '../redux/cvSlice';
 
 export default function Experience() {
+    //dispatch for dispatching to redux
+    const dispatch = useDispatch();
     //get cv from redux store to see if there's data of saved values
     const cv = useSelector((state)=> state.cv);
     console.log(cv.experiences.length)
@@ -59,8 +62,22 @@ export default function Experience() {
         editExperienceIndex:0,
         editBulletIndex:0
     })
-  
-    const editExperience = (e) => {
+    
+  const dispatchRedux = (object) => {
+    dispatch(
+        experiencesSection({
+            company: object.company,
+            title:object.title,
+            startDate: object.startDate,
+            endDate: object.endDate,
+            location:object.location,
+            description:object.description,
+            index:object.index,
+            id:object.id
+        })
+    )
+  }
+     const editExperience = (e) => {
         //get index to be targeted under the number property
        const index = Number(e.target.value);
        //set edit property to true of the specifc experiencec object
@@ -86,6 +103,10 @@ export default function Experience() {
        //edit the edit property to false
        setExperiences((prevState) => prevState.map(
            experience => (experience.index === index ? Object.assign(experience, { edit: false }) : experience)
+       ))
+       //for each array to dispatch each object to redux;
+       experiences.forEach((experience)=> (
+        dispatchRedux(experience)
        ))
      
     };
@@ -113,6 +134,10 @@ export default function Experience() {
         //reset experiences array in state with the updated experiences
         setExperiences(updatedExperiences)
         setAdditional(index +1)
+         //for each array to dispatch each object to redux;
+       experiences.forEach((experience)=> (
+        dispatchRedux(experience)
+       ))
     };
     const deleteExperience = (e) => {
         //get value of index from target
@@ -121,15 +146,29 @@ export default function Experience() {
         const experiencesDup = [...experiences];
         //splice the index we got from the array
         experiencesDup.splice(index,1);
-        //update the state with the updated experiences
+        //change the indexes
+        experiencesDup.map((experience,idx)=> (
+            (Object.assign(experience,{index:idx}))
+        ))
+        //reset state with the update
         setExperiences(experiencesDup)
          //decrease additional state for if future experiences are added using prevstate
          setAdditional((prevState)=> prevState-1)
-       
-         //use prevstate and idx to reset all of the indexes
-         setExperiences((prevState)=> prevState.map(
-             (experience, idx) => (Object.assign(experience,{index:idx}))
-         ))
+          //for each array to dispatch each object to redux;
+       experiencesDup.forEach((experience)=> (
+        dispatch(
+            experienceDelete({
+                company: experience.company,
+                title:experience.title,
+                startDate: experience.startDate,
+                endDate: experience.endDate,
+                location:experience.location,
+                description:experience.description,
+                index:experience.index,
+                id:experience.id
+            })
+        )
+       ))
     };
     const addBullet =(e) => {
         e.preventDefault();
@@ -154,6 +193,10 @@ export default function Experience() {
         setExperiences((prevState)=> prevState.map(
             experience => (experience.index===index ? {...experience, description:newDescription} : experience))
         )
+         //for each array to dispatch each object to redux;
+       experiences.forEach((experience)=> (
+        dispatchRedux(experience)
+       ))
       
     };
     const deleteBullet=(e)=> {
@@ -175,6 +218,10 @@ export default function Experience() {
        setExperiences((prevState)=> prevState.map(
            experience => experience.index === indexExperience ? {...experience,description:updatedDescription} : experience
        ));
+        //for each array to dispatch each object to redux;
+        experiences.forEach((experience)=> (
+            dispatchRedux(experience)
+           ))
 
     };
    const editBullet=(e) => {
@@ -216,6 +263,7 @@ export default function Experience() {
         setExperiences((prevState)=> prevState.map(
            experience => experience.index === indexExperience ? {...experience, description:description} : experience
         ));
+        
     }
   
    };
@@ -226,6 +274,10 @@ export default function Experience() {
         editBulletIndex:0,
         editBullet:false
        })
+        //for each array to dispatch each object to redux;
+        experiences.forEach((experience)=> (
+            dispatchRedux(experience)
+           ))
    };
     //map  through the experiences and return the data , render it in the return section
     const experiencesList = experiences.map((experience,idx) => {
