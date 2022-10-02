@@ -318,10 +318,9 @@ export default function Experience() {
              {bullet}
              </li>
              <button title= "edit" value = {idx} name={indexExperience} className="experience" onClick={(e)=> editBullet(e)}></button>
-             {idx !==0 ? 
+            
                  <button className="delete" name={indexExperience} value={idx}onClick={(e)=> deleteBullet(e)}></button>
-                     :null
-                     }
+                    
              </div>  
              )
      })}
