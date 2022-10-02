@@ -34,13 +34,14 @@
 .expEditIcon {
     display:flex;
 };
-.expEditIcon:hover {
-    color:$lightBlue;
-};
+
 .bulletEditDiv{
     display:flex;
 };
-.bulletEditDiv:hover{
-    color:$lightBlue;
-    font-weight:700;
-};
+button.delete{
+    &:hover{
+        & + .bulletEditDiv {
+            font-weight:700;
+        }
+    }
+} ;

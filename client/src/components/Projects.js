@@ -15,7 +15,7 @@ console.log(savedCv.projects.length);
     //if savedData is true,map the education array, else use the default values and two objects
    const [projects, setProjects] = useState(()=> savedData === true ? savedCv.projects.map((project)=> (
        
-    [
+    
        {
      
     title:project.title,
@@ -26,7 +26,7 @@ console.log(savedCv.projects.length);
     index:project.index,
     id:project.id,
     }
-    ]
+    
 ))
    :
    [
@@ -349,11 +349,11 @@ const [editBullets, setEditBullets] = useState({
              <div key={index}>
                  <div className="projectList">
                      <div className="projectDeleteIcon"><h3>{project.title}</h3><button className="project" title="Edit"value={index} onClick={editProject}></button>
-                       {index !== 0 ? 
+                     
                           <button className="delete" value={index} title="Delete" onClick={deleteProject}></button>
-                         :
-                          null
-                         } 
+                    
+                     
+                         
                       </div>
                      { project.description ? 
                      project.description.map((item,idx) => {
@@ -383,7 +383,10 @@ const [editBullets, setEditBullets] = useState({
 
      return(
      <div className="projectDisplay">
+        <div className="addAnother">
          <h1>Personal Projects</h1>
+         <button className="add" onClick={addProject}>Add Project</button>
+         </div>
          <ul className="projectContainer">
          {projectList}
          </ul>

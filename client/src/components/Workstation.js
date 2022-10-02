@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux'
 import {Link} from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import { aboutSection, addFileName, addId, educationSection } from '../redux/cvSlice';
+import { aboutSection, addFileName, addId, educationSection, skillSection,experiencesSection, projectSection } from '../redux/cvSlice';
 import { reset } from '../redux/cvSlice';
 export default function Workstation() {
     //get username from user reducer, saved in an object 
@@ -39,7 +39,12 @@ export default function Workstation() {
       console.log(resume._id)
     //education array of ojbects
       const education = resume.education
-      
+      //experiences array of objects
+      const experiences = resume.experiences
+      //projects array of objects
+      const projects = resume.projects
+      //skills object with 2 arrays
+      const skills = resume.skills
     dispatch(
         /*send data to redux to be rendered in components */
         aboutSection ({
@@ -64,7 +69,7 @@ export default function Workstation() {
             id:resume._id
         })
     )
-    education.map((study)=> {
+    education.forEach((study)=> {
         console.log(study)
         dispatch(
             educationSection({
@@ -80,6 +85,41 @@ export default function Workstation() {
             })
         )
     })
+    //loop experiences array of objects
+    experiences.forEach((experience)=> (
+        dispatch(
+            experiencesSection({
+            company: experience.company,
+            title:experience.title,
+            startDate: experience.startDate,
+            endDate: experience.endDate,
+            location:experience.location,
+            description:experience.description,
+            index:experience.index,
+            id:experience.id
+            })
+        )
+    ))
+    //loop projects array of objects
+    projects.forEach((project)=> (
+        dispatch(
+            projectSection({
+                title:project.title,
+                description:project.description,
+                technologies:project.technologies,
+                liveDemo:project.liveDemo,
+                index:project.index,
+                id:project.id,
+            })
+        )
+    ))
+    //dispatch skills object
+    dispatch(
+        skillSection({
+            techSkills:skills.techSkills,
+            softSkills:skills.softSkills
+        })
+    )
 
   }
   const handleReset = () => {

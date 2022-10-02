@@ -8,13 +8,17 @@ export default function Experience() {
     const dispatch = useDispatch();
     //get cv from redux store to see if there's data of saved values
     const cv = useSelector((state)=> state.cv);
+    console.log(cv);
     console.log(cv.experiences.length)
     //saved data boolean, will when we check the cv.experiences length from the redux store. 
    const [savedData, setSavedData] = useState(cv.experiences.length === 0 ? false : true);
+   console.log(savedData)
+   console.log(cv.experiences)
+   const savedExperience= cv.experiences
     //declar states
     //used saved data, and map it into objects if saved data true, else use defaults
-    const [experiences, setExperiences] = useState(()=> savedData ? cv.experienes.map((experience)=> (
-        [
+    const [experiences, setExperiences] = useState(()=> savedData ? savedExperience.map((experience)=> (
+        
             {
                 company: experience.company,
                 title:experience.title,
@@ -26,7 +30,7 @@ export default function Experience() {
                 index:experience.index,
                 id:experience.id
             }
-        ]
+        
     ))
     :
     [
@@ -284,6 +288,9 @@ export default function Experience() {
      //index of experience to pass to button
      console.log(experience);
      const indexExperience=experience.index
+     const descriptionExperience = experience.description
+     console.log(descriptionExperience)
+     
      return(
          <div key={idx} className="experienceItem">
              <div className="generalInformation">
@@ -291,11 +298,9 @@ export default function Experience() {
                      <div className="expEditIcon">
                      <h3>{experience.company}</h3>
                      <button title="edit" className="experience" value = {idx} onClick = { (e)=> editExperience(e)}></button>
-                     {idx !== 0 ?
+                    
                      <button title = "delete"className="delete" value={idx} onClick={(e)=> deleteExperience(e)}></button>
-                     :
-                     null
-                      }
+                    
                      </div>
                      <div >{experience.title}</div>
                  </div>
@@ -306,7 +311,7 @@ export default function Experience() {
              </div>
          <ul>
      {/*map through the description array and lay out the data in an unordered list */}
-     {experience.description.map((bullet,idx)=> {
+     {descriptionExperience.map((bullet,idx)=> {
          return (
              <div className="bulletEditDiv" key={idx}>
              <li >
@@ -327,7 +332,10 @@ export default function Experience() {
     return (
         <div>
               <div className="experienceDisplay">
-                <h1>Work Experience</h1>
+                <div className="addAnother">
+                <h1>Work Experience</h1> 
+                <button className="add"  onClick={(e)=> addAnother(e)}>Add Experience</button>
+                </div>
                  {/*what we want to display on the screen as the final product */}
                  {/*If there's only 1 experience, just show the [0] of experiences array */}
                 <div>

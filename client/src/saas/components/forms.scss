@@ -20,9 +20,9 @@ form.about {
     font-size:1.3rem;
 };
 form.experience, form.education {
-    background-color:$lightBlue;
+    background-color:white;
     border-radius:1rem;
-    border:2px solid $gray;
+    border:$lightBlue 2px solid ;
     width:450px;
     height:350px;
     display:flex;
@@ -68,7 +68,7 @@ form.projects{
 };
 input{
     border-radius:.5rem;
-    border:1px solid $gray;
+    border:$lightBlue 1px solid ;
     background-color:white;
     color:$darkGray;
     height:30px;
@@ -76,8 +76,9 @@ input{
     width:200px;
 };
 input:focus {
-    background-color:$lightBlue;
+    
     border:2px solid $lightBlue;
+    color:black;
 };
 label{
     display:flex;

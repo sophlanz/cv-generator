@@ -10,14 +10,19 @@
   border-radius: 50%;
   height:30px;
   width:30px;
+  top: 0;
+  position:relative;
+  transition: top ease 0.5s;
     };
+  
 .aboutDisplay:hover button, .skillSection:hover button, 
 .projectDisplay:hover button,.educationDisplay:hover button, 
 .experienceDisplay:hover button {
   display:block
+  
     };
 /*submit form buttons*/
-.submitButton,  button.addSkill, button.addSoftSkill,button.add{
+.submitButton,  button.addSkill, button.addSoftSkill{
   background:transparent;
   background-color:$lightBlue;
   border:2px solid white;
@@ -27,7 +32,21 @@
   border-radius:.5rem;
   letter-spacing: 3px;
    };
-.submitButton:hover,  button.addSkill:hover, button.addSoftSkill:hover, button.add:hover{
+   /*add another button you can see when hovering over a section title*/
+   button.add{
+    background:transparent;
+    border:$lightBlue 2px solid ;
+    color:$darkGray;
+    height:40px;
+    width:120px;
+    border-radius:.5rem;
+    letter-spacing: 3px;
+    margin-bottom:5px;
+   }
+   button.add:hover{
+    border:$lightBlue 4px solid ;
+   }
+.submitButton:hover,  button.addSkill:hover, button.addSoftSkill:hover {
   font-weight:700;
   border:4px solid white;
    };
@@ -45,7 +64,7 @@
   top: 0;
   transition: top ease 0.5s;
    };
-button.delete:hover{
+button:hover {
   top:-5px;
 };
 /*div container form buttons*/
@@ -88,3 +107,13 @@ button.delete:hover{
     display:none !important;
   }
 };
+/*title of section with add another button hidden*/
+.addAnother {
+  display:flex;
+  border-bottom: 2px solid black;
+  gap:15px;
+
+}
+.addAnother .add {
+  display:none;
+}

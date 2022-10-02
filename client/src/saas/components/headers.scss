@@ -1,13 +1,15 @@
  /*main  headers*/
- .skillSection h1, .projectDisplay h1, 
- .educationDisplay h1 ,.experienceDisplay h1{
-  text-align:left;
-  font-size:1.2rem;
-  font-weight:700;
-  border-bottom:2px solid black;
-  color: $mainColor;
-  margin-top:5px;
-  };
+  .educationDisplay h1,.experienceDisplay h1, .projectDisplay h1,  .skillSection h1{
+    text-align:left;
+    font-size:1.2rem;
+    font-weight:700;
+    color: $mainColor;
+    margin-top:5px;
+  }
+  /*only header with one border bottom, the rest get it from the addanother div*/
+  .skillSection h1 {
+    border-bottom:2px solid black;
+    };
 /*sub headers*/
 .skillSection h3, .projectDisplay h3, 
 .uniDegree h3, .companyTitle h3 {

@@ -174,7 +174,11 @@ export default function Education() {
     return (
         
                 <div className="educationDisplay">
-                    <h1>Education</h1>
+                        <div className="addAnother">
+                            <h1>Education</h1>
+                            <button className="add" onClick={(e)=>addEducation(e)}>Add Education</button>
+                        </div>
+                    
                      {/*what we want to display on the screen as the final product */}
                      {/*display for if there's only 1 education listed */}
                      {additional === 1 ? 
