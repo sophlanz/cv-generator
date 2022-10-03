@@ -19,7 +19,7 @@ export const cvSlice = createSlice({
     },
     reducers: {
         aboutSection: (state, action) => {
-            console.log(current(state));
+            
            const about = {
             firstName:action.payload.firstName,
             lastName:action.payload.lastName,
@@ -34,7 +34,7 @@ export const cvSlice = createSlice({
            state.about.length = 0;
            //push new details
            state.about.push(about);
-           console.log(current(state));
+           
         },
         skillSection: (state,action)=> {
             const skill = {
@@ -44,11 +44,11 @@ export const cvSlice = createSlice({
             //reset state to the new skill object
             state.skills= skill
     
-            console.log(current(state))
+            
         },
       
         projectSection: (state,action) => {
-            console.log(current(state));
+            
             const project = {
                 title:action.payload.title,
                 description:action.payload.description,
@@ -59,16 +59,16 @@ export const cvSlice = createSlice({
             }
                //in case of editing the project,if the index already exists , get the index of the education object and delete it to replace it with the new one
                const i = state.projects.findIndex(project => project.id === action.payload.id)
-               console.log(action.payload.id)
-              console.log(i);
+               
+              
                //if > -1 it exists, delete it
                if(i > -1) {
                    //filter state keeping all projects that don't match the id of the one we want to delete
                    const newProject = state.projects.filter(project => project.id !== action.payload.id)
-                   console.log(newProject);
+                   
                    //splice in the declared education object using the index
                    newProject.splice(i,0,project)
-                   console.log(newProject)
+                   
                    //clear education
                    state.projects = [];
                    //map and push into index to avoid push an array into index 0
@@ -77,14 +77,14 @@ export const cvSlice = createSlice({
                    })
                    
    
-                  console.log(current(state))
+                  
                } else {
                    //in the case of adding a new project , it doesn't exist, so push the new one
                     state.projects.push(project)
-                    console.log(current(state))
+                    
                    
                }
-               console.log(current(state))
+               
           
         },
         experiencesSection: (state,action)=> {
@@ -98,18 +98,18 @@ export const cvSlice = createSlice({
                 index:action.payload.index,
                 id:action.payload.id
             }
-            console.log(current(state))
+            
             //if the index already exists , get the index of the education object and delete it to replace it with the new one
             const i = state.experiences.findIndex(experience => experience.id === action.payload.id)
-           console.log(i);
+           
             //if > -1 it exists, delete it
             if(i > -1) {
                 //splice state at this index, so we can then push the new object
                 const newExperience = state.experiences.filter(experience => experience.id !== action.payload.id)
-                console.log(newExperience);
+                
                 //splice in the declared education object using the index
                 newExperience.splice(i,0,experience)
-                console.log(newExperience)
+                
                 //clear education
                 state.experiences = [];
                 //map and push into index to avoid push an array into index 0
@@ -118,11 +118,11 @@ export const cvSlice = createSlice({
                 })
                 
 
-               console.log(current(state))
+               
             } else {
                 //doesn't exist, push the new one
                  state.experiences.push(experience)
-                 console.log(current(state))
+                 
                 
             }
 
@@ -139,19 +139,19 @@ export const cvSlice = createSlice({
                 id:action.payload.id,
                 additional:action.payload.additional
             }
-            console.log(current(state))
+            
             //if the index already exists , get the index of the education object and delete it to replace it with the new one
             const i = state.education.findIndex(study => study.id === action.payload.id)
-            console.log(action.payload.id)
-           console.log(i);
+            
+           
             //if > -1 it exists, delete it
             if(i > -1) {
                 //splice state at this index, so we can then push the new object
                 const newEducation = state.education.filter(study => study.id !== action.payload.id)
-                console.log(newEducation);
+                
                 //splice in the declared education object using the index
                 newEducation.splice(i,0,education)
-                console.log(newEducation)
+                
                 //clear education
                 state.education = [];
                 //map and push into index to avoid push an array into index 0
@@ -160,11 +160,11 @@ export const cvSlice = createSlice({
                 })
                 
 
-               console.log(current(state))
+               
             } else {
                 //doesn't exist, push the new one
                  state.education.push(education)
-                 console.log(current(state))
+                 
                 
             }
         },
@@ -173,7 +173,7 @@ export const cvSlice = createSlice({
              if(action.payload.index === 0) {
                 state.projects = [];
             }
-            console.log(action.payload.index)
+            
             //new object schema, everything has to be replaced because we changed the indexes
             const project = {
                 title:action.payload.title,
@@ -185,7 +185,7 @@ export const cvSlice = createSlice({
             }
             //push to state
             state.projects.push(project);
-            console.log(current(state))
+            
 
         },
         experienceDelete: (state,action)=> {
@@ -193,7 +193,7 @@ export const cvSlice = createSlice({
                  if(action.payload.index === 0) {
                     state.experiences = [];
                 }
-                console.log(action.payload.index)
+                
                 //new object schema, everything has to be replaced because we changed the indexes
                 const experience = {
                     company: action.payload.company,
@@ -207,14 +207,14 @@ export const cvSlice = createSlice({
                 }
                 //push to state
                 state.experiences.push(experience);
-                console.log(current(state))
+                
         },
         postDelete: (state,action) => {
             //clear array if it's the first iteration, index 0, we already updated the entire array of object in jsx
             if(action.payload.index === 0) {
                 state.education = [];
             }
-            console.log(action.payload.index)
+            
             //new object schema, everything has to be replaced because we changed the indexes
             const education = {
                 university: action.payload.university,
@@ -228,10 +228,10 @@ export const cvSlice = createSlice({
             }
             //push to state
             state.education.push(education);
-            console.log(current(state))
+            
         },
         addFileName: (state,action) => {
-            console.log(state)
+            
          return {...state, fileName:action.payload.fileName}
         },
         addId: (state,action) => {
@@ -239,14 +239,14 @@ export const cvSlice = createSlice({
         },
         reset: (state, action) => {
             //clear about
-            state.about.length=0
+            state.about=[ ];
             state.education = [ ];
             state.experiences=[ ] ;
             state.projects=[ ];
             state.skills={ };
             state.fileName=""
             state.id=""
-            console.log(state);
+            
             
         }
 }});

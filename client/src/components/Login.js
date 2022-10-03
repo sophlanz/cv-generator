@@ -35,7 +35,7 @@ export default function Login() {
             .then(()=> {
                  
                     navigate('/workstation')
-                    console.log(id);
+                    
                     dispatch(
                      addUserName({
                          username: username,
@@ -46,11 +46,11 @@ export default function Login() {
             })
             .catch((err)=> {
                 setError(true)
-                console.log(err)
+                
             })
            
         } catch(err) {
-            console.log(err.message)
+            
         }
   
         }

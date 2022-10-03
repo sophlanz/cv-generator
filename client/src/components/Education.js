@@ -8,8 +8,8 @@ export default function Education() {
     const dispatch = useDispatch();
      //check to see if details have been saved to the store
    const savedCv = useSelector((state)=> state.cv);
-   console.log(savedCv)
-   console.log(savedCv.education.length);
+   
+   
    //state where we'll keep track if the user wants to view saved data
    //if the education array is empty, there's no saved data, we want to use default values
    const [savedData, setSavedData] = useState(savedCv.education.length === 0 ? false : true)
@@ -28,7 +28,7 @@ export default function Education() {
        
     }))
     :
-    {
+   [{
     university: 'university',
     degree:"B.S. Web Development",
     startDate: "August 2018",
@@ -38,7 +38,7 @@ export default function Education() {
     id:uniqid(),
     edit:false,
     
-}
+}]
 )
 
     const [edit, setEdit] = useState(false);
@@ -49,13 +49,13 @@ export default function Education() {
 
         //get index from the value of target
         let index = Number(e.target.value)
-        console.log(index);
+        
         //map through the education and find one that matches the index. change edit to true
         setEducation(prevState => prevState.map(
             
             study => (study.index === index ? Object.assign(study,{edit:true}) : study) 
         ));
-        console.log(education);
+        
        
        //also change the edit property in the general object, so jsx can detext the change
        setEdit(true);
@@ -82,10 +82,10 @@ export default function Education() {
                 study => (study.edit  ? Object.assign(study,{edit:false}):study)
             )
         );
-        console.log(education);
+        
           //dispatch to redux store for when it is saved later and sent to the server
     education.forEach((study)=> { 
-        console.log(study);
+        
         dispatch(
             //the function name has been passed into the field parameter
         educationSection(
@@ -140,10 +140,10 @@ export default function Education() {
         //create a new array from array of education, spice out index
         let educationOld = [...education];
         educationOld.splice(index,1);
-        console.log(educationOld)
+        
         //reset eudcation in state with the updated array
         setEducation(educationOld)
-        console.log(education);
+        
         //additional is amount of items in array, so subtract 1
        setAdditional(prevState => prevState -1 );
         //reset index values somehow
@@ -151,7 +151,7 @@ export default function Education() {
         setEducation(prevState => prevState.map(
             (study,idx) => (Object.assign(study, {index:idx}) )
             ))
-        console.log(education);
+        
         //now dispatch postDelete  function in redux store, pass in the reducer function name
         educationOld.map((study)=> {
             dispatch(
@@ -170,7 +170,7 @@ export default function Education() {
     };
   
 
-  console.log(education)
+  
     return (
         
                 <div className="educationDisplay">

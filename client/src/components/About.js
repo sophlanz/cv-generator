@@ -7,13 +7,13 @@ import emailPic from "../images/email.svg";
 import { aboutSection } from '../redux/cvSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
-export default function About(props) {
+export default function About() {
     //check to see if details have been saved to the store
    const savedCv = useSelector((state)=> state.cv);
-   console.log(savedCv)
-   console.log(savedCv.about.length);
+   console.log(savedCv);
+   
    //state where we'll keep track if the user wants to view saved data
-   const [savedData, setSavedData] = useState(savedCv.about.length === 0 ? false : true)
+   const [savedData, setSavedData] = useState(savedCv.about.length === 0 || savedCv.about.firstName=== undefined ? false : true)
     const defaultValues = {
         firstname: "Your",
         lastName: "Name",
@@ -26,7 +26,7 @@ export default function About(props) {
     };
    //check value of savedData, if true set savedCv data, false use defaults
   const checkForData = (field) => {
-      console.log(savedData);
+      
       let info =  savedCv.about;
     if(savedData === true) {
         //return savedCv.about.field

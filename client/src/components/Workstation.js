@@ -9,7 +9,7 @@ export default function Workstation() {
     //get username from user reducer, saved in an object 
     const username = useSelector((state) => state.user[0].username)
     const userId = useSelector((state)=> state.user[0].id);
-    console.log(userId);
+    
     //will store resume data we retrieved from db
     const [userData, setUserData] = useState(null)
    const dispatch = useDispatch();
@@ -20,23 +20,24 @@ export default function Workstation() {
   }
     const getCvs = () => {
         //use axios to make get request to server
-        console.log(userId);
+        
         axios.get(`http://localhost:9000/savecv/${userId}`,body)
         .then((response)=> {
             //save just the resumes
             setUserData(response.data.resume);
-            console.log(response.data);
+            
             
         })
         .catch((error)=> {
-            console.log(error.message)
+            
         }) 
 
     }
   const sendDispatchHandler=(resume)=> {
       //use resume to get values, and send to redux store
-      console.log(resume.fileName);
-      console.log(resume._id)
+      console.log(resume);
+      
+      
     //education array of ojbects
       const education = resume.education
       //experiences array of objects
@@ -45,20 +46,24 @@ export default function Workstation() {
       const projects = resume.projects
       //skills object with 2 arrays
       const skills = resume.skills
-    dispatch(
-        /*send data to redux to be rendered in components */
-        aboutSection ({
-            firstName:resume.firstName,
-            lastName:resume.lastName,
-            title: resume.title,
-            phone:resume.phone,
-            email:resume.email,
-            city: resume.city,
-            linkedin:resume.linkedin,
-            github:resume.github
-        }),
-    )
-  
+      //check to see if there's data
+      if(resume.firstName){
+        dispatch(
+            /*send data to redux to be rendered in components */
+            aboutSection ({
+                firstName:resume.firstName,
+                lastName:resume.lastName,
+                title: resume.title,
+                phone:resume.phone,
+                email:resume.email,
+                city: resume.city,
+                linkedin:resume.linkedin,
+                github:resume.github
+            }),
+        )
+      
+      }
+    
     dispatch(
         addFileName ({
             fileName:resume.fileName
@@ -69,8 +74,9 @@ export default function Workstation() {
             id:resume._id
         })
     )
+    if(resume.education.length >0){
     education.forEach((study)=> {
-        console.log(study)
+        
         dispatch(
             educationSection({
                 university: study.university,
@@ -85,8 +91,10 @@ export default function Workstation() {
             })
         )
     })
+}
     //loop experiences array of objects
-    experiences.forEach((experience)=> (
+  if(resume.experiences.length >0)  {
+      experiences.forEach((experience)=> (
         dispatch(
             experiencesSection({
             company: experience.company,
@@ -100,7 +108,10 @@ export default function Workstation() {
             })
         )
     ))
+}
     //loop projects array of objects
+  if(resume.projects.length >0){
+
     projects.forEach((project)=> (
         dispatch(
             projectSection({
@@ -113,15 +124,18 @@ export default function Workstation() {
             })
         )
     ))
-    //dispatch skills object
+}
+    //dispatch skills object if there's data
+   if(skills.techSkills.length >0 || skills.softSkills.length >0) {
+
     dispatch(
         skillSection({
             techSkills:skills.techSkills,
             softSkills:skills.softSkills
         })
     )
-
   }
+}
   const handleReset = () => {
       dispatch(
           reset()
@@ -143,7 +157,7 @@ export default function Workstation() {
         { userData ?
         [...userData].map((resume,index)=> {
             let resumeData = resume;
-            console.log(resumeData)
+            
             return(
                 <ul key={uuidv4()}>
                 {/*add title name, on click reset the resume in the redux store, then dispatch the saved resume*/}

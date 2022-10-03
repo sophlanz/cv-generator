@@ -8,12 +8,12 @@ export default function Experience() {
     const dispatch = useDispatch();
     //get cv from redux store to see if there's data of saved values
     const cv = useSelector((state)=> state.cv);
-    console.log(cv);
-    console.log(cv.experiences.length)
+    
+    
     //saved data boolean, will when we check the cv.experiences length from the redux store. 
    const [savedData, setSavedData] = useState(cv.experiences.length === 0 ? false : true);
-   console.log(savedData)
-   console.log(cv.experiences)
+   
+   
    const savedExperience= cv.experiences
     //declar states
     //used saved data, and map it into objects if saved data true, else use defaults
@@ -286,10 +286,10 @@ export default function Experience() {
     //map  through the experiences and return the data , render it in the return section
     const experiencesList = experiences.map((experience,idx) => {
      //index of experience to pass to button
-     console.log(experience);
+     
      const indexExperience=experience.index
      const descriptionExperience = experience.description
-     console.log(descriptionExperience)
+     
      
      return(
          <div key={idx} className="experienceItem">
@@ -327,7 +327,7 @@ export default function Experience() {
          </ul>
          </div> 
      )});
-     console.log(experiences);
+     
     return (
         <div>
               <div className="experienceDisplay">

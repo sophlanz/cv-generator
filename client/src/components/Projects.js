@@ -7,8 +7,8 @@ export default function Projects() {
 const dispatch = useDispatch();
 //Get CV from redux store to check to see if details have been saved to the store
 const savedCv = useSelector((state)=> state.cv);
-console.log(savedCv)
-console.log(savedCv.projects.length);
+
+
   //state where we'll keep track if the user wants to view saved data
   //if the projects array is empty, there's no saved data, we want to use default values
   const [savedData, setSavedData] = useState(savedCv.projects.length === 0 ? false : true)
@@ -83,9 +83,9 @@ const [editBullets, setEditBullets] = useState({
            const projectsDup =()=> {
            const updatedProjects =  [...projects]
             updatedProjects.push(newProject)
-            console.log(updatedProjects)
+            
             sendProjects = updatedProjects;
-            console.log(sendProjects);
+            
             return updatedProjects;
            }
         //set projects state with new array
@@ -93,7 +93,7 @@ const [editBullets, setEditBullets] = useState({
         setProjects(projectsDup())
         setAdditional(projectsDup().length+1) 
    
-            console.log(sendProjects);
+            
             sendProjects.map((project)=> (
                 
                 dispatch(
@@ -115,7 +115,7 @@ const [editBullets, setEditBullets] = useState({
     const editProject = (e) => {
         //get index of project to be edited from value
         const index = Number(e.target.value);
-         console.log(index);
+         
         //change edit to true of that specific array, and in general
         setEdit(true);
         //set index of the project to be accessed in handleChange
@@ -130,9 +130,9 @@ const [editBullets, setEditBullets] = useState({
         const name = e.target.name;
         //get index of the project we saved we we clicked edit 
         const i = index;
-        console.log(i);
+        
         const updateValue=e.target.value
-        console.log(updateValue);
+        
         //map through state and look for matching index, change those values
         setProjects(prevState => prevState.map(
             project => project.index=== i ? {...project, [name]: updateValue} : project
@@ -199,7 +199,7 @@ const [editBullets, setEditBullets] = useState({
        //get current description array for project being edited
        const projectsDup=[...projects];
        projectsDup.forEach((project)=> {
-           console.log(project);
+           
            if(project.edit) {
                //set description
                 //if length greater than one map it out
@@ -213,12 +213,12 @@ const [editBullets, setEditBullets] = useState({
                 }
            }
        });
-       console.log(description)
+       
        //add new bullet to description array
        description.push(newBullet);
-       console.log(description)
+       
        //set state with new description
-       console.log(projects);
+       
        if(projects) {
            setProjects((prevState)=> prevState.map(
                project => project.edit ? {...project, description:description} : project
@@ -243,9 +243,9 @@ const [editBullets, setEditBullets] = useState({
        ))  : null )
        );
         //splice  the index from the description
-        console.log(description);
+        
         description.splice(indexDescription,1);
-        console.log(description)
+        
         //reset state of project with new description
         const newProjectsArray = projects.map((project)=> (
             project.index === indexProject ? {...project, description:description} : project
@@ -271,17 +271,17 @@ const [editBullets, setEditBullets] = useState({
    const editBullet = (e) => {
        //index of edit project
        const projectIndex = Number(e.target.name)
-       console.log(projectIndex)
+       
        //index of bullet is saved in value
        const bulletIndex = Number(e.target.value)
-       console.log(bulletIndex);
+       
        //set edit bullet to true
        setEditBullets({
         editBullet:true,
         editBulletIndex: bulletIndex,
         editProjectIndex: projectIndex
        })
-       console.log(editBullet)
+       
      
    };
   const handleChangeBullet =(e) => {
@@ -294,10 +294,10 @@ const [editBullets, setEditBullets] = useState({
     //loop over projects to set new array
     let projectsDup = [...projects]
     let updateDescription ="";
-    console.log(projectsDup);
-    console.log(projectIndex)
-    console.log(projectsDup[projectIndex])
-    console.log(projectsDup[projectIndex].description[bulletIndex])
+    
+    
+    
+    
     projectsDup.forEach((project) => {
         if( project.index === projectIndex ) {
               //we want to get the description into a new array
@@ -340,8 +340,8 @@ const [editBullets, setEditBullets] = useState({
 };
      //title for setting title of delete button
      let indexProject="";
-     console.log(projects);
-     console.log(edit);
+     
+     
      const projectList =  projects.map((project,index)=> {
          //put project.title and project.description in a div
          indexProject=project.index
@@ -391,7 +391,7 @@ const [editBullets, setEditBullets] = useState({
          {projectList}
          </ul>
          {/*if edit, show input fields and submit button */}
-         {console.log(edit)}
+         
          {edit ? 
          <form className="projects">
              <label htmlFor="title">Title

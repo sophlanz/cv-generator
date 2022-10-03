@@ -17,22 +17,22 @@ export default function CV() {
     const [fileName, setfileName] = useState(null);
     //get cv from state
     const cv = useSelector((state)=> state.cv);
-    console.log(cv);
+    
     //get id from cv
     const id= cv.id;
-    console.log(id);
+    
     //user object
     const userData = useSelector((state) => state.user)
-    console.log(userData)
+    
     //username from user object
     const username = userData[0].username;
     //resume object
     const cvData = cv.about[0];
-    console.log(cv);
+    
     //send data to db, for new file
     const saveData = () => {
         const data = {...cv, fileName:fileName}
-        console.log(data);
+        
         //send filename to store
         dispatch(
             addFileName({
@@ -46,10 +46,10 @@ export default function CV() {
   
    axios.post('http://localhost:9000/savecv',body )
    .then((results)=> {
-       console.log(results);
+       
    })
    .catch((err)=> {
-       console.log(err.response);
+       
    });
     
     }
@@ -64,14 +64,14 @@ export default function CV() {
        const body = {
            resume: data
         };
-        console.log(body);
+        
         //axios request to update data, use id to cv instance
         axios.post(`http://localhost:9000/update-cv/${id}`,body)
         .then((results)=> {
-            console.log(results)
+            
         })
         .catch((error)=> {
-            console.log(error)
+            
         })
     }
     //use effect to check and see on page load if cv in redux store is empty. If empty set state newCV to true
@@ -83,7 +83,7 @@ export default function CV() {
             setNewFile(false)
         }
     },[])
-    console.log(newFile);
+    
     return (
         <div className="paper">
         <Modal />

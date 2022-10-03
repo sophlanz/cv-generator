@@ -12,7 +12,7 @@ export const userSlice = createSlice({
             //clear state
             state.length = 0;
             state.push(userData);
-            console.log(current(state));
+            
         }
     }
 
