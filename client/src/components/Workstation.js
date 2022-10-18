@@ -25,7 +25,7 @@ export default function Workstation() {
         .then((response)=> {
             //save just the resumes
             setUserData(response.data.resume);
-            
+            console.log(response.data.resume)
             
         })
         .catch((error)=> {

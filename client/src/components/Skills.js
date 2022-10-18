@@ -5,10 +5,10 @@ export default function Skills() {
 const dispatch = useDispatch();
 //get data from cv redux store, to see if there's saved data
 const cv = useSelector((state)=> state.cv);
-console.log(cv);
+
 //if skills object is empty set false
 const [savedData, setSavedData] = useState(Object.keys(cv.skills).length === 0 ? false : true)
-console.log(Object.keys(cv.skills).length)
+
 //declare states
 //skills should be an object that contains array of tech and soft skills
 //check to see if we want to use saved data or default values

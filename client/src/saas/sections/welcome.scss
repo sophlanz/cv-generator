@@ -1,0 +1,39 @@
+/*container for grid*/
+.gridContainer {
+    background-size:25%;
+    height:100vh;
+    width:100vw;
+    /*lines running down the page*/
+    background-image:
+      linear-gradient(to right, grey 1px, transparent 1px),
+}
+/*welcome page title*/
+.gridContainer h1 {
+  position:absolute;
+  left:50px;
+  top:40px;
+}
+.ball {
+  width:300px;
+  height:300px;
+  border-radius: 50%;
+  border:1px solid black;
+  /*center div*/
+  position:absolute;
+  top:50%;
+  left:50%;
+  /*offset by half of height and width of circle*/
+  margin-top:-150px;
+  margin-left:-150px;
+  will-change:transform;
+  transform-style:preserve-3d;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background-color:white;
+  color:black;
+}
+.ball:hover {
+  color:white;
+  background-color: black;
+}

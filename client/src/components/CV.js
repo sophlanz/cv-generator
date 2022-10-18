@@ -1,5 +1,4 @@
-import React, { Component, useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom';
+import React, { Component, useState, useEffect } from 'react';
 import About from "./About";
 import Education from "./Education";
 import Experience from "./Experience";
@@ -15,6 +14,8 @@ export default function CV() {
     const [newFile, setNewFile] = useState(null);
     //state for title
     const [fileName, setfileName] = useState(null);
+    //store username in state, to check if it's a guest later, an
+    const [user, setUser] = useState(null);
     //get cv from state
     const cv = useSelector((state)=> state.cv);
     
@@ -23,16 +24,21 @@ export default function CV() {
     
     //user object
     const userData = useSelector((state) => state.user)
-    
-    //username from user object
-    const username = userData[0].username;
+    console.log(userData);
+    //username from user object, if length is 0, then it's a guest
+    let username = null;
+    if(userData.length === 0 ) {
+        username = "guest"
+    } else {
+        username= userData[0].username
+    }
+
     //resume object
     const cvData = cv.about[0];
     
     //send data to db, for new file
     const saveData = () => {
         const data = {...cv, fileName:fileName}
-        
         //send filename to store
         dispatch(
             addFileName({
@@ -64,11 +70,12 @@ export default function CV() {
        const body = {
            resume: data
         };
+        console.log(data);
         
         //axios request to update data, use id to cv instance
         axios.post(`http://localhost:9000/update-cv/${id}`,body)
         .then((results)=> {
-            
+            console.log(results)
         })
         .catch((error)=> {
             

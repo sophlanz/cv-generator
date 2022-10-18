@@ -1,0 +1,9 @@
+/*nav bar for homepage before login*/
+.navWelcome {
+    position:absolute;
+    right:50px;
+    top:40px;
+    display:flex;
+    flex-direction: column;
+    gap:20px;
+}

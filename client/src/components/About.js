@@ -10,10 +10,10 @@ import { useDispatch, useSelector } from 'react-redux';
 export default function About() {
     //check to see if details have been saved to the store
    const savedCv = useSelector((state)=> state.cv);
-   console.log(savedCv);
+ 
    
    //state where we'll keep track if the user wants to view saved data
-   const [savedData, setSavedData] = useState(savedCv.about.length === 0 || savedCv.about.firstName=== undefined ? false : true)
+   const [savedData, setSavedData] = useState(savedCv.about.length === 0  ? false : true)
     const defaultValues = {
         firstname: "Your",
         lastName: "Name",
