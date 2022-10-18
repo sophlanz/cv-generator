@@ -15,7 +15,7 @@ export default function CV() {
     //state for title
     const [fileName, setfileName] = useState(null);
     //store username in state, to check if it's a guest later, an
-    const [user, setUser] = useState(null);
+    const [guest, setGuest] = useState(null);
     //get cv from state
     const cv = useSelector((state)=> state.cv);
     
@@ -83,11 +83,16 @@ export default function CV() {
     }
     //use effect to check and see on page load if cv in redux store is empty. If empty set state newCV to true
     useEffect(()=> {
-        if(cv.fileName === "") {
+        if(cv.fileName === "" && userData.length === 0) {
             //if no filename, it's a new file
             setNewFile(true)
-        } else {
+            setGuest(true)
+        } else if (cv.fileName === "") { 
+            setNewFile(true);
+            setGuest(false)
+        }else {
             setNewFile(false)
+            setGuest(false)
         }
     },[])
     
@@ -103,15 +108,20 @@ export default function CV() {
         <div>
          {/*if it's a new file, allow for a file name, otherwise save and update */}
         {  
-            newFile ===true ?
+            newFile === true && guest === false ?
             <label>Name your file:
             <input onChange={(e)=> handleChange(e)}/>
             </label>
             :
            null
         }
-        {/*check state and if its a new file, saveData, if it's an old file, update data */}
-           <button onClick={()=> newFile === true ? saveData() : updateData()}>Save</button> 
+        {/*check state and if its a guest: no save button. If it's a new file: saveData. If it's an old file: update data*/}
+          {  guest === false ? 
+          <button onClick={()=> newFile === true ? saveData() : updateData()}>Save</button> 
+          :
+          null
+
+          } 
         </div>
    </div>
     )
