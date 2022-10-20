@@ -12,6 +12,7 @@
   position:absolute;
   left:50px;
   top:40px;
+  
 }
 .ball {
   width:300px;
@@ -26,7 +27,7 @@
   margin-top:-150px;
   margin-left:-150px;
   will-change:transform;
-  transform-style:preserve-3d;
+  transform-style:preserve-3d ;
   display:flex;
   justify-content:center;
   align-items:center;

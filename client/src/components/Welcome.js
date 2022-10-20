@@ -12,10 +12,11 @@ export default function Welcome () {
         setX(e.clientX);
         //get y
         setY(e.clientY);
-        const xChange = e.clientX  * 0.01;
-        const yChange = e.clientY  * 0.01;
+        const xChange = e.clientX  * 0.008;
+        const yChange = e.clientY  * 0.08;
         setXChange(xChange);
         setYChange(yChange);
+       
     
     };
     
@@ -25,7 +26,7 @@ export default function Welcome () {
                 {/*navbar */}
                 <Nav/>
                 {/*interactive ball, give translate3d style using state*/}
-                <div style={{transform:`translate3d(${xChange}%,${yChange}%, 1px)`}} className="ball" onMouseMove={(e)=> trackMouse(e)} >
+                <div style={{transform:`translate3d(${xChange}px,${yChange}px, 0px) scale3d(1, 1, 1)`}} className="ball" onMouseMove={(e)=> trackMouse(e)} >
                    <p><Link to={'/create-cv'}>Start Creating</Link></p> 
                 </div>
                 <p>{x},{y}</p>
