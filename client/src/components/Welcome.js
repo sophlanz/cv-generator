@@ -38,9 +38,8 @@ export default function Welcome () {
                 <div style={{transform:`translate3d(${xChange}%,${yChange}%, 1px)`}} className="ball" onMouseMove={(e)=> trackMouse(e)} >
                    <p><Link to={'/create-cv'}>Start Creating</Link></p> 
                 </div>
-                <p>{x},{y}</p>
                 {/*circle that will follow cursor */}
-                <div className="cursorCircle" style={{left:`${left}`, top:`${right}`}}></div>
+                <span className="cursorCircle" style={{left:`${left}`, top:`${right}`}}></span>
             </div>
         )
     }

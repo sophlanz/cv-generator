@@ -1,6 +1,7 @@
 /*nav bar for homepage before login*/
 .navWelcome {
     position:absolute;
+    color:black;
     right:50px;
     top:40px;
     display:flex;
@@ -8,4 +9,5 @@
     gap:20px;
     font-weight:700;
     font-size: 1.6rem;
+  
 }
