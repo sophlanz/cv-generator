@@ -5,14 +5,8 @@ export default function NavWelcome() {
         <>
               <nav className = 'navWelcome'>
               {/*wrap each letter in a span for hover effect */}
-                <a><Link to={'/login'}>
-                <span>L</span>
-                <span>O</span>
-                <span>G</span>
-                <span>I</span>
-                <span>N</span>
-                </Link></a>
-                <a><Link to={'/register'}>Signup</Link></a>
+                <a><Link to={'/login'}>LOGIN</Link></a>
+                <a><Link to={'/register'}>SIGNUP</Link></a>
 {/*                 <li><Link to={'/create-cv'}>Start Creating </Link></li>
                     <li><Link to={'/workstation'}>Work Station</Link></li> */}
                 </nav>

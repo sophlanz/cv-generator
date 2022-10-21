@@ -14,13 +14,14 @@
   top:40px;
   font-weight:800;
   font-size:2rem;
+  font-style:italic;
   
 }
 .ball {
   width:400px;
   height:400px;
   border-radius: 50%;
-  border:1px solid black;
+  border:1px solid $lightBlue;
   /*center div*/
   position:absolute;
   top:50%;
@@ -35,14 +36,18 @@
   align-items:center;
   background-color:#f7f7f7;
   color:black;
-  font-size:3rem;
+  font-size:3.6rem;
   font-weight:900;
   text-transform:uppercase;
   font-style:italic;
+  transition: all ease-in-out .5s;
 }
 .ball:hover {
-  color:#f7f7f7;
+ /*  color:#f7f7f7; */
+ color:$lightBlue;
   background-color: black;
+  transition:color ease-in-out .5s;
+  border:1px solid $lightBlue
 }
 .cursorCircle {
   position:absolute;
@@ -56,16 +61,16 @@
   color:white;
   mix-blend-mode:difference;
   z-index:2;
-}
-/*on hover of the nav, increase the circle size*/
-.navWelcome:hover ~ .cursorCircle {
-  height:70px;
-  width:70px;
   
 }
-/* /* /*on hover of each link in nav, change the color to white*/
-/*we want the circle behind the nav content, change z-index*/
-/*  .navWelcome:hover {
-  z-index:2;
-}  */
-
+/*on hover of the nav and center ball , increase the circle size*/
+.navWelcome:hover ~ .cursorCircle, .ball:hover ~ .cursorCircle,
+.gridContainer h1:hover ~ .cursorCircle 
+ {
+  height:70px;
+  width:70px;
+}
+/*on ball hover, change mix-blend-mode of circle cursor so it doesn't come out as brown*/ 
+.ball:hover ~ .cursorCircle {
+  mix-blend-mode:overlay;
+}
