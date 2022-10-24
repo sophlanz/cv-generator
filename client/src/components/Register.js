@@ -40,26 +40,29 @@ export default function Register() {
                     <h1>Create new account<span>.</span></h1>
                     <p>Already a member? <a><Link to ={"/login"}>Login</Link></a></p>
                 </header>
-                <form onSubmit={SubmitRegister}>
+                <form onSubmit={SubmitRegister} className="registerForm">
                     <div className="nameUserContainer">
-                        <label htmlFor="firstName">First name:
-                            <input onChange={(e)=> setUsername(e.target.value)} value={firstName} name="firstName" id="firstName" type="text"/>
-                        </label>
-                        <label htmlFor="username">Username:
-                            <input onChange={(e)=> setUsername(e.target.value)} value={username} name="username" id="username" type="text"/>
-                        </label>
+                        <div className="formWrapper">
+                                <input placeholder="  " onChange={(e)=> setUsername(e.target.value)} value={firstName} name="firstName" id="firstName" type="text"/>
+                                <label htmlFor="firstName">First name: </label>
+                        </div>
+                        <div className="formWrapper">
+                            <input placeholder="  " onChange={(e)=> setUsername(e.target.value)} value={username} name="username" id="username" type="text"/>
+                            <label htmlFor="username">Username:</label>
+                        </div>
                     </div>
-                    <label htmlFor="email">Email
-                        <input onChange={(e)=> setEmail(e.target.value)} value={email} name="email" id="email" type="text"/>
-                    </label>
-                    <label htmlFor="password">Password:
-                        <input onChange={(e)=> setPassword(e.target.value)} value={password} name="password" id="password" type="password" autoComplete="on"/>
-                    </label>
+                    <div className="formWrapper">
+                        <input placeholder="  " className="registerEmail"onChange={(e)=> setEmail(e.target.value)} value={email} name="email" id="email" type="text"/>
+                        <label htmlFor="email">Email</label>
+                    </div>
+                    <div className="formWrapper">
+                        <input placeholder="  " className="registerPassword" onChange={(e)=> setPassword(e.target.value)} value={password} name="password" id="password" type="password" autoComplete="on"/>
+                        <label htmlFor="password">Password:</label>
+                    </div>
                     <div className="registerButtons"> 
                         <button onClick = {SubmitRegister}>clear</button>
                         <button type="submit">Create Account</button>
                     </div>
-                    
                 </form>
             </div>
           

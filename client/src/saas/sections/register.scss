@@ -16,6 +16,8 @@
 }
 .nameUserContainer {
     display:flex;
+    gap:10px;
+    margin-top:20px;
 }
 .registerButtons {
     display:flex;
@@ -53,4 +55,30 @@
     flex-direction:column;
     align-items:flex-start;
     gap:10px;
+}
+.registerEmail, .registerPassword {
+    width:420px;
+}
+.registerForm input {
+    border:none;
+    background-color:rgb(199, 198, 198);
+    height:35px;
+ 
+  
+}
+/*translate the labels up into the input box, set to left*/
+.registerForm label {
+    transform: translate(0.25rem, -1.8rem);
+    transition: all 0.2s ease-out;
+    display:flex;
+    align-items:flex-start;
+    margin-left:10px;
+}
+/*translate the labels further up on focus, to leave room for input*/
+input:focus + label,
+/*for when we unfocus, we'll check for placeholder*/
+input:not(:placeholder-shown) + label  {
+    transform: translate(0, -2.5rem);
+    font-size:.8rem;
+    
 }

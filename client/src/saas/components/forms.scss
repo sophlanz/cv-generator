@@ -86,7 +86,7 @@ label{
     flex-wrap:wrap;
     gap:5px;
     align-items:center;
-    font-size:1rem;
+    font-size:1rem; 
     margin-top:5px;
 };
 /*edit bullet point form*/
@@ -98,3 +98,7 @@ label{
 form.editBulletContainer{
     text-align:center;
 };
+.formWrapper {
+    position:relative;
+}
+
