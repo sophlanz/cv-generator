@@ -2,6 +2,7 @@ import React, { Component, useState } from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Nav from './navs/NavLogin';
 export default function Register() {
     const [password, setPassword] = useState(null);
     const [username, setUsername] = useState(null);
@@ -33,7 +34,9 @@ export default function Register() {
     };
     return (
         <>
+        
             <div className="leftContainer">
+            <Nav/>
             <div className="registerContent">
                 <header>
                     <p>START FOR FREE</p>
@@ -44,11 +47,11 @@ export default function Register() {
                     <div className="nameUserContainer">
                         <div className="formWrapper">
                                 <input placeholder="  " onChange={(e)=> setUsername(e.target.value)} value={firstName} name="firstName" id="firstName" type="text"/>
-                                <label htmlFor="firstName">First name: </label>
+                                <label htmlFor="firstName">First name </label>
                         </div>
                         <div className="formWrapper">
                             <input placeholder="  " onChange={(e)=> setUsername(e.target.value)} value={username} name="username" id="username" type="text"/>
-                            <label htmlFor="username">Username:</label>
+                            <label htmlFor="username">Username</label>
                         </div>
                     </div>
                     <div className="formWrapper">
@@ -60,8 +63,8 @@ export default function Register() {
                         <label htmlFor="password">Password:</label>
                     </div>
                     <div className="registerButtons"> 
-                        <button onClick = {SubmitRegister}>clear</button>
-                        <button type="submit">Create Account</button>
+                        <button className="clearButton" onClick = {SubmitRegister}>Clear</button>
+                        <button className="createAccount" type="submit">Create Account</button>
                     </div>
                 </form>
             </div>

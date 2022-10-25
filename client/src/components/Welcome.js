@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Nav from './NavWelcome';
+import Nav from './navs/NavWelcome';
 import {Link} from 'react-router-dom';
 export default function Welcome () {
     const [xChange,setXChange] = useState(null);
@@ -27,7 +27,7 @@ export default function Welcome () {
     };
         return (
             <div className="gridContainer"  onMouseMove={(e)=> setCursor(e)}>
-                <h1>CV CURATOR.</h1>
+                <h1>CV CURATOR<span>.</span></h1>
                 {/*navbar */}
                 <Nav/>
                 {/*interactive ball, give translate3d style using state*/}

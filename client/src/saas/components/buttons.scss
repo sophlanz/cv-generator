@@ -114,3 +114,23 @@ button:hover {
 .addAnother .add {
   display:none;
 }
+
+.createAccount {
+ background-color:$lightBlue;
+ color:#3B3B3B;
+ border:none;
+ letter-spacing:1px;
+}
+.createAccount:hover {
+  filter:brightness(75%)
+}
+.clearButton {
+  background-color:rgba(0,0,0,0.1);
+  color:black;
+  border: none;
+  letter-spacing:1px;
+}
+.clearButton:hover{
+  background-color:rgba(0,0,0,0.3);
+  color:black;
+}

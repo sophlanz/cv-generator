@@ -34,7 +34,7 @@
   display:flex;
   justify-content:center;
   align-items:center;
-  background-color:#f7f7f7;
+  background-color:white;
   color:black;
   font-size:3.6rem;
   font-weight:900;
@@ -73,4 +73,8 @@
 /*on ball hover, change mix-blend-mode of circle cursor so it doesn't come out as brown*/ 
 .ball:hover ~ .cursorCircle {
   mix-blend-mode:overlay;
+}
+.gridContainer > h1 > span {
+  color:$lightBlue;
+  font-size:2.5rem;
 }
