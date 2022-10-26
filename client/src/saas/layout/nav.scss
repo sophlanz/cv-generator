@@ -1,5 +1,5 @@
 /*nav bar for homepage before login*/
-.navWelcome {
+.navWelcome, .navWorkstation > a {
     position:absolute;
     color:black;
     right:50px;
@@ -11,7 +11,7 @@
     font-size: 1.6rem;
 
 }
-.navLoginRegister > h1 {
+.navLoginRegister > h1, .navWorkstation > h1 {
     font-weight: 800;
     font-size: 1.7rem;
     font-style: italic;
@@ -19,7 +19,7 @@
     position:absolute;
     left:50px;
 }
-.navLoginRegister  span {
+.navLoginRegister  span, .navWorkstation span {
     color:$lightBlue;
     font-size:2.5rem;
 }

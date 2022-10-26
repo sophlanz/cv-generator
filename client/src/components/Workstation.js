@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { aboutSection, addFileName, addId, educationSection, skillSection,experiencesSection, projectSection } from '../redux/cvSlice';
 import { reset } from '../redux/cvSlice';
+import Nav from './navs/NavWorkstation';
 export default function Workstation() {
     //get username from user reducer, saved in an object 
     const username = useSelector((state) => state.user[0].username)
@@ -146,32 +147,40 @@ export default function Workstation() {
         getCvs();
     },[])
     return (
-    <div>
-        <div>
-            <button><Link to={"/create-cv"} onClick={handleReset}>Create New Cv</Link></button>
-            <button onClick={getCvs}>View Saved Cv's</button>
+    <>  
+        <Nav/>
+       
+        <div className="workStationContent">
+
+             {/*Header */}
+             <h1>Curating resumes that land us our dream job<span>.</span></h1>
+            {/*Menu */}
+            <button><Link to={"/create-cv"} onClick={handleReset}>Create New CV</Link></button>
+             {/* <button onClick={getCvs}>View Saved Cv's</button> */}
             {/*Display the response of the CV, allow to click and send the data to the CV*/}
-            {/**/}
+              
+            {/*Display user data */}
+            {/*Map through the state array and display file information */}
+            { userData ?
+            [...userData].map((resume,index)=> {
+                let resumeData = resume;
+
+                return(
+                    <ul key={uuidv4()}>
+                    {/*add title name, on click reset the resume in the redux store, then dispatch the saved resume*/}
+                        <Link to="/create-cv" onClick={()=> {handleReset(); sendDispatchHandler(resume);}}>{resume.fileName}</Link>
+                        <li>{resume.created_at}</li>
+                        <li>{resume.updated_at}</li>
+                    </ul>
+                )
+                
+            })
+            : null
+
+            }
         </div>
-        {/*Map through the state array and display file information */}
-        { userData ?
-        [...userData].map((resume,index)=> {
-            let resumeData = resume;
-            
-            return(
-                <ul key={uuidv4()}>
-                {/*add title name, on click reset the resume in the redux store, then dispatch the saved resume*/}
-                    <Link to="/create-cv" onClick={()=> {handleReset(); sendDispatchHandler(resume);}}>{resume.fileName}</Link>
-                    <li>{resume.created_at}</li>
-                    <li>{resume.updated_at}</li>
-                </ul>
-            )
-          
-        })
-        : null
-            
-        }
+        
       
-    </div>
+    </>
     )
 }

@@ -1,0 +1,19 @@
+.workStationContent {
+    display:flex;
+    flex-direction: column;
+    width:100vw;
+    justify-content:center;
+    position:absolute;
+    top:100px;
+}
+.workStationContent > h1 {
+    font-size:4rem;
+    width:600px;
+    margin-top:100px;
+    margin-left:250px;
+    line-height:-2rem;
+}
+.workStationContent > h1 > span {
+    color:$lightBlue;
+    font-size:4rem;
+}

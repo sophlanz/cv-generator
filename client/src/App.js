@@ -8,7 +8,7 @@ import Workstation from './components/Workstation';
 import {Routes, Route} from 'react-router-dom';
 function App() {
   return (
-    <div className="App">
+    <>
     
         <Routes>
             <Route path = "/" element={<Welcome/>}/>
@@ -18,7 +18,7 @@ function App() {
             <Route path='/workstation' element={<Workstation/>}/>
         </Routes>
       
-    </div>
+    </>
   );
 };
 

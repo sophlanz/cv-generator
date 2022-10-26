@@ -135,3 +135,19 @@ button:hover {
   filter:brightness(75%);
   color:black;
 }
+.workStationContent > button {
+ border:1.5px solid $lightBlue;
+ background-color:white;
+  letter-spacing:1px;
+  width:200px;
+  margin-left:250px;
+  border-radius:1rem;
+  height:60px;
+  font-size:1.3rem;
+  font-weight:400;
+  margin-top:40px;
+}
+.workStationContent > button:hover {
+  background-color:$lightBlue;
+  color:#3B3B3B;
+}
