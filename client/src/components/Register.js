@@ -41,7 +41,7 @@ export default function Register() {
                 <header>
                     <p>START FOR FREE</p>
                     <h1>Create new account<span>.</span></h1>
-                    <p>Already a member? <a><Link to ={"/login"}>Login</Link></a></p>
+                    <p>Been here before? <a><Link to ={"/login"}>Login</Link></a></p>
                 </header>
                 <form onSubmit={SubmitRegister} className="registerForm">
                     <div className="nameUserContainer">
@@ -63,7 +63,7 @@ export default function Register() {
                         <label htmlFor="password">Password:</label>
                     </div>
                     <div className="registerButtons"> 
-                        <button className="clearButton" onClick = {SubmitRegister}>Clear</button>
+                        <button className="clearButton" >Clear</button>
                         <button className="createAccount" type="submit">Create Account</button>
                     </div>
                 </form>

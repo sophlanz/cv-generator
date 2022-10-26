@@ -49,7 +49,7 @@
 }
 .registerContent {
     position:absolute;
-    top:150px;
+    top:120px;
     left:80px;
 }
 .registerContent header {
@@ -59,21 +59,21 @@
     gap:10px;
     margin-top:40px;
 }
-.registerEmail, .registerPassword {
+.registerEmail, .registerPassword, .loginUsername, .loginPassword {
     width:420px;
 }
-.registerForm {
+.registerForm, .loginForm {
     margin-top:40px;
 }
-.registerForm input {
+.registerForm input, .loginForm input {
     border:none;
-    background-color:#f7f7f7;
+    background-color:#f3f6fc;
     height:40px;
     padding-left:10px;
     padding-top:5px;
 }
 /*translate the labels up into the input box, set to left*/
-.registerForm label, .formWrapper label {
+.registerForm label, .formWrapper label, .loginForm label {
     transform: translate(0.25rem, -2.1rem);
     transition: all 0.2s ease-out;
     display:flex;
@@ -90,7 +90,7 @@ input:not(:placeholder-shown) + label  {
     font-size:.9rem;
     
 }
-.registerForm input:focus {
+.registerForm input:focus , .loginForm input:focus{
     background-color: white;
 }
 

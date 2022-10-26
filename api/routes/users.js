@@ -36,23 +36,27 @@ router.post('/register',  async (req,res)=> {
     }
 });
 //post login
-router.post('/login',  (req,res)=> {
+router.post('/login',  (req,res,next)=> {
   const user = new User({
     username: req.body.username,
     password:req.body.password
   });
- req.login(user,function(err) {
+  console.log(user)
+ 
+ req.login(user,(err) => {
    if(err) {
-     
+   return next(err)
    } else {
-      passport.authenticate('local')(req,res,function() {
+     console.log(req.user)
+ 
+  passport.authenticate('local')(req,res,function() {
         res.send(req.user)
-      });
-   }
- })
-}
+   })
+  }
 
-);
+})
+
+})
 router.get('/logout', async function(req, res, next) {
 try {
 

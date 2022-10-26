@@ -115,22 +115,23 @@ button:hover {
   display:none;
 }
 
-.createAccount {
+.createAccount, .login {
  background-color:$lightBlue;
  color:#3B3B3B;
  border:none;
  letter-spacing:1px;
 }
-.createAccount:hover {
+.createAccount:hover, .login:hover {
   filter:brightness(75%)
 }
 .clearButton {
-  background-color:rgba(0,0,0,0.1);
+/*   background-color:rgba(0,0,0,0.1); */
+  background-color:#f3f6fc;
   color:black;
   border: none;
   letter-spacing:1px;
 }
 .clearButton:hover{
-  background-color:rgba(0,0,0,0.3);
+  filter:brightness(75%);
   color:black;
 }

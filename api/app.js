@@ -10,6 +10,7 @@ var usersRouter = require('./routes/users');
 var resumeRouter = require('./routes/resume');
 //passport imports
 var passport = require('passport')
+
 var LocalStrategy = require('passport-local').Strategy;
 require('dotenv').config();
 var app = express();
@@ -35,6 +36,7 @@ app.use(require('express-session')({
   saveUninitialized: true,
   resave: true,
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
