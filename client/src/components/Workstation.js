@@ -153,7 +153,7 @@ export default function Workstation() {
         <div className="workStationContent">
 
              {/*Header */}
-             <h1>Curating resumes that land us our dream job<span>.</span></h1>
+             <h1>Curriculum Vitaes that land us our dream job<span>.</span></h1>
             {/*Menu */}
             <button><Link to={"/create-cv"} onClick={handleReset}>Create New CV</Link></button>
              {/* <button onClick={getCvs}>View Saved Cv's</button> */}
@@ -170,12 +170,14 @@ export default function Workstation() {
                 { userData ?
                 [...userData].map((resume,index)=> {
                     let resumeData = resume;
+                    const date = new Date(resume.created_at).toLocaleString()
+                    console.log(date)
                     return(
                         <ul className="cvList" key={uuidv4()}>
                         {/*add title name, on click reset the resume in the redux store, then dispatch the saved resume*/}
                            <li ><Link to="/create-cv" onClick={()=> {handleReset(); sendDispatchHandler(resume);}}>{resume.fileName}</Link></li> 
-                            <li>{resume.created_at}</li>
-                            <li>{resume.updated_at}</li>
+                            <li>{new Date(resume.created_at).toLocaleString( ('en-US'), { year: 'numeric', month: 'numeric', day: 'numeric',hour: '2-digit', minute: '2-digit', hour12: true})}</li>
+                            <li>{new Date(resume.created_at).toLocaleString(('en-US'), { year: 'numeric', month: 'numeric', day: 'numeric',hour: '2-digit', minute: '2-digit', hour12: true})}</li>
                         </ul>
                     )
                 })
