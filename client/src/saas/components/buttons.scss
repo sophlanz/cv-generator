@@ -141,13 +141,15 @@ button:hover {
   letter-spacing:1px;
   width:200px;
   margin-left:250px;
-  border-radius:1rem;
+  border-radius:2rem;
   height:60px;
   font-size:1.3rem;
   font-weight:400;
   margin-top:40px;
+  transition:all ease-in-out .5s;
 }
 .workStationContent > button:hover {
   background-color:$lightBlue;
-  color:#3B3B3B;
+  color:$greyForBlue;
+  transition:all ease-in-out .5s;
 }

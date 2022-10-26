@@ -160,24 +160,28 @@ export default function Workstation() {
             {/*Display the response of the CV, allow to click and send the data to the CV*/}
               
             {/*Display user data */}
-            {/*Map through the state array and display file information */}
-            { userData ?
-            [...userData].map((resume,index)=> {
-                let resumeData = resume;
-
-                return(
-                    <ul key={uuidv4()}>
-                    {/*add title name, on click reset the resume in the redux store, then dispatch the saved resume*/}
-                        <Link to="/create-cv" onClick={()=> {handleReset(); sendDispatchHandler(resume);}}>{resume.fileName}</Link>
-                        <li>{resume.created_at}</li>
-                        <li>{resume.updated_at}</li>
-                    </ul>
-                )
-                
-            })
-            : null
-
-            }
+            <div className="dataTable">
+                <div className="properties">
+                    <h4>FILE NAME</h4>
+                    <h4>CREATED AT</h4>
+                    <h4>UPDATED AT</h4>
+                </div>
+                {/*Map through the state array and display file information */}
+                { userData ?
+                [...userData].map((resume,index)=> {
+                    let resumeData = resume;
+                    return(
+                        <ul className="cvList" key={uuidv4()}>
+                        {/*add title name, on click reset the resume in the redux store, then dispatch the saved resume*/}
+                           <li ><Link to="/create-cv" onClick={()=> {handleReset(); sendDispatchHandler(resume);}}>{resume.fileName}</Link></li> 
+                            <li>{resume.created_at}</li>
+                            <li>{resume.updated_at}</li>
+                        </ul>
+                    )
+                })
+                : null
+                }
+            </div>
         </div>
         
       

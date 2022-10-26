@@ -17,3 +17,52 @@
     color:$lightBlue;
     font-size:4rem;
 }
+.properties {
+    display:flex;
+    margin-left:150px;
+    margin-top:60px;
+    width:940px;
+    justify-content:space-evenly;
+    color:$accessibleGrey;
+    font-size:1.1rem;
+    margin-bottom:40px;
+    font-style:italic;
+   
+}
+.properties h4:nth-child(1){
+    width:200px;
+}
+.properties h4:nth-child(2),.properties h4:nth-child(3) {
+    width:230px;
+}
+.properties > h4 {
+    text-align:center;
+}
+.cvList {
+    display:flex;
+    width:940px;
+    justify-content:space-evenly;
+    margin-left:150px;
+    align-items:center;
+    border-top:1px solid $lightGrey;
+    height:100px;
+}
+/*filename*/
+.cvList li:nth-child(1) {
+    width:200px;
+    text-align:center;
+    font-size:1.4rem;
+    
+}
+/*created at*/
+.cvList li:nth-child(2) {
+    width:230px;
+    text-align:center;
+    font-size:1.1rem;
+}
+/*updated at*/
+ li:nth-child(3) {
+    width:230px;
+    text-align:center;
+    font-size:1.1rem;
+}
