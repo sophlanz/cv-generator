@@ -32,17 +32,20 @@ await user.save().then(() => {
 })
 //get resume from server
 router.get('/savecv/:id', async (req,res)=> {
+  console.log(req.isAuthenticated());
   try{
-    
-    
+    console.log(req.params.id)
     //get user using id, and populated
      User.findById(req.params.id).populate({path:'resume', model:'Cv'}).exec((err, user)=> {
       if(err) {
-        
-      } else {
+        console.log(err)
+      }
+      console.log(user)
+      res.status(200).json(user)
+       /* else {
         res.status(200).json(user)
         
-      }
+      } */
     })
 
   
@@ -51,8 +54,9 @@ router.get('/savecv/:id', async (req,res)=> {
     //find each one, and put to an array of CV's
     //send response 
   } catch(err) {
-    
+    console.log(err)
   }
+
 })
 //use object id to update CV
 router.post('/update-cv/:id', async (req,res)=> {

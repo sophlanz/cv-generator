@@ -21,12 +21,8 @@ export default function Login() {
         } else {
             setPassword(e.target.value) 
         }
-       
-      
     }
     const handleSubmit = async () => {
-       
-            
             const body = {
                 username:username,
                 password:password
@@ -55,8 +51,6 @@ export default function Login() {
                 setError(true)
                 
             })
-           
-        
         }
       
     return (

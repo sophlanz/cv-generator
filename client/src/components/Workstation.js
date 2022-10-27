@@ -21,16 +21,17 @@ export default function Workstation() {
   }
     const getCvs = () => {
         //use axios to make get request to server
-        
+     console.log(body)
         axios.get(`http://localhost:9000/savecv/${userId}`,body)
         .then((response)=> {
             //save just the resumes
+            console.log(response)
             setUserData(response.data.resume);
             console.log(response.data.resume)
             
         })
         .catch((error)=> {
-            
+            console.log(error)
         }) 
 
     }
@@ -177,7 +178,7 @@ export default function Workstation() {
                         {/*add title name, on click reset the resume in the redux store, then dispatch the saved resume*/}
                            <li ><Link to="/create-cv" onClick={()=> {handleReset(); sendDispatchHandler(resume);}}>{resume.fileName}</Link></li> 
                             <li>{new Date(resume.created_at).toLocaleString( ('en-US'), { year: 'numeric', month: 'numeric', day: 'numeric',hour: '2-digit', minute: '2-digit', hour12: true})}</li>
-                            <li>{new Date(resume.created_at).toLocaleString(('en-US'), { year: 'numeric', month: 'numeric', day: 'numeric',hour: '2-digit', minute: '2-digit', hour12: true})}</li>
+                            <li>{new Date(resume.updated_at).toLocaleString(('en-US'), { year: 'numeric', month: 'numeric', day: 'numeric',hour: '2-digit', minute: '2-digit', hour12: true})}</li>
                         </ul>
                     )
                 })
@@ -185,8 +186,6 @@ export default function Workstation() {
                 }
             </div>
         </div>
-        
-      
     </>
     )
 }

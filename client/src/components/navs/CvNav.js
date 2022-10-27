@@ -17,10 +17,13 @@ export default function NavWelcome() {
     return (
         <>
           
-            <nav className = 'navWorkstation'>
+            <nav className = 'navCV'>
                 <h1><a href="/"><Link to={'/'}>CV CURATOR<span>.</span></Link></a></h1>
               {/*wrap each letter in a span for hover effect */}
-                <h2 onClick={()=> logout()}><a>LOGOUT</a>  </h2>
+                <div className="navLinks">
+                    <h3><a href="/"><Link to={'/workstation'}>WORKSTATION</Link></a></h3>
+                    <h2 onClick={()=> logout()}><a>LOGOUT</a>  </h2>
+                </div>
             </nav>
         </>
     )

@@ -8,6 +8,7 @@ import Modal from './Modal';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { addFileName } from '../redux/cvSlice';
+import Nav from '../components/navs/CvNav';
 export default function CV() {
     const dispatch = useDispatch();
     //saved file or new file
@@ -97,6 +98,8 @@ export default function CV() {
     },[])
     
     return (
+        <>
+        <Nav/>
         <div className="paper">
         <Modal />
         <About/>
@@ -124,6 +127,7 @@ export default function CV() {
           } 
         </div>
    </div>
+   </>
     )
 }
 

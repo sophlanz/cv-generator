@@ -32,7 +32,8 @@ router.post('/register',  async (req,res)=> {
         }
       })
     } catch (error) {
-      
+      console.log(error)
+      res.status(401).send(error.message)
     }
 });
 //post login
@@ -42,33 +43,55 @@ router.post('/login',  (req,res,next)=> {
     password:req.body.password
   });
   console.log(user)
+ try {
  
- req.login(user,(err) => {
-   if(err) {
-   return next(err)
-   } else {
-     console.log(req.user)
- 
-  passport.authenticate('local')(req,res,function() {
-        res.send(req.user)
-   })
-  }
-
-})
-
-})
-router.get('/logout', async function(req, res, next) {
-try {
-
-req.logout(req.user, function(err) {
   
-  if (err) { return next(err); }
-  res.redirect('/login');
+   req.login(user,(err) => {
+    if(err) {
+    return next(err)
+    }
+    else {
+      console.log(req.user)
+     
+   passport.authenticate('local')(req,res,function() {
+         res.send(req.user)
+         console.log(req.isAuthenticated())
+         req.session.save(function(err) {
+          if(err) {
+            console.log(err)
+          } console.log('session saved')
+        })
+
+    })
+   }  
+ 
+  }) 
+ }
+ catch (error) {
+   console.log(error)
+ }
+
+ })
+router.post('/logout', async function(req, res, next) {
+console.log(req.isAuthenticated())
+
+  try {
+    console.log(req.isAuthenticated())
+  req.logout(req.user, function(err) {
+  
+  if (err) {   
+    console.log(err);
+     return next(err);  
+     }
+     console.log(req.isAuthenticated())
 });
 } catch (err) {
-
+  console.log(err)
 };
-
+      if(!req.isAuthenticated()) {
+       console.log('logout called')
+      res.send('Logout Successful') 
+ }
 });
 
 router.get('/changePassword', async function (req, res) {

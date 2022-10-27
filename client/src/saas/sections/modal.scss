@@ -13,13 +13,18 @@
   margin:10% auto;
   padding-left: 50px;
   padding-right: 50px;
-  padding-top:20px;
-  padding-bottom:20px;
+  padding-top:10px;
+  padding-bottom:10px;
   border: 10px solid $lightBlue;
   width: 50%; 
   min-height:50%;
-  color:rgb(100, 100, 100);
+  color:black;
   max-height:80%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content: center;
+
   };
 /* The Close Button */
 .close {
@@ -27,6 +32,9 @@
   float: right;
   font-size: 28px;
   font-weight: bold;
+  position:absolute;
+  top:140px;
+  right:280px;
   };
 .close:hover,.close:focus {
   color: black;
@@ -38,10 +46,12 @@
   font-weight:600;
   text-decoration:underline;
   text-decoration-color:$lightBlue;
+  margin-bottom:10px;
   };
 .modalContent li {
   font-size:1rem;
   display:list-item;
+  list-style:revert;
   };
 .modalContent li::marker {
   color:$lightBlue;
