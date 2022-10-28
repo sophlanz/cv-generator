@@ -395,7 +395,7 @@ const [editBullets, setEditBullets] = useState({
          {edit ? 
          <form className="projects">
                 <div className="formWrapper">
-                     <input name="titleProjects" id="titleProjects" placeHolder="  " onChange = {handleChange}/>
+                     <input name="titleProjects" className="titleProjects" id="titleProjects" placeHolder="  " onChange = {handleChange}/>
                      <label htmlFor="titleProjects">Title</label>
                 </div>
                 <div className="formWrapper">
@@ -403,7 +403,7 @@ const [editBullets, setEditBullets] = useState({
                      <label htmlFor="technolgoiesProjects">Technologies Used</label>
                 </div>
                  <div className="formWrapper">
-                    <input name="liveDemo" id="liveDemo" placeHolder="  "onChange = {handleChange}/>
+                    <input name="liveDemo" className="liveDemo" id="liveDemo" placeHolder="  "onChange = {handleChange}/>
                     <label htmlFor="liveDemo">Live Demo: user.github.io/project</label>
                  </div>
              
