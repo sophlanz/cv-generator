@@ -132,30 +132,38 @@ export default function About() {
             {/*if the edit state is true, show the input fields*/ }
             {edit === true ? 
             <form class="about" onSubmit={handleSubmit}>
-                <label htmlFor="firstName">First Name
-                    <input name="firstName"  type="text" onChange={handleChange}/>
-                </label>
-                <label htmlFor="lastName">Last Name
-                    <input name="lastName" type="text" onChange={handleChange}/>
-                </label>
-                <label htmlFor="title">Title
-                    <input name="title" type="text" onChange= {handleChange}/>
-                </label>
-                <label htmlFor="phone">Phone Number
-                     <input name="phone"  type="tel"  onChange= {handleChange} />
-                </label>
-                <label htmlFor="city">Location
-                    <input name="city"  type="text"  onChange= {handleChange}/>
-                </label>
-                <label htmlFor="linkedin">Linkedin
-                    <input name="linkedin" placeHolder="linkedin.com/..." type="text"  onChange= {handleChange}/>
-                </label>
-                <label htmlFor="github">Github
-                    <input name="github" type="text" placeHolder="github.com/..." onChange= {handleChange}/>
-                </label>
-                <label htmlFor="email">Email
-                    <input name="email" type="text"  onChange= {handleChange}/>
-                </label>
+                <div className="formWrapper">
+                    <input placeholder="  " id="firstName" name="firstName"  type="text" onChange={handleChange} />
+                    <label htmlFor="firstName">First Name</label>
+                </div>
+                <div className="formWrapper">
+                    <input placeholder="  " id="lastName" name="lastName" type="text" onChange={handleChange}/>
+                    <label htmlFor="lastName">Last Name</label>
+                </div>
+                <div className="formWrapper">
+                    <input placeholder = "  " id="title" name="title" type="text" onChange= {handleChange}/>
+                    <label htmlFor="title">Title</label>
+                </div>    
+               <div className="formWrapper">
+                     <input placeholder="  " id="phone" name="phone"  type="tel"  onChange= {handleChange} />
+                     <label htmlFor="phone">Phone Number</label>
+               </div>
+                <div className="formWrapper">
+                    <input placeholder="  " id="city" name="city"  type="text"  onChange= {handleChange}/>
+                    <label htmlFor="city">Location</label>
+                </div>
+                <div className="formWrapper">
+                    <input placeholder="  " id="linkedin" name="linkedin"  type="text"  onChange= {handleChange}/>
+                    <label htmlFor="linkedin">linkedin.com/...</label>
+                </div>
+                <div className="formWrapper">
+                    <input placeholder="  " id="github" name="github" type="text"  onChange= {handleChange}/>
+                    <label htmlFor="github">github.com/...</label>
+                </div>
+                <div className="formWrapper"> 
+                    <input placeholder="  " id="email" name="email" type="text"  onChange= {handleChange}/>
+                    <label htmlFor="email">Email</label>
+                </div>
                 <button className="submitButton" type="submit">Submit</button>
             </form>
             : null
@@ -164,62 +172,3 @@ export default function About() {
     )
 }
 
-/* 
-class About extends React.Component {
-    
-    constructor(props){
-        super(props);
-        //initialize state with the variables we will be collecting
-       
-    };
-   
-    editAbout = (e) => {
-        //prevent page from reloading
-        e.preventDefault();
-        //set the edit to true, the popup window will appear
-       this.setState({edit:true});
-    };
-    handleChange = (e) => {
-       
-        e.preventDefault();
-        //get the target name to get the name we want to change
-        const name=e.target.name;
-        //set state based on the name from the target, and target value
-        this.setState({
-            [name]:e.target.value
-        })
-      
-    };
-    handleSubmit = (e) => {
-        e.preventDefault();
-        const dispatch = useDispatch();
-        //turn edit to false so the popup window will disappear
-        this.setState({edit:false});
-        //dispatch state
-        dispatch(
-            aboutSection({
-                firstName: this.state.firstName,
-                lastName:this.state.lastName,
-                title: this.state.title,
-                phone:this.state.phone,
-                email:this.state.email,
-                city: this.state.city,
-                linkedin:this.state.linkedin,
-                github:this.state.github,
-
-            })
-        )
-        
-    };
-   
-   
-    render() {
-        const {firstName,lastName,title,edit,phone,city,linkedin,github,email} = this.state;
-        return(
-            <div>
-              
-            </div>
-            )
-        };
-};  
-export default About; */
