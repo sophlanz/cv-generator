@@ -111,7 +111,7 @@ export default function About() {
     };
 
     return (
-        <div>
+        <>
               <div className="aboutDisplay">
                 <button className="printButton" onClick={()=> window.print()}>Print</button>
                     <div className="title">
@@ -142,34 +142,34 @@ export default function About() {
                     <label htmlFor="lastName">Last Name</label>
                 </div>
                 <div className="formWrapper">
-                    <input placeholder = "  " id="title" name="title" type="text" onChange={handleChange}/>
-                    <label htmlFor="title">Title</label>
+                    <input placeholder = "  " id="titleAbout" name="titleAbout" type="text" onChange={handleChange}/>
+                    <label htmlFor="titleAbout">Title</label>
                 </div>    
                <div className="formWrapper">
-                     <input placeholder="  " id="phone" name="phone"  type="tel"  onChange= {handleChange} />
-                     <label htmlFor="phone">Phone Number</label>
+                     <input placeholder="  " id="phoneAbout" name="phoneAbout"  type="tel"  onChange= {handleChange} />
+                     <label htmlFor="phoneAbout">Phone Number</label>
                </div>
                 <div className="formWrapper">
-                    <input placeholder="  " id="city" name="city"  type="text"  onChange= {handleChange}/>
-                    <label htmlFor="city">Location</label>
+                    <input placeholder="  " id="cityAbout" name="cityAbout"  type="text"  onChange= {handleChange}/>
+                    <label htmlFor="cityAbout">Location</label>
                 </div>
                 <div className="formWrapper">
-                    <input placeholder="  " id="linkedin" name="linkedin"  type="text"  onChange= {handleChange}/>
-                    <label htmlFor="linkedin">linkedin.com/...</label>
+                    <input placeholder="  " id="linkedinAbout" name="linkedinAbout"  type="text"  onChange= {handleChange}/>
+                    <label htmlFor="linkedinAbout">linkedin.com/...</label>
                 </div>
                 <div className="formWrapper">
-                    <input placeholder="  " id="github" name="github" type="text"  onChange= {handleChange}/>
-                    <label htmlFor="github">github.com/...</label>
+                    <input placeholder="  " id="githubAbout" name="githubAbout" type="text"  onChange= {handleChange}/>
+                    <label htmlFor="githubAbout">github.com/...</label>
                 </div>
                 <div className="formWrapper"> 
-                    <input placeholder="  " id="email" name="email" type="text"  onChange= {handleChange}/>
-                    <label htmlFor="email">Email</label>
+                    <input placeholder="  " id="emailAbout" name="emailAbout" type="text"  onChange= {handleChange}/>
+                    <label htmlFor="emailAbout">Email</label>
                 </div>
                 <button className="submitButtonAbout" type="submit">Submit</button>
             </form>
             : null
             }
-        </div>
+        </>
     )
 }
 

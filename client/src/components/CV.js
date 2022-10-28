@@ -99,10 +99,10 @@ export default function CV() {
     
     return (
         <>
-        <Nav/>
         <div className="paper">
         <Modal />
         <About/>
+        <Nav/>
         <Skills/>
         <Projects/>
         <Experience/>

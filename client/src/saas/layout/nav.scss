@@ -46,4 +46,15 @@
     border:none;
     background-color:white;
     cursor:pointer;
+ 
+}
+/*hide nav, but display on hover of about section, and on the actual nav*/
+.navCV{
+    display:none;
+}
+.aboutDisplay:hover +.navCV{
+    display:block;
+}
+.navCV:hover {
+    display:block;
 }

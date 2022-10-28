@@ -32,5 +32,6 @@ a{
 };
 textarea{
   font-size:1.1rem;
-  border:2px solid $lightBlue;
+  border:none;
+  background-color: $backgroundInput;
 };
