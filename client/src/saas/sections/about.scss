@@ -58,3 +58,9 @@
   .about input:focus {
     background-color:white;
   }
+  form.about > h1 {
+    position: absolute;
+    margin-top: -40px;
+    font-size: 1.8rem;
+    border-bottom: 3px solid #71b5b5;
+  }

@@ -1,8 +1,8 @@
 
 form.about {
-    background-color:$lightBlue;
+    background-color:white;
     border-radius:1rem;
-    border:2px solid $gray;
+    border:2px solid black;
     width:450px;
     height:350px;
     display:flex;
@@ -10,13 +10,14 @@ form.about {
     flex-wrap:wrap;
     align-items:center;
     font-style:italic;
-    padding:10px;
     gap:10px;
     position:fixed;
     left:30%;
     top:20%;
     color:$darkGray;
     font-size:1.3rem;
+    padding:50px 10px 10px 10px;
+    
 };
 form.experience, form.education {
     background-color:white;

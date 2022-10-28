@@ -132,8 +132,9 @@ export default function About() {
             {/*if the edit state is true, show the input fields*/ }
             {edit === true ? 
             <form class="about" onSubmit={handleSubmit}>
+                <h1>About</h1>
                 <div className="formWrapper">
-                    <input placeholder="  " id="firstName" name="firstName"  type="text" onChange={handleChange} />
+                    <input placeholder="  " id="firstName" name="firstName" type="text" onChange={handleChange}/>
                     <label htmlFor="firstName">First Name</label>
                 </div>
                 <div className="formWrapper">
@@ -141,7 +142,7 @@ export default function About() {
                     <label htmlFor="lastName">Last Name</label>
                 </div>
                 <div className="formWrapper">
-                    <input placeholder = "  " id="title" name="title" type="text" onChange= {handleChange}/>
+                    <input placeholder = "  " id="title" name="title" type="text" onChange={handleChange}/>
                     <label htmlFor="title">Title</label>
                 </div>    
                <div className="formWrapper">
@@ -164,7 +165,7 @@ export default function About() {
                     <input placeholder="  " id="email" name="email" type="text"  onChange= {handleChange}/>
                     <label htmlFor="email">Email</label>
                 </div>
-                <button className="submitButton" type="submit">Submit</button>
+                <button className="submitButtonAbout" type="submit">Submit</button>
             </form>
             : null
             }

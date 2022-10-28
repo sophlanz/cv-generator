@@ -13,6 +13,7 @@
   top: 0;
   position:relative;
   transition: top ease 0.5s;
+  cursor:pointer;
     };
   
 .aboutDisplay:hover button, .skillSection:hover button, 
@@ -22,34 +23,25 @@
   
     };
 /*submit form buttons*/
-.submitButton,  button.addSkill, button.addSoftSkill{
-  background:transparent;
-  background-color:$lightBlue;
-  border:2px solid white;
-  color:$darkGray;
+.submitButton, .submitButtonAbout, button.add, button.addSkill, button.addSoftSkill{
+  background-color:black;
+  border:none;
+  color:white;
   height:40px;
   width:120px;
   border-radius:.5rem;
   letter-spacing: 3px;
    };
-   /*add another button you can see when hovering over a section title*/
-   button.add{
-    background:transparent;
-    border:$lightBlue 2px solid ;
-    color:$darkGray;
-    height:40px;
-    width:120px;
-    border-radius:.5rem;
-    letter-spacing: 3px;
-    margin-bottom:5px;
-   }
-   button.add:hover{
-    border:$lightBlue 4px solid ;
-   }
-.submitButton:hover,  button.addSkill:hover, button.addSoftSkill:hover {
-  font-weight:700;
-  border:4px solid white;
+ 
+  
+.submitButton:hover, button.add:hover,.submitButtonAbout:hover,  button.addSkill:hover, button.addSoftSkill:hover {
+  color:$lightBlue;
+  transition:all ease-in-out .5s;
    };
+   .submitButtonAbout {
+     position:absolute;
+     margin-top:300px;
+   }
   /*delete buttons*/
   button.delete {
   background-image:url(../../images/delete.svg);
@@ -63,10 +55,9 @@
   position: relative;
   top: 0;
   transition: top ease 0.5s;
+  cursor:pointer;
    };
-button:hover {
-  top:-5px;
-};
+
 /*div container form buttons*/
 .formButtons{
   display:flex;
