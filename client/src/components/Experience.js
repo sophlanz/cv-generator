@@ -343,10 +343,12 @@ export default function Experience() {
              {/*if edit bullet, display form */}
             {editBullets.editBullet ? 
             <form className="editBulletContainer">
-                 <label htmlFor="experienceBullet">Edit Bullet Point
+                
+                <label htmlFor="experienceBullet">Edit Bullet Point
                     <textarea rows="8"cols="100" type= "text" className="editBullet" name="experienceBullet" onChange = {(e)=> handleChangeBullet(e)}/>
                 <button className="submitButton" onClick = {submitEditBullet}>Submit Changes</button>
                  </label>
+              
            </form>
            :
            null
@@ -364,21 +366,26 @@ export default function Experience() {
                 return (
                     <div key={experience.id}>
                         <form class="experience">
-                            <label htmlFor="company">Company
-                                <input type= "text" id ={index} name="company" onChange = {(e)=> handleChange(e)}/>
-                            </label>
-                            <label htmlFor="title">Title
-                                <input type= "text" id ={index} name="title" onChange = {(e)=> handleChange(e)} />
-                            </label>
-                            <label htmlFor="startDate">Start Date
-                                <input type= "text" id ={index} name="startDate" onChange = {(e)=> handleChange(e)}/>
-                            </label>
-                            <label htmlFor="endDate">End Date
-                                <input type= "text" id ={index} name="endDate" onChange = {(e)=> handleChange(e)}/>
-                            </label>
-                            <label htmlFor="location">Location
-                                <input type= "text" id ={index} name="location" onChange = {(e)=> handleChange(e)}/>
-                            </label>
+                            <div className="formWrapper">
+                                <input type= "text" placeholder="  " id ={index} name="company" onChange = {(e)=> handleChange(e)}/>
+                                <label htmlFor="company">Company</label>
+                            </div>
+                            <div className="formWrapper">
+                                <input type= "text" placeholder="  " id ={index} name="titleExperience" onChange = {(e)=> handleChange(e)} />
+                                <label htmlFor="titleExperience">Title</label>
+                            </div>
+                            <div className="formWrapper">
+                                <input type= "text" placeholder="  " id ={index} name="startDateExperience" onChange = {(e)=> handleChange(e)}/>
+                                <label htmlFor="startDateExperience">Start Date</label>
+                            </div>
+                            <div className="formWrapper">
+                                <input type= "text" placeholder="  " id ={index} name="endDateExperience" onChange = {(e)=> handleChange(e)}/>
+                                <label htmlFor="endDateExperience">End Date</label>
+                            </div>
+                            <div className="formWrapper">
+                                <input type= "text" placeholder="  " id ={index} name="locationExperience" onChange = {(e)=> handleChange(e)}/>
+                                <label htmlFor="locationExperience">Location</label>
+                            </div>
                             <div className="formButtons">
                                 <button className="add"  onClick={(e)=> addAnother(e)}>Add Experience</button>
                                 <button className="add" value = {index}onClick={(e)=> addBullet(e)}>Add Bullet</button>

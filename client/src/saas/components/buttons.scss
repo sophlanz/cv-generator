@@ -24,18 +24,21 @@
     };
 /*submit form buttons*/
 .submitButton, .submitButtonAbout, button.add, button.addSkill, button.addSoftSkill{
-  background-color:black;
-  border:none;
-  color:white;
+  background-color:white;
+  border:1px solid $lightBlue;
+  color:black;
   height:40px;
   width:120px;
-  border-radius:.5rem;
-  letter-spacing: 3px;
+  border-radius:1rem;
+  letter-spacing: 1px;
+  margin-bottom:5px;
+  font-weight:700;
+  transition:all ease-in-out .5s;
    };
  
   
 .submitButton:hover, button.add:hover,.submitButtonAbout:hover,  button.addSkill:hover, button.addSoftSkill:hover {
-  color:$lightBlue;
+  background-color:$lightBlue;
   transition:all ease-in-out .5s;
    };
    .submitButtonAbout {

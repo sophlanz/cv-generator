@@ -31,7 +31,7 @@ export default function Welcome () {
                 {/*navbar */}
                 <Nav/>
                 {/*interactive ball, give translate3d style using state*/}
-                <div style={{transform:`translate3d(${xChange}px,${yChange}px, 0px)`}} className="ball" onMouseMove={(e)=> trackMouse(e)} onMouseOut={()=> resetCircle()} >
+                <div style={{transform:`translate3d(${xChange}px,${yChange}px, 0px)`}} className="ball" onMouseMove={(e)=> trackMouse(e)} onMouseEnter={(e)=> trackMouse(e)}  onMouseOut={()=> resetCircle()} >
                    <p><Link to={'/create-cv'}>BEGIN CURATING</Link></p> 
                 </div>
                 {/*circle that will follow cursor */}

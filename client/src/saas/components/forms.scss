@@ -24,7 +24,7 @@ form.experience, form.education {
     border-radius:1rem;
     border:$lightBlue 2px solid ;
     width:450px;
-    height:350px;
+    height:370px;
     display:flex;
    flex-direction:column;
     flex-wrap:wrap;
@@ -74,7 +74,7 @@ input{
     border:none;
     background-color:$backgroundInput;
     color:$darkGray;
-    height:30px;
+    height:40px;
     font-weight:600;
     width:200px;
 };
