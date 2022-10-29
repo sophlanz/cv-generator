@@ -367,8 +367,8 @@ export default function Experience() {
                     <div key={experience.id}>
                         <form class="experience">
                             <div className="formWrapper">
-                                <input type= "text" placeholder="  " id ={index} name="company" onChange = {(e)=> handleChange(e)}/>
-                                <label htmlFor="company">Company</label>
+                                <input type= "text" placeholder="  " id ={index} name="companyExperience" onChange = {(e)=> handleChange(e)}/>
+                                <label htmlFor="companyExperience">Company</label>
                             </div>
                             <div className="formWrapper">
                                 <input type= "text" placeholder="  " id ={index} name="titleExperience" onChange = {(e)=> handleChange(e)} />

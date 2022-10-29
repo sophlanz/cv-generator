@@ -29,14 +29,16 @@ form.experience, form.education {
    flex-direction:column;
     flex-wrap:wrap;
     justify-content:center;
+    align-items:center;
     font-style:italic;
-    padding:10px;
     gap:10px;
     position:fixed;
     left:30%;
     top:20%;
     color:$darkGray;
     font-size:1.3rem;
+    padding-right:40px;
+    padding-top:20px;
 };
 form.projects{
     background-color:white;

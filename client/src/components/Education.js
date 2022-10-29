@@ -29,7 +29,7 @@ export default function Education() {
     }))
     :
    [{
-    university: 'university',
+    university: 'University',
     degree:"B.S. Web Development",
     startDate: "August 2018",
     endDate: "May 2022",
@@ -207,27 +207,32 @@ export default function Education() {
                             return(
                         <div key={study.id}>
                             <form className="education"> 
-                                <div className="formItems">
-                                <label htmlFor="university">University
-                                    <input type= "text" id={index} name="university" onChange = {handleChange}/>
-                                </label>
-                                <label htmlFor="degree">Degree
-                                    <input type= "text" id={index} name="degree" onChange = {handleChange} />
-                                </label>
-                                <label htmlFor="startDate">Start Date
-                                     <input type= "text" id={index} name="startDate" onChange = {handleChange}/>
-                                </label>
-                                <label htmlFor="endDate">End Date
-                                    <input type= "text" id={index} name="endDate" onChange = {handleChange}/>
-                                </label>
-                                <label htmlFor="location">Location
-                                    <input type= "text" id={index} name="location" onChange = {handleChange}/>
-                                </label>
+                            
+                                <div className="formWrapper"> 
+                                    <input type= "text" placeholder="  " id={index} name="university" onChange = {handleChange}/>
+                                    <label htmlFor="university">University</label>
+                                </div>
+                                <div className="formWrapper">
+                                    <input type= "text"  placeholder="  " id={index} name="degree" onChange = {handleChange} />
+                                    <label htmlFor="degree">Degree</label>
+                                </div>
+                                <div className="formWrapper">
+                                    <input type= "text"  placeholder="  " id={index} name="startDate" onChange = {handleChange}/>
+                                     <label htmlFor="startDate">Start Date</label>
+                                </div>
+                                <div className="formWrapper">
+                                    <input type= "text"  placeholder="  " id={index} name="endDate" onChange = {handleChange}/>
+                                    <label htmlFor="endDate">End Date </label>
+                                </div>
+                                <div className="formWrapper"> 
+                                    <input type= "text"  placeholder="  " id={index} name="location" onChange = {handleChange}/>
+                                    <label htmlFor="location">Location</label>
                                 </div>
                                 <div className="formButtons">
                                     <button className="add" onClick={(e)=>addEducation(e)}>Add Education</button>
                                     <button className="submitButton"type = "text" id={index} onClick={handleSubmit}>Submit Changes</button>
                                 </div>
+                           
                             </form>
                         </div>
                                 )
