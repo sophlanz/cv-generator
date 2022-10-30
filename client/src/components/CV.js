@@ -99,7 +99,6 @@ export default function CV() {
     },[])
     
     return (
-        <>
         <div className="paper">
         <Modal />
         <About/>
@@ -135,7 +134,7 @@ export default function CV() {
           <button className="printButton" onClick={()=> window.print()}>Print</button>
         </div>
    </div>
-   </>
+   
     )
 }
 

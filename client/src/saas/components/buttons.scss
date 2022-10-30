@@ -88,11 +88,7 @@ left:50%;
 margin-bottom:10px;
 margin-top:10px;
 }
-@media print {
-  button, .cvButtons {
-    display:none !important;
-  }
-};
+
 /*title of section with add another button hidden*/
 .addAnother {
   display:flex;

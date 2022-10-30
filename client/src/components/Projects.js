@@ -374,7 +374,7 @@ const [editBullets, setEditBullets] = useState({
                      null
                  }
                  <div className="techUsed"><p className="techLabel">Technologies:</p><p>{project.technologies}</p></div>
-                     <div className="liveDemo"><p style={{fontStyle:"bold", fontWeight:"bold",fontSize:"1.1rem"}}>Live Demo: </p><a href={`https://${project.liveDemo}`} target="_blank" rel="noreferrer" ><p>{project.liveDemo}</p></a></div>
+                     <div className="liveDemo"><h1 >Live Demo: </h1><a href={`https://${project.liveDemo}`} target="_blank" rel="noreferrer" ><p>{project.liveDemo}</p></a></div>
                       {/*We don't want to give a delete button to the fist one */}
                  </div>
              </div>

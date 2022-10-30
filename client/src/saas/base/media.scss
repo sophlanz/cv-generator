@@ -1,0 +1,27 @@
+
+@page {
+    size: a4;
+    margin:4(.25mm);
+    
+  };
+
+  @media print {
+    
+   
+   body,.paper {
+        width: 210mm;
+      height: 297mm; 
+      margin:0px;
+      padding:0px;
+   }
+   button, .cvButtons,  .navCV, .modal{
+    display:none !important;
+  }
+  h1{
+    break-before: always;
+  }
+  
+ 
+  };
+ 
+  

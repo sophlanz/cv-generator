@@ -17,7 +17,7 @@ export default function NavWelcome() {
     return (
         <>
             <nav className = 'navCV'>
-                <h1><a href="/"><Link to={'/'}>CV CURATOR<span>.</span></Link></a></h1>about
+                <h1><a href="/"><Link to={'/'}>CV CURATOR<span>.</span></Link></a></h1>
             </nav>
         </>
     )
