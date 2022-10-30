@@ -23,7 +23,8 @@
   
     };
 /*submit form buttons*/
-.submitButton, .submitButtonAbout, button.add, button.addSkill, button.addSoftSkill{
+.submitButton, .submitButtonAbout, button.add, 
+button.addSkill, button.addSoftSkill, button.save, .printButton {
   background-color:white;
   border:1px solid $lightBlue;
   color:black;
@@ -37,7 +38,9 @@
    };
  
   
-.submitButton:hover, button.add:hover,.submitButtonAbout:hover,  button.addSkill:hover, button.addSoftSkill:hover {
+.submitButton:hover, button.add:hover,.submitButtonAbout:hover, 
+ button.addSkill:hover, button.addSoftSkill:hover, button.save:hover , 
+ .printButton:hover{
   background-color:$lightBlue;
   transition:all ease-in-out .5s;
    };
@@ -75,27 +78,18 @@
   margin-left:-60px
 };
 
-/*print button, don't show display*/
-.printButton {
-  display:none;
-  background:transparent;
-  background-color:white;
-  border:2px solid $lightBlue;
-  color:$darkGray;
-  height:40px;
-  width:120px;
-  border-radius:.5rem;
-  letter-spacing: 3px;
-  margin-top:10px;
-  font-size:1rem;
-  font-weight:700;
-};
-.printButton:hover {
-  border:4px solid $lightBlue;
-  font-weight:700;
-};
+
+
+/*center save button*/
+.cvButtons {
+display:flex;
+position:relative;
+left:50%;
+margin-bottom:10px;
+margin-top:10px;
+}
 @media print {
-  button {
+  button, .cvButtons {
     display:none !important;
   }
 };

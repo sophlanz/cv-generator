@@ -113,7 +113,6 @@ export default function About() {
     return (
         <>
               <div className="aboutDisplay">
-                <button className="printButton" onClick={()=> window.print()}>Print</button>
                     <div className="title">
                         <div className="firstLastName">
                             <h2 className = "firstName" id="name" value={firstName} > {firstName} </h2>

@@ -1,6 +1,6 @@
 @media print {
     .navCV {
-        display: none;
+        display: none !important;
     }
     .paper button {
         display:none;
@@ -10,9 +10,10 @@
         padding: 0;
     }
 
-    .paper {
-        width: 210mm;
-        height: 297mm;
+    .paper{width: 210mm;
+        min-height: 297mm;
+        padding: 20mm;
+        margin: 10mm au
+        
     }
-   
  }

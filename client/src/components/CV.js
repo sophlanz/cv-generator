@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { addFileName } from '../redux/cvSlice';
 import Nav from '../components/navs/CvNav';
+import NavGuest from '../components/navs/CvNavGuest';
 export default function CV() {
     const dispatch = useDispatch();
     //saved file or new file
@@ -102,13 +103,19 @@ export default function CV() {
         <div className="paper">
         <Modal />
         <About/>
-        <Nav/>
+        {/* guest nav vs logged in nav*/}
+        {
+            guest === true ? 
+            <NavGuest/>
+            :
+            <Nav/>
+        }
         <Skills/>
         <Projects/>
         <Experience/>
         <Education/>
         {/*onClick pop */}
-        <div>
+        <div className="cvButtons">
          {/*if it's a new file, allow for a file name, otherwise save and update */}
         {  
             newFile === true && guest === false ?
@@ -120,11 +127,12 @@ export default function CV() {
         }
         {/*check state and if its a guest: no save button. If it's a new file: saveData. If it's an old file: update data*/}
           {  guest === false ? 
-          <button onClick={()=> newFile === true ? saveData() : updateData()}>Save</button> 
+          <button className="save" onClick={()=> newFile === true ? saveData() : updateData()}>Save</button> 
           :
           null
 
           } 
+          <button className="printButton" onClick={()=> window.print()}>Print</button>
         </div>
    </div>
    </>

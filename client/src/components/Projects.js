@@ -394,6 +394,7 @@ const [editBullets, setEditBullets] = useState({
          
          {edit ? 
          <form className="projects">
+                <h1>Projects</h1>
                 <div className="formWrapper">
                      <input name="titleProjects" className="titleProjects" id="titleProjects" placeHolder="  " onChange = {handleChange}/>
                      <label htmlFor="titleProjects">Title</label>
@@ -406,12 +407,11 @@ const [editBullets, setEditBullets] = useState({
                     <input name="liveDemo" className="liveDemo" id="liveDemo" placeHolder="  "onChange = {handleChange}/>
                     <label htmlFor="liveDemo">Live Demo: user.github.io/project</label>
                  </div>
-             
-             <div className="formButtons">
-                 <button className="add" onClick={addProject}>Add Project</button>
-                 <button className="add" onClick={addBullet}>Add Bullet</button>
-                 <button className="submitButton" onClick = {handleSubmit}>Submit Changes</button>
-             </div>
+                <div className="formButtons">
+                    <button className="add" onClick={addProject}>Add Project</button>
+                    <button className="add" onClick={addBullet}>Add Bullet</button>
+                    <button className="submitButton" onClick = {handleSubmit}>Submit Changes</button>
+                </div>
          </form>
          :
          null

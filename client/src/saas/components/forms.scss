@@ -22,9 +22,9 @@ form.about {
 form.experience, form.education {
     background-color:white;
     border-radius:1rem;
-    border:$lightBlue 2px solid ;
+    border:black 2px solid ;
     width:450px;
-    height:370px;
+    height:410px;
     display:flex;
    flex-direction:column;
     flex-wrap:wrap;
@@ -43,9 +43,9 @@ form.experience, form.education {
 form.projects{
     background-color:white;
     border-radius:1rem;
-    border:2px solid $lightBlue;
+    border:2px solid black;
     width:460px;
-    height:430px;
+    height:480px;
     flex-grow:auto;
     display:flex;
    flex-direction:column;
@@ -58,7 +58,7 @@ form.projects{
     position:fixed;
     left:30%;
     top:20%;
-    color:black;
+    color:$darkGray;
     font-size:1.3rem;
     padding:20px 50px 10px 10px;
 };
@@ -108,3 +108,11 @@ form.editBulletContainer{
     position:relative;
 }
 
+form.projects > h1,
+form.experience > h1, form.education > h1  {
+    position:relative;
+    border-bottom:3px solid $lightBlue;
+    font-size:1.8rem;
+    color:$darkGray;
+  
+}

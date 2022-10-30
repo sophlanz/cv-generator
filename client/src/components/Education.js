@@ -207,7 +207,7 @@ export default function Education() {
                             return(
                         <div key={study.id}>
                             <form className="education"> 
-                            
+                                <h1>Education</h1>
                                 <div className="formWrapper"> 
                                     <input type= "text" placeholder="  " id={index} name="university" onChange = {handleChange}/>
                                     <label htmlFor="university">University</label>
