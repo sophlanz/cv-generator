@@ -54,10 +54,10 @@ export default function CV() {
   
    axios.post('http://localhost:9000/savecv',body )
    .then((results)=> {
-       
+        console.log(results);
    })
    .catch((err)=> {
-       
+       console.log(err)
    });
     
     }
@@ -80,7 +80,7 @@ export default function CV() {
             console.log(results)
         })
         .catch((error)=> {
-            
+            console.log(error);
         })
     }
     //use effect to check and see on page load if cv in redux store is empty. If empty set state newCV to true
@@ -118,9 +118,11 @@ export default function CV() {
          {/*if it's a new file, allow for a file name, otherwise save and update */}
         {  
             newFile === true && guest === false ?
-            <label>Name your file:
-            <input onChange={(e)=> handleChange(e)}/>
-            </label>
+            <div className="formWrapper">
+                <input onChange={(e)=> handleChange(e)} id="nameFile" placeholder="  "/>
+                <label htmlFor="nameFile">Name your file:</label>
+            </div>
+            
             :
            null
         }

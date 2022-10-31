@@ -84,9 +84,11 @@ button.addSkill, button.addSoftSkill, button.save, .printButton {
 .cvButtons {
 display:flex;
 position:relative;
-left:50%;
 margin-bottom:10px;
 margin-top:10px;
+width:100%;
+gap:10px;
+justify-content:center;
 }
 
 /*title of section with add another button hidden*/

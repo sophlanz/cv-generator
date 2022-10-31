@@ -41,12 +41,12 @@ export default function Register() {
                 <header>
                     <p>START FOR FREE</p>
                     <h1>Create new account<span>.</span></h1>
-                    <p>Been here before? <a><Link to ={"/login"}>Login</Link></a></p>
+                    <p>Been here before? <Link to ={"/login"}>Login</Link></p>
                 </header>
                 <form onSubmit={SubmitRegister} className="registerForm">
                     <div className="nameUserContainer">
                         <div className="formWrapper">
-                                <input placeholder="  " onChange={(e)=> setUsername(e.target.value)} value={firstName} name="firstName" id="firstName" type="text"/>
+                                <input placeholder="  "  name="firstName" id="firstName" type="text"/>
                                 <label htmlFor="firstName">First name </label>
                         </div>
                         <div className="formWrapper">
