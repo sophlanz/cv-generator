@@ -6,8 +6,8 @@ import { addUserName } from '../redux/userSlice';
 import Nav from './navs/NavLogin';
 
 export default function Login() {
-    const [username, setUsername] = useState(null);
-    const [password, setPassword] = useState(null);
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
     const [userId, setuserId] = useState(null);
     const[error,setError] = useState(null);
     const navigate = useNavigate();
@@ -22,14 +22,16 @@ export default function Login() {
             setPassword(e.target.value) 
         }
     }
-    const handleSubmit = async () => {
+    const handleSubmit =  (e) => {
+            e.preventDefault();
             const body = {
                 username:username,
                 password:password
             }
             console.log(body)
-           await axios.post('http://localhost:9000/login',body)
+            axios.post('http://localhost:9000/login',body)
             .then((response)=> {
+                console.log("hi")
                 console.log(response)
                 id=response.data._id
                 
@@ -59,12 +61,12 @@ export default function Login() {
             <Nav/>
             <div className="registerContent">
                 <header>
-                    <p>Not a member yet? <a><Link to ={"/register"}>Sign up</Link></a></p>
+                    <p>Not a member yet? <Link to ={"/register"}>Sign up</Link></p>
                     <h1>Welcome Back<span>!</span></h1>
                     <p>Please enter your details</p>
                    
                 </header>
-                <form onSubmit={handleSubmit} className="loginForm">
+                <form onSubmit={(e)=> handleSubmit(e)} className="loginForm">
                     <div className="formWrapper">
                         <input placeholder="  " className="loginUsername" onChange={(e)=> handleChange(e)} value={username} name="username" id="username" type="text"/>
                         <label htmlFor="username">Username</label>
