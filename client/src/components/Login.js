@@ -8,8 +8,8 @@ import Nav from './navs/NavLogin';
 export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [userId, setuserId] = useState(null);
-    const[error,setError] = useState(null);
+
+ 
     const navigate = useNavigate();
     const dispatch = useDispatch();
     //save id from response
@@ -50,7 +50,7 @@ export default function Login() {
             })
             .catch((err)=> {
                 console.log(err)
-                setError(true)
+          
                 
             })
         }

@@ -7,7 +7,7 @@ const dispatch = useDispatch();
 const cv = useSelector((state)=> state.cv);
 
 //if skills object is empty set false
-const [savedData, setSavedData] = useState(Object.keys(cv.skills).length === 0 ? false : true)
+const savedData = Object.keys(cv.skills).length === 0 ? false : true;
 
 //declare states
 //skills should be an object that contains array of tech and soft skills

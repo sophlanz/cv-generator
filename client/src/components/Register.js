@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -8,7 +8,6 @@ export default function Register() {
     const [username, setUsername] = useState(null);
     const [email, setEmail] = useState(null);
     const [error,setError] = useState(null);
-    const [firstName, setFirstName] = useState(null);
     const navigate = useNavigate();
     const SubmitRegister = () => {
         

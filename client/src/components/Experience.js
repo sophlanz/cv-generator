@@ -11,7 +11,7 @@ export default function Experience() {
     
     
     //saved data boolean, will when we check the cv.experiences length from the redux store. 
-   const [savedData, setSavedData] = useState(cv.experiences.length === 0 ? false : true);
+   const savedData = cv.experiences.length === 0 ? false : true
    
    
    const savedExperience= cv.experiences
@@ -82,6 +82,7 @@ export default function Experience() {
     )
   }
      const editExperience = (e) => {
+        
         //get index to be targeted under the number property
        const index = Number(e.target.value);
        //set edit property to true of the specifc experiencec object
@@ -253,9 +254,11 @@ export default function Experience() {
     //we want to get the description
     let experiencesDup =[...experiences];
     experiencesDup.forEach((experience) => {
+        console.log(experience)
         if(experience.index === indexExperience) {
             //set description to delcared description
             description=experience.description
+            console.log(description);
             //splice description to get rid of old bullet
             description.splice(indexBullet,1);
             //splice again to add in new bullet
@@ -359,32 +362,31 @@ export default function Experience() {
             {/*map through the experiences, and find the experience with edit as true.
             Set the index of that experience object to the declared index variable
             return the input eleements, and link the indexes to the id's */}
-            {experiences.map((experience)=> {
-                let index = " "
-                if(experience.edit){
-                index= experience.index;
+            {experiences.filter(experience => experience.edit === true ).map((experience)=> {
+                
+                let index= experience.index;
                 return (
                     <div key={experience.id}>
                         <form class="experience">
                             <h1>Work Experience</h1>
                             <div className="formWrapper">
-                                <input type= "text" placeholder="  " id ={index} name="companyExperience" onChange = {(e)=> handleChange(e)}/>
+                                <input type= "text" placeholder="  " id ={index} name="company" onChange = {(e)=> handleChange(e)}/>
                                 <label htmlFor="companyExperience">Company</label>
                             </div>
                             <div className="formWrapper">
-                                <input type= "text" placeholder="  " id ={index} name="titleExperience" onChange = {(e)=> handleChange(e)} />
+                                <input type= "text" placeholder="  " id ={index} name="title" onChange = {(e)=> handleChange(e)} />
                                 <label htmlFor="titleExperience">Title</label>
                             </div>
                             <div className="formWrapper">
-                                <input type= "text" placeholder="  " id ={index} name="startDateExperience" onChange = {(e)=> handleChange(e)}/>
+                                <input type= "text" placeholder="  " id ={index} name="startDate" onChange = {(e)=> handleChange(e)}/>
                                 <label htmlFor="startDateExperience">Start Date</label>
                             </div>
                             <div className="formWrapper">
-                                <input type= "text" placeholder="  " id ={index} name="endDateExperience" onChange = {(e)=> handleChange(e)}/>
+                                <input type= "text" placeholder="  " id ={index} name="endDate" onChange = {(e)=> handleChange(e)}/>
                                 <label htmlFor="endDateExperience">End Date</label>
                             </div>
                             <div className="formWrapper">
-                                <input type= "text" placeholder="  " id ={index} name="locationExperience" onChange = {(e)=> handleChange(e)}/>
+                                <input type= "text" placeholder="  " id ={index} name="location" onChange = {(e)=> handleChange(e)}/>
                                 <label htmlFor="locationExperience">Location</label>
                             </div>
                             <div className="formButtons">
@@ -395,8 +397,10 @@ export default function Experience() {
                         </form>
                     </div>
                     )
-                    }
-                })}
+                    
+                }
+                )}
+  
             </div>
             : null    
            }

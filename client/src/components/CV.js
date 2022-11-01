@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import About from "./About";
 import Education from "./Education";
 import Experience from "./Experience";
@@ -35,8 +35,8 @@ export default function CV() {
         username= userData[0].username
     }
 
-    //resume object
-    const cvData = cv.about[0];
+  /*   //resume object
+    const cvData = cv.about[0]; */
     
     //send data to db, for new file
     const saveData = () => {
@@ -85,6 +85,7 @@ export default function CV() {
     }
     //use effect to check and see on page load if cv in redux store is empty. If empty set state newCV to true
     useEffect(()=> {
+        
         if(cv.fileName === "" && userData.length === 0) {
             //if no filename, it's a new file
             setNewFile(true)
@@ -96,6 +97,7 @@ export default function CV() {
             setNewFile(false)
             setGuest(false)
         }
+        //eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
     
     return (

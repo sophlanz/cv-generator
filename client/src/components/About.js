@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import  phonePic from "../images/phone.svg";
 import locationPic from "../images/location.svg";
 import linkedinPic from "../images/linkedin.svg";
@@ -13,7 +13,7 @@ export default function About() {
  
    
    //state where we'll keep track if the user wants to view saved data
-   const [savedData, setSavedData] = useState(savedCv.about.length === 0  ? false : true)
+   const savedData = savedCv.about.length === 0  ? false : true;
     const defaultValues = {
         firstname: "Your",
         lastName: "Name",
@@ -35,6 +35,8 @@ export default function About() {
     } else {
         //return defaultvalues
        return (defaultValues[field])
+       
+       
     }
   }
     //states, if savedData is true, use the savedCv data, else default values
@@ -86,6 +88,8 @@ export default function About() {
             case 'github' :
                 setGithub(e.target.value)
                 break;
+            default:
+                console.log('oops, no match');
         }
        
     };
@@ -123,8 +127,8 @@ export default function About() {
                     <div className="personalInformation">
                         <div id="phone"  value={phone} > <img src={phonePic}alt="pic"/>{phone}</div> |
                         <div id="city"  value={city} ><img src ={locationPic} alt="pic"/> {city}</div> |
-                        <a href = {`https://${linkedin}` } target="_blank"><div id="linkedin"  value={linkedin} ><img src ={linkedinPic} alt="pic"/>{linkedin}</div></a> |
-                        <a href={`https://${github}` } target="_blank"><div id="github"  value={github} ><img src ={githubPic} alt="pic"/>{github}</div></a> |
+                        <a href = {`https://${linkedin}` } target="_blank" rel="noreferrer"><div id="linkedin"  value={linkedin} ><img src ={linkedinPic} alt="pic"/>{linkedin}</div></a> |
+                        <a href={`https://${github}` } target="_blank" rel="noreferrer"><div id="github"  value={github} ><img src ={githubPic} alt="pic"/>{github}</div></a> |
                         <div id="email"  value={email} ><img src ={emailPic} alt="pic"/>{email}</div> 
                     </div>
                 </div>
@@ -141,27 +145,27 @@ export default function About() {
                     <label htmlFor="lastName">Last Name</label>
                 </div>
                 <div className="formWrapper">
-                    <input placeholder = "  " id="titleAbout" name="titleAbout" type="text" onChange={handleChange}/>
+                    <input placeholder = "  " id="titleAbout" name="title" type="text" onChange={handleChange}/>
                     <label htmlFor="titleAbout">Title</label>
                 </div>    
                <div className="formWrapper">
-                     <input placeholder="  " id="phoneAbout" name="phoneAbout"  type="tel"  onChange= {handleChange} />
+                     <input placeholder="  " id="phoneAbout" name="phone"  type="tel"  onChange= {handleChange} />
                      <label htmlFor="phoneAbout">Phone Number</label>
                </div>
                 <div className="formWrapper">
-                    <input placeholder="  " id="cityAbout" name="cityAbout"  type="text"  onChange= {handleChange}/>
+                    <input placeholder="  " id="cityAbout" name="city"  type="text"  onChange= {handleChange}/>
                     <label htmlFor="cityAbout">Location</label>
                 </div>
                 <div className="formWrapper">
-                    <input placeholder="  " id="linkedinAbout" name="linkedinAbout"  type="text"  onChange= {handleChange}/>
+                    <input placeholder="  " id="linkedinAbout" name="linkedin"  type="text"  onChange= {handleChange}/>
                     <label htmlFor="linkedinAbout">linkedin.com/...</label>
                 </div>
                 <div className="formWrapper">
-                    <input placeholder="  " id="githubAbout" name="githubAbout" type="text"  onChange= {handleChange}/>
+                    <input placeholder="  " id="githubAbout" name="github" type="text"  onChange= {handleChange}/>
                     <label htmlFor="githubAbout">github.com/...</label>
                 </div>
                 <div className="formWrapper"> 
-                    <input placeholder="  " id="emailAbout" name="emailAbout" type="text"  onChange= {handleChange}/>
+                    <input placeholder="  " id="emailAbout" name="email" type="text"  onChange= {handleChange}/>
                     <label htmlFor="emailAbout">Email</label>
                 </div>
                 <button className="submitButtonAbout" type="submit">Submit</button>

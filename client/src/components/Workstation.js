@@ -10,31 +10,12 @@ export default function Workstation() {
     //get username from user reducer, saved in an object 
     const username = useSelector((state) => state.user[0].username)
     const userId = useSelector((state)=> state.user[0].id);
-    
     //will store resume data we retrieved from db
     const [userData, setUserData] = useState(null)
    const dispatch = useDispatch();
    
-  const body = {
-      username:username,
-      id:userId
-  }
-    const getCvs = () => {
-        //use axios to make get request to server
-     console.log(body)
-        axios.get(`http://localhost:9000/savecv/${userId}`,body)
-        .then((response)=> {
-            //save just the resumes
-            console.log(response)
-            setUserData(response.data.resume);
-            console.log(response.data.resume)
-            
-        })
-        .catch((error)=> {
-            console.log(error)
-        }) 
 
-    }
+
   const sendDispatchHandler=(resume)=> {
       //use resume to get values, and send to redux store
       console.log(resume);
@@ -145,7 +126,29 @@ export default function Workstation() {
   }
     //use effect, call get CV on load
     useEffect(()=> {
+      
+        const body = {
+            username:username,
+            id:userId
+        }
+        const getCvs = () => {
+            //use axios to make get request to server
+         console.log(body)
+            axios.get(`http://localhost:9000/savecv/${userId}`,body)
+            .then((response)=> {
+                //save just the resumes
+                console.log(response)
+                setUserData(response.data.resume);
+                console.log(response.data.resume)
+                
+            })
+            .catch((error)=> {
+                console.log(error)
+            }) 
+    
+        }
         getCvs();
+         //eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
     return (
     <>  
@@ -170,7 +173,7 @@ export default function Workstation() {
                 {/*Map through the state array and display file information */}
                 { userData ?
                 [...userData].map((resume,index)=> {
-                    let resumeData = resume;
+                 
                     const date = new Date(resume.created_at).toLocaleString()
                     console.log(date)
                     return(

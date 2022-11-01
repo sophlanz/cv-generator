@@ -3,7 +3,7 @@ import AdditionalEducation from './AdditionalEducation';
 import uniqid from 'uniqid';
 import { educationSection, postDelete } from '../redux/cvSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 export default function Education() {
     const dispatch = useDispatch();
      //check to see if details have been saved to the store
@@ -12,7 +12,7 @@ export default function Education() {
    
    //state where we'll keep track if the user wants to view saved data
    //if the education array is empty, there's no saved data, we want to use default values
-   const [savedData, setSavedData] = useState(savedCv.education.length === 0 ? false : true)
+   const savedData = savedCv.education.length === 0 ? false : true;
 
   //if savedData is true,map the education array, else use the default values and just add one object
     const [education, setEducation] = useState(()=> savedData === true ? savedCv.education.map((study)=> ({
@@ -62,8 +62,10 @@ export default function Education() {
     };
     //use values from input to set state
     const handleChange = (e) => {
+        console.log('hello');
         //get name to be changed from the event target
         const change = e.target.name;
+        console.log(change);
        //see which one has a true edit value to change that one
         //use the change name to update state, and add to it the value from the target
         setEducation(prevState => prevState.map(
@@ -153,7 +155,7 @@ export default function Education() {
             ))
         
         //now dispatch postDelete  function in redux store, pass in the reducer function name
-        educationOld.map((study)=> {
+        educationOld.forEach((study)=> {
             dispatch(
                 postDelete({
                     university: study.university,
@@ -200,45 +202,46 @@ export default function Education() {
                      }
                     {/*the popup we want to display on the screen for editing */}
                     {edit ? 
-                    (education.map((study) => {
-                     let index=[];
-                    if(study.edit){
-                        index = study.index
-                            return(
-                        <div key={study.id}>
-                            <form className="education"> 
-                                <h1>Education</h1>
-                                <div className="formWrapper"> 
-                                    <input type= "text" placeholder="  " id={index} name="university" onChange = {handleChange}/>
-                                    <label htmlFor="university">University</label>
-                                </div>
-                                <div className="formWrapper">
-                                    <input type= "text"  placeholder="  " id={index} name="degree" onChange = {handleChange} />
-                                    <label htmlFor="degree">Degree</label>
-                                </div>
-                                <div className="formWrapper">
-                                    <input type= "text"  placeholder="  " id={index} name="startDate" onChange = {handleChange}/>
-                                     <label htmlFor="startDate">Start Date</label>
-                                </div>
-                                <div className="formWrapper">
-                                    <input type= "text"  placeholder="  " id={index} name="endDate" onChange = {handleChange}/>
-                                    <label htmlFor="endDate">End Date </label>
-                                </div>
-                                <div className="formWrapper"> 
-                                    <input type= "text"  placeholder="  " id={index} name="location" onChange = {handleChange}/>
-                                    <label htmlFor="location">Location</label>
-                                </div>
-                                <div className="formButtons">
-                                    <button className="add" onClick={(e)=>addEducation(e)}>Add Education</button>
-                                    <button className="submitButton"type = "text" id={index} onClick={handleSubmit}>Submit Changes</button>
-                                </div>
-                           
-                            </form>
-                        </div>
-                                )
-                              }    
-                            }    
-                         ))
+                    education.filter(study => study.edit === true).map((study) => {
+                         
+                      
+                            let index = study.index
+                                return(
+                            <div key={study.id}>
+                                <form className="education"> 
+                                    <h1>Education</h1>
+                                    <div className="formWrapper"> 
+                                        <input type= "text" placeholder="  " id={index} name="university" onChange = {(e)=>handleChange(e)}/>
+                                        <label htmlFor="university">University</label>
+                                    </div>
+                                    <div className="formWrapper">
+                                        <input type= "text"  placeholder="  " id={index} name="degree" onChange = {(e)=>handleChange(e)} />
+                                        <label htmlFor="degree">Degree</label>
+                                    </div>
+                                    <div className="formWrapper">
+                                        <input type= "text"  placeholder="  " id={index} name="startDate" onChange = {(e)=> handleChange(e)}/>
+                                         <label htmlFor="startDate">Start Date</label>
+                                    </div>
+                                    <div className="formWrapper">
+                                        <input type= "text"  placeholder="  " id={index} name="endDate" onChange = {(e)=>handleChange(e)}/>
+                                        <label htmlFor="endDate">End Date </label>
+                                    </div>
+                                    <div className="formWrapper"> 
+                                        <input type= "text"  placeholder="  " id={index} name="location" onChange = {(e)=>handleChange(e)}/>
+                                        <label htmlFor="location">Location</label>
+                                    </div>
+                                    <div className="formButtons">
+                                        <button className="add" onClick={(e)=>addEducation(e)}>Add Education</button>
+                                        <button className="submitButton"type = "text" id={index} onClick={handleSubmit}>Submit Changes</button>
+                                    </div>
+                               
+                                </form>
+                            </div>
+                                    )
+                                   
+                                }    
+                    )
+                    
                     : null    
                      }
                 </div>

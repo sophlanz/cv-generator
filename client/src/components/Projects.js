@@ -11,7 +11,7 @@ const savedCv = useSelector((state)=> state.cv);
 
   //state where we'll keep track if the user wants to view saved data
   //if the projects array is empty, there's no saved data, we want to use default values
-  const [savedData, setSavedData] = useState(savedCv.projects.length === 0 ? false : true)
+const savedData = savedCv.projects.length === 0 ? false : true;
     //if savedData is true,map the education array, else use the default values and two objects
    const [projects, setProjects] = useState(()=> savedData === true ? savedCv.projects.map((project)=> (
        
@@ -50,12 +50,11 @@ const savedCv = useSelector((state)=> state.cv);
 )
 //states for editing
 const[edit, setEdit] = useState(false);
-//new bullet
-const [newBullet,setNewBullet] = useState('');
-//if savedData is true, state is equal to array length, else ist's deault 2
-const [additional, setAdditional] = useState(()=> savedData === true ? savedCv.projects.length : 2);
+
+
+
+
 const [index, setIndex] = useState(0);
-const [description, setDescription] = useState('');
 const [editBullets, setEditBullets] = useState({
     addBullet:false,
     editBullet:false,
@@ -89,9 +88,8 @@ const [editBullets, setEditBullets] = useState({
             return updatedProjects;
            }
         //set projects state with new array
-        //increase additional value by 1
         setProjects(projectsDup())
-        setAdditional(projectsDup().length+1) 
+     
    
             
             sendProjects.map((project)=> (
@@ -175,8 +173,7 @@ const [editBullets, setEditBullets] = useState({
         ));
         //reset the projects state with the new array
         setProjects(projectsDup)
-          //decrease by 1 the additional state
-          setAdditional((prevState)=> prevState -1)
+        
           
           projectsDup.map((project)=> (
               dispatch(
@@ -286,8 +283,8 @@ const [editBullets, setEditBullets] = useState({
    };
   const handleChangeBullet =(e) => {
     const newBullet =e.target.value;
-    //set to new bullet state
-    setNewBullet(newBullet);
+   
+   
     //get indexes with edit set to true
     const bulletIndex = editBullets.editBulletIndex;
     const projectIndex = editBullets.editProjectIndex;
@@ -396,11 +393,11 @@ const [editBullets, setEditBullets] = useState({
          <form className="projects">
                 <h1>Projects</h1>
                 <div className="formWrapper">
-                     <input name="titleProjects" className="titleProjects" id="titleProjects" placeHolder="  " onChange = {handleChange}/>
+                     <input name="title" className="titleProjects" id="titleProjects" placeHolder="  " onChange = {handleChange}/>
                      <label htmlFor="titleProjects">Title</label>
                 </div>
                 <div className="formWrapper">
-                    <textarea rows="10"cols="30" id="technologiesProjects" name="technologiesProjects" onChange = {handleChange}/>
+                    <textarea rows="10"cols="30" id="technologiesProjects" name="technologies" onChange = {handleChange}/>
                      <label htmlFor="technolgoiesProjects">Technologies Used</label>
                 </div>
                  <div className="formWrapper">
