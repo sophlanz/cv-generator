@@ -1,1 +1,5 @@
 .env
+node_modules
+package-lock.json
+.gitconfig
+.DS_Store
