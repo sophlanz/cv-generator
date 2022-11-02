@@ -29,7 +29,7 @@ export default function Login() {
                 password:password
             }
             console.log(body)
-            axios.post('https://cv-curator.up.railway.app/login',body)
+            axios.post('http://localhost:9000/login',body)
             .then((response)=> {
                 console.log("hi")
                 console.log(response)
