@@ -3,3 +3,9 @@ node_modules
 package-lock.json
 .gitconfig
 .DS_Store
+.DS_Store
+node_modules/
+.env
+*.orig
+.idea/
+.vscode/
