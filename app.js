@@ -18,7 +18,9 @@ require('dotenv').config();
 const secret = process.env.SECRET;
 var app = express();
 app.use(express.json());
-
+//sessions
+const session = require('express-session')
+const MemoryStore = require('memorystore')(session)
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -34,14 +36,23 @@ const dbConnect = require('./config/database')
 dbConnect();
 //require user model for passport
 const User = require('./models/Users')
-//config passport
-
- app.use(require('express-session')({
+/*session for production */
+app.use(session({
+  cookie: { maxAge: 86400000 },
+  store: new MemoryStore({
+    checkPeriod: 86400000 // prune expired entries every 24h
+  }),
+  resave: false,
+  saveUninitialized: true,
+  secret: secret
+}))
+//expression session
+/*  app.use(require('express-session')({
   secret: secret,
   resave: false, 
   saveUninitialized: true,
-})); 
-
+}));  */
+//config passport
 app.use(passport.initialize());
 app.use(passport.session());
  passport.use(new LocalStrategy(User.authenticate())); 
