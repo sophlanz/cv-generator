@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+/*session */
+
 //route imports
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -33,11 +35,12 @@ dbConnect();
 //require user model for passport
 const User = require('./models/Users')
 //config passport
-app.use(require('express-session')({
+
+ app.use(require('express-session')({
   secret: secret,
-  resave: true,
+  resave: false, 
   saveUninitialized: true,
-}));
+})); 
 
 app.use(passport.initialize());
 app.use(passport.session());
