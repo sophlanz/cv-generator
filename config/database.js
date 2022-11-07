@@ -4,7 +4,7 @@ require('dotenv').config();
 //database
 const mongoose= require('mongoose');
 //url from .env
-const url= process.env.DB_CONNECT;
+const url= process.env.MONGODB_URI;
 const connectionParams={
     useNewUrlParser: true,
     useUnifiedTopology: true 
