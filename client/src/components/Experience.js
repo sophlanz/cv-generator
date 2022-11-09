@@ -246,29 +246,32 @@ export default function Experience() {
     //get the previously saved index values in set
     const indexExperience = editBullets.editExperienceIndex;
     const indexBullet = editBullets.editBulletIndex;
+    console.log(indexBullet)
     //updated bullet of target value
     const updatedBullet = e.target.value;
-    //we'll save the new description/bullet points in here
-    let description = ''
     //map through experiences and get the experience of the matching index
     //we want to get the description
     let experiencesDup =[...experiences];
+    let updateDescription=null;
     experiencesDup.forEach((experience) => {
-        console.log(experience)
-        if(experience.index === indexExperience) {
-            //set description to delcared description
-            description=experience.description
-            console.log(description);
-            //splice description to get rid of old bullet
-            description.splice(indexBullet,1);
-            //splice again to add in new bullet
-            description.splice(indexBullet,0,updatedBullet)
+        if( experience.index === indexExperience ) {
+              //we want to get the description into a new array
+         updateDescription = Array.from(experience.description)
+         console.log(updateDescription)
+         //splice the index we want to remove
+         updateDescription.splice(indexBullet,1)
+         console.log(updateDescription)
+         //splice in the newBull target value
+        updateDescription.splice(indexBullet,0,updatedBullet)
+        console.log(updateDescription)
+         //set new state
         }
     })
+
     //now reset prev state
     if(experiences) {
         setExperiences((prevState)=> prevState.map(
-           experience => experience.index === indexExperience ? {...experience, description:description} : experience
+           experience => experience.index === indexExperience ? {...experience, description:updateDescription} : experience
         ));
         
     }
