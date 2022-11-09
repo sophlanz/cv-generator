@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUserName } from '../redux/userSlice';
 import Nav from './navs/NavLogin';
-require('dotenv').config();
+
 export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -28,7 +28,10 @@ export default function Login() {
                 username:username,
                 password:password
             }
-            const url = process.env.API_URL || 'http://localhost:9000'
+            
+           /*  const url =  || 'http://localhost:9000' */
+           console.log(process.env.NODE_ENV);
+           const url = process.env.NODE_ENV === 'production' ? 'https://cv-curator.up.railway.app' : 'http://localhost:9000' 
             console.log(body)
             console.log(url)
             axios.post(`${url}/login`,body)
