@@ -30,6 +30,7 @@ export default function Login() {
             }
             const url = process.env.API_URL || 'http://localhost:9000'
             console.log(body)
+            console.log(url)
             axios.post(`${url}/login`,body)
             .then((response)=> {
                 console.log("hi")
