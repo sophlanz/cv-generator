@@ -131,10 +131,11 @@ export default function Workstation() {
             username:username,
             id:userId
         }
+        const url = process.env.NODE_ENV === 'production' ? 'https://cv-curator.up.railway.app' : 'http://localhost:9000' 
         const getCvs = () => {
             //use axios to make get request to server
          console.log(body)
-            axios.get(`http://localhost:9000/savecv/${userId}`,body)
+            axios.get(`${url}/savecv/${userId}`,body)
             .then((response)=> {
                 //save just the resumes
                 console.log(response)

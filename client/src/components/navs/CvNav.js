@@ -4,7 +4,8 @@ import axios from 'axios';
 export default function NavWelcome() {
     const navigate = useNavigate()
     const logout = () => {
-        axios.post('http://localhost:9000/logout')
+        const url = process.env.NODE_ENV === 'production' ? 'https://cv-curator.up.railway.app' : 'http://localhost:9000' 
+        axios.post(`${url}/logout`)
         .then((response)=> {
             if(response.status === 200) {
                 navigate("/login");

@@ -51,8 +51,9 @@ export default function CV() {
        username:username,
        resume:data,
    }
+   const url = process.env.NODE_ENV === 'production' ? 'https://cv-curator.up.railway.app' : 'http://localhost:9000' 
   
-   axios.post('http://localhost:9000/savecv',body )
+   axios.post(`${url}/savecv`,body )
    .then((results)=> {
         console.log(results);
    })
@@ -73,9 +74,9 @@ export default function CV() {
            resume: data
         };
         console.log(data);
-        
+        const url = process.env.NODE_ENV === 'production' ? 'https://cv-curator.up.railway.app' : 'http://localhost:9000'
         //axios request to update data, use id to cv instance
-        axios.post(`http://localhost:9000/update-cv/${id}`,body)
+        axios.post(`${url}/update-cv/${id}`,body)
         .then((results)=> {
             console.log(results)
         })

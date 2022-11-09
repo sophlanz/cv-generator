@@ -17,8 +17,9 @@ export default function Register() {
             username:username,
             email:email
         }
+        const url = process.env.NODE_ENV === 'production' ? 'https://cv-curator.up.railway.app' : 'http://localhost:9000' 
         //send  request, then redirect
-        axios.post('http://localhost:9000/register',body)
+        axios.post(`${url}/register`,body)
         .then(()=> {
             
         })
