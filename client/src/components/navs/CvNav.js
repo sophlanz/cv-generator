@@ -9,6 +9,7 @@ export default function NavWelcome() {
         .then((response)=> {
             if(response.status === 200) {
                 navigate("/login");
+                
             }
         }).catch((err)=> {
             console.log(err)
@@ -23,7 +24,7 @@ export default function NavWelcome() {
               {/*wrap each letter in a span for hover effect */}
                 <div className="navLinks">
                     <h3><a href="/"><Link to={'/workstation'}>WORKSTATION</Link></a></h3>
-                    <h2 onClick={()=> logout()}><a href="/login">LOGOUT</a>  </h2>
+                    <h2 onClick={()=> logout()}><a href="#">LOGOUT</a>  </h2>
                 </div>
             </nav>
         </>
