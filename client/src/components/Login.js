@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUserName } from '../redux/userSlice';
 import Nav from './navs/NavLogin';
-
+require('dotenv').config();
 export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
