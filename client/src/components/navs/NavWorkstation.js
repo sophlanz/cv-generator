@@ -22,7 +22,7 @@ export default function NavWelcome() {
             <nav className = 'navWorkstation'>
                 <h1><a href="/"><Link to={'/'}>CV CURATOR<span>.</span></Link></a></h1>
               {/*wrap each letter in a span for hover effect */}
-                <h2 onClick={()=> logout()}><a href='#'>LOGOUT</a>  </h2>
+                <h2 onClick={()=> logout()}>LOGOUT </h2>
             </nav>
         </>
     )
