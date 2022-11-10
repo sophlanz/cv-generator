@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 export const cvSlice = createSlice({
     name:'cv',
@@ -57,6 +57,7 @@ export const cvSlice = createSlice({
                 index:action.payload.index,
                 id:action.payload.id
             }
+            console.log(current(state));
                //in case of editing the project,if the index already exists , get the index of the education object and delete it to replace it with the new one
                const i = state.projects.findIndex(project => project.id === action.payload.id)
                
@@ -84,7 +85,7 @@ export const cvSlice = createSlice({
                     
                    
                }
-               
+               console.log(current(state))
           
         },
         experiencesSection: (state,action)=> {

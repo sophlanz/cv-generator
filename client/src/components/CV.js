@@ -41,6 +41,7 @@ export default function CV() {
     //send data to db, for new file
     const saveData = () => {
         const data = {...cv, fileName:fileName}
+        console.log(data);
         //send filename to store
         dispatch(
             addFileName({

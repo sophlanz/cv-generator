@@ -11,23 +11,21 @@ router.post('/savecv', async (req,res) => {
   const user = await User.findOne({
   username:username
 });
-
 //create data using Cv schema, and the data passed to the req
 let data = await new Cv(req.body.resume).save()
-
-
+console.log(data);
 //add the data to the User schema using the data id
 user.resume.push(data)
 
-await user.save().then(() => {
-  
+await user.save().then((response) => {
+  res.status(200).send(response)
 })
 .catch((err)=> {
   res.status(400).send('Unable to save CV');
 })
   //find the CV's saved by that user
   } catch (err) {
-   
+   console.log(err);
   }
 })
 //get resume from server

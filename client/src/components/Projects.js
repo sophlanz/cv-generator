@@ -7,7 +7,7 @@ export default function Projects() {
 const dispatch = useDispatch();
 //Get CV from redux store to check to see if details have been saved to the store
 const savedCv = useSelector((state)=> state.cv);
-
+console.log(savedCv);
 
   //state where we'll keep track if the user wants to view saved data
   //if the projects array is empty, there's no saved data, we want to use default values
