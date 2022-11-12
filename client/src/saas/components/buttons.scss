@@ -122,12 +122,11 @@ justify-content:center;
   filter:brightness(75%);
   color:black;
 }
-.workStationContent > button {
+.workStationContent > header > button {
  border:1.5px solid $lightBlue;
  background-color:white;
   letter-spacing:1px;
   width:200px;
-  margin-left:250px;
   border-radius:2rem;
   height:60px;
   font-size:1.3rem;
@@ -135,7 +134,7 @@ justify-content:center;
   margin-top:40px;
   transition:all ease-in-out .5s;
 }
-.workStationContent > button:hover {
+.workStationContent > header > button:hover {
   background-color:$lightBlue;
   color:$greyForBlue;
   transition:all ease-in-out .5s;

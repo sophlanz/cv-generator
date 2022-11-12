@@ -57,20 +57,25 @@ router.get('/savecv/:id', async (req,res)=> {
 
 })
 //use object id to update CV
-router.post('/update-cv/:id', async (req,res)=> {
-  const update = req.body.resume
-  
+router.post('/update-cv/:id',  (req,res)=> {
   Cv.findOneAndUpdate({_id:req.params.id}, req.body.resume, {new:true}, (err,resume)=> {
     if(err) {
-      
+      console.log(err)
+      res.status(400).send(err);
     }
     res.status(200).json(resume)
   });
   
 })
-  //don't want to update filename or id
-    //query with id
-    //set info to req.body
-    //save results
+router.delete('/delete-cv/:id', async (req,res)=> {
+  console.log(req.params.id)
+    await Cv.deleteOne({_id: req.params.id}), (error) => {
+      if (error) {
+        console.log(error)
+        res.status(400).send(error)
+      }
+      res.status(200).send('deleted')
+    }
+})
 
 module.exports = router;

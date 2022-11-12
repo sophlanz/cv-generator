@@ -16,6 +16,27 @@ export default function Workstation() {
    const dispatch = useDispatch();
    
 
+const url = process.env.NODE_ENV === 'production' ? 'https://cv-curator.up.railway.app' : 'http://localhost:9000' 
+const getCvs = () => {
+    //use axios to make get request to server
+    const body = {
+        username:username,
+        id:userId
+    }
+    console.log(body);
+    axios.get(`${url}/savecv/${userId}`,body)
+    .then((response)=> {
+        //save just the resumes
+        console.log(response)
+        setUserData(response.data.resume);
+        console.log(response.data.resume)
+        
+    })
+    .catch((error)=> {
+        console.log(error)
+    }) 
+
+}
 
   const sendDispatchHandler=(resume)=> {
       //use resume to get values, and send to redux store
@@ -125,30 +146,28 @@ export default function Workstation() {
           reset()
       )
   }
+  const handleDelete = (e) => {
+    //delete post using the id we stored in target value (the image)
+    const id = e.target.id
+    console.log(id);
+    axios.delete(`${url}/delete-cv/${id}`)
+        .then((response)=> {
+            if(response.status==200) {
+                alert('Cv delete!')
+              
+            }
+        })
+        .then(()=> {
+            getCvs();
+        })
+        .catch((err)=> {
+            console.log(err)
+        })
+  };
     //use effect, call get CV on load
     useEffect(()=> {
       
-        const body = {
-            username:username,
-            id:userId
-        }
-        const url = process.env.NODE_ENV === 'production' ? 'https://cv-curator.up.railway.app' : 'http://localhost:9000' 
-        const getCvs = () => {
-            //use axios to make get request to server
-         console.log(body)
-            axios.get(`${url}/savecv/${userId}`,body)
-            .then((response)=> {
-                //save just the resumes
-                console.log(response)
-                setUserData(response.data.resume);
-                console.log(response.data.resume)
-                
-            })
-            .catch((error)=> {
-                console.log(error)
-            }) 
-    
-        }
+      
         getCvs();
          //eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
@@ -157,14 +176,14 @@ export default function Workstation() {
         <Nav/>
        
         <div className="workStationContent">
-
+            <header>
              {/*Header */}
              <h1>Curriculum Vitaes that land us our dream job<span>.</span></h1>
             {/*Menu */}
             <button><Link to={"/create-cv"} onClick={handleReset}>Create New CV</Link></button>
              {/* <button onClick={getCvs}>View Saved Cv's</button> */}
             {/*Display the response of the CV, allow to click and send the data to the CV*/}
-              
+            </header>
             {/*Display user data */}
             <div className="dataTable">
                 <div className="properties">
@@ -175,7 +194,7 @@ export default function Workstation() {
                 {/*Map through the state array and display file information */}
                 { userData ?
                 [...userData].map((resume,index)=> {
-                 
+                 console.log(resume);
                     const date = new Date(resume.created_at).toLocaleString()
                     console.log(date)
                     return(
@@ -184,7 +203,7 @@ export default function Workstation() {
                            <li ><Link to="/create-cv" onClick={()=> {handleReset(); sendDispatchHandler(resume);}}>{resume.fileName}</Link></li> 
                             <li>{new Date(resume.created_at).toLocaleString( ('en-US'), { year: 'numeric', month: 'numeric', day: 'numeric',hour: '2-digit', minute: '2-digit', hour12: true})}</li>
                             <li>{new Date(resume.updated_at).toLocaleString(('en-US'), { year: 'numeric', month: 'numeric', day: 'numeric',hour: '2-digit', minute: '2-digit', hour12: true})}</li>
-                            <img  src={trashcan} />
+                            <img id={resume._id} onClick={(e)=>handleDelete(e)} src={trashcan} />
                         </ul>
                     )
                 })

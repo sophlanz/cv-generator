@@ -66,7 +66,7 @@ app.use('/', resumeRouter );
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  console.log('hi');
+  console.log('hello 404');
   next(createError(404));
 
 });
