@@ -20,4 +20,3 @@ CV generator specifically aimed to assist self-taught developers looking to land
 ## Future Updates
 - Responsive mobile design
 - Forgot password
-## Screenshots
