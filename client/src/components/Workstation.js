@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { aboutSection, addFileName, addId, educationSection, skillSection,experiencesSection, projectSection } from '../redux/cvSlice';
 import { reset } from '../redux/cvSlice';
 import Nav from './navs/NavWorkstation';
+import trashcan from '../images/delete.png'
 export default function Workstation() {
     //get username from user reducer, saved in an object 
     const username = useSelector((state) => state.user[0].username)
@@ -183,6 +184,7 @@ export default function Workstation() {
                            <li ><Link to="/create-cv" onClick={()=> {handleReset(); sendDispatchHandler(resume);}}>{resume.fileName}</Link></li> 
                             <li>{new Date(resume.created_at).toLocaleString( ('en-US'), { year: 'numeric', month: 'numeric', day: 'numeric',hour: '2-digit', minute: '2-digit', hour12: true})}</li>
                             <li>{new Date(resume.updated_at).toLocaleString(('en-US'), { year: 'numeric', month: 'numeric', day: 'numeric',hour: '2-digit', minute: '2-digit', hour12: true})}</li>
+                            <img  src={trashcan} />
                         </ul>
                     )
                 })
