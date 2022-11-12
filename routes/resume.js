@@ -69,12 +69,18 @@ router.post('/update-cv/:id',  (req,res)=> {
 })
 router.delete('/delete-cv/:id', async (req,res)=> {
   console.log(req.params.id)
-    await Cv.deleteOne({_id: req.params.id}), (error) => {
-      if (error) {
-        console.log(error)
-        res.status(400).send(error)
+  try {
+     Cv.deleteOne({_id: req.params.id}).then((err, response)=> {
+      if(err) {
+        console.log(err)
       }
-      res.status(200).send('deleted')
+      console.log(response)
+      res.status(200).send(response)
+     }
+     )}
+
+  catch(err) {
+      console.log(err)
     }
 })
 

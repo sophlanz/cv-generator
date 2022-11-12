@@ -57,9 +57,11 @@ export default function CV() {
    axios.post(`${url}/savecv`,body )
    .then((results)=> {
         console.log(results);
+        alert('CV saved!')
    })
    .catch((err)=> {
        console.log(err)
+       alert('CV unable to save')
    });
     
     }

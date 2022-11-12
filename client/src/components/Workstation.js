@@ -19,6 +19,7 @@ export default function Workstation() {
 const url = process.env.NODE_ENV === 'production' ? 'https://cv-curator.up.railway.app' : 'http://localhost:9000' 
 const getCvs = () => {
     //use axios to make get request to server
+    console.log('getting CVS')
     const body = {
         username:username,
         id:userId
@@ -146,20 +147,16 @@ const getCvs = () => {
           reset()
       )
   }
-  const handleDelete = (e) => {
+  const handleDelete = async (e) => {
     //delete post using the id we stored in target value (the image)
     const id = e.target.id
     console.log(id);
-    axios.delete(`${url}/delete-cv/${id}`)
-        .then((response)=> {
-            if(response.status==200) {
-                alert('Cv delete!')
-              
-            }
-        })
-        .then(()=> {
+   await axios.delete(`${url}/delete-cv/${id}`)
+        .then(() => {
+         
             getCvs();
-        })
+            }
+        )
         .catch((err)=> {
             console.log(err)
         })
