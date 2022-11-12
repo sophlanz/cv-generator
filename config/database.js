@@ -12,7 +12,7 @@ const connectionParams={
 }
 const dbConnect = () => {mongoose.connect(url,connectionParams)
     .then( () => {
-        
+        console.log('connected to the db')
     })
     .catch( (err) => {
         console.error(`Error connecting to the database. n${err}`);
