@@ -1,0 +1,146 @@
+/*800-10000 px*/
+@media only screen and (min-width:751px) and (max-width: 1000px) {
+  
+    .rightContainer{
+        display:none;
+    }
+    /*left cotainer becomes 100vw*/
+    .leftContainer {
+        width:100%;
+        
+    }
+    /*get rid of flex, so inputs stack ontop of one another*/
+    .nameUserContainer{
+        display:block;
+    }
+    .registerForm input, .loginForm input {
+       width: clamp(20rem, 30vw, 70rem);
+       height:6.5vh;
+    }
+    .registerContent > header {
+        font-size:3.2rem;
+    }
+    .registerContent {
+        width:100%;
+        display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    }
+    .registerForm, .loginForm {
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+    }
+    body, html {
+        min-width: 100%;
+    }
+    .registerButtons button {
+        width: 40vw;
+        font-size: 2.3rem;
+        height: 7vh;
+    }
+  
+    .registerForm input, .loginForm input {
+        width: clamp(30rem, 80vw, 70rem);
+        font-size:2.3rem;
+        font-weight:300;
+    }
+    .registerForm label, .formWrapper label, .loginForm label, .projects label, .nameFile label {
+        font-size:2.3rem
+    }
+    input:focus + label, input:not(:placeholder-shown) + label {
+        font-size:2.1rem;
+        transform: translate(0, -5.5rem);
+    }
+
+ 
+}
+/*hide right container for extra small screens, just show the signup form*/
+/*360-800px*/
+@media only screen and (max-width: 750px) {
+  
+    /*get rid of flex, so inputs stack ontop of one another*/
+    .nameUserContainer{
+        display:block;
+    }
+    .registerForm input, .loginForm input {
+       width: clamp(20rem, 30vw, 70rem);
+       font-size:1.2rem;
+       font-weight:300;
+    }
+    .registerContent header {
+        font-size:1.3rem;
+    }
+    .rightContainer{
+        display:none;
+    }
+    /*left cotainer becomes 100vw*/
+    .leftContainer {
+        width:100%;
+        
+    }
+    /*get rid of flex, so inputs stack ontop of one another*/
+    .nameUserContainer{
+        display:block;
+    }
+    .registerForm input, .loginForm input {
+       width: clamp(18rem, 30vw, 70rem);
+       height:5.3vh;
+    }
+    .registerContent {
+        width:100%;
+        display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    }
+    .registerForm, .loginForm {
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+    }
+    body, html {
+        min-width: 100%;
+    }
+    .registerButtons button {
+        width: clamp(5em,60vw,11em)
+    }
+ 
+    .registerForm label, .formWrapper label, .loginForm label, .projects label, .nameFile label {
+        font-size:1.2rem
+    }
+   /*  input:focus + label, input:not(:placeholder-shown) + label {
+        font-size:1.2rem;
+        transform: translate(0, -3.7rem);
+   
+    } */
+}
+
+/*samsung galaxy s8*/
+@media only screen and (max-width: 360px) {
+    .leftContainer {
+        min-width:100%;
+
+    }
+    .registerContent{
+        justify-content:flex-end
+
+    }
+    .registerContent > header {
+        padding-left:1em;
+        font-size:1rem;
+    }
+
+}  
+/*galaxy fold*/
+@media only screen and (max-width: 300px) {
+    .registerForm input, .loginForm input {
+        width:clamp(16rem, 30vw, 70rem);
+        font-weight:300;
+    }
+    .registerButtons button {
+        width:45vw;
+    }
+
+}

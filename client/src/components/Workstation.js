@@ -200,7 +200,7 @@ const getCvs = () => {
                            <li ><Link to="/create-cv" onClick={()=> {handleReset(); sendDispatchHandler(resume);}}>{resume.fileName}</Link></li> 
                             <li>{new Date(resume.created_at).toLocaleString( ('en-US'), { year: 'numeric', month: 'numeric', day: 'numeric',hour: '2-digit', minute: '2-digit', hour12: true})}</li>
                             <li>{new Date(resume.updated_at).toLocaleString(('en-US'), { year: 'numeric', month: 'numeric', day: 'numeric',hour: '2-digit', minute: '2-digit', hour12: true})}</li>
-                            <img id={resume._id} onClick={(e)=>handleDelete(e)} src={trashcan} />
+                            <img id={resume._id} onClick={(e)=>handleDelete(e)} src={trashcan} alt="trashcan"/>
                         </ul>
                     )
                 })
