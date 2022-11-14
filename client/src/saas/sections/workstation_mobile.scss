@@ -1,0 +1,36 @@
+@media only screen and (max-width: 1000px){
+    /*header*/
+    .workStationContent > header > h1 {
+        width:100%;
+        text-align:center;
+    }
+    /*header that also contains button, center the items*/
+    .workStationContent > header {
+        align-items:center;
+        margin-bottom:50px;
+    }
+    /*hide the properties, we won't use them*/
+    .properties {
+        display:none;
+    }
+    .cvList {
+        flex-direction:column;
+        margin:0px;
+        width:100vw;
+        height: auto;
+        gap: 10px;
+        padding-bottom: 10px;
+    }
+    /*no hover events, so just display trashcan*/
+    .cvList img {
+        display:block;
+       
+    }
+    /*hide and show hamburger*/
+    .navWorkstation{
+        display:none;
+    }
+}
+@media only screen and (max-width: 360px){
+
+}

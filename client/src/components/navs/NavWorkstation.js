@@ -1,6 +1,8 @@
 import React from 'react'
 import {Link, useNavigate} from "react-router-dom";
 import axios from 'axios';
+import HamburgerNav from './HamburgerNavWorkstation'
+import HamburgerNavWorkstation from './HamburgerNavWorkstation';
 export default function NavWelcome() {
     const navigate = useNavigate()
     const logout = () => {
@@ -25,6 +27,8 @@ export default function NavWelcome() {
               {/*wrap each letter in a span for hover effect */}
                 <h2 onClick={logout}>LOGOUT </h2>
             </nav>
+              {/*hamburger nav for mobile view */}
+            <HamburgerNavWorkstation/>
         </>
     )
 }
