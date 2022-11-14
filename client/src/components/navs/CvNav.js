@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link, useNavigate} from "react-router-dom";
 import axios from 'axios';
+import HamburgerNav from './HamburgerNavCv'
 export default function NavWelcome() {
     const navigate = useNavigate()
     const logout = () => {
@@ -27,6 +28,8 @@ export default function NavWelcome() {
                     <h2 onClick={()=> logout()}>LOGOUT </h2>
                 </div>
             </nav>
+            {/*hamburger nav for mobile */}
+            <HamburgerNav/>
         </>
     )
 }

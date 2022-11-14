@@ -1,0 +1,46 @@
+@media only screen and (max-width: 1200px) {
+   .close {
+    top: 120px;
+    right: 210px;
+   }
+}
+@media only screen and (max-width: 1000px) {
+    .cvList {
+        flex-direction:column;
+        margin:0px;
+        width:100vw;
+        height: auto;
+        gap: 10px;
+        padding-bottom: 10px;
+    }
+    /*no hover events, so just display trashcan*/
+    .cvList img {
+        display:block;
+    }
+    /*hide and show hamburger*/
+    .navWorkstation{
+        display:none;
+    }
+    /*scroll over flow, don't want to change layout, because we want the correct layout for pdf/printing*/
+    .paper {
+        overflow:auto;
+    }
+    /*leave room for navBar*/
+    .aboutDisplay {
+        margin-top: 50px;
+    }
+    .modalContent {
+        max-height:90%;
+    }
+    .close {
+        top: 100px;
+        right: 180px;
+    }
+    
+}
+@media only screen and (max-width: 700px) {
+    .close {
+        top: 70px;
+        right: 70px;
+    }
+}

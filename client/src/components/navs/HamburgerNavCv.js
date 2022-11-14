@@ -2,8 +2,7 @@ import React, { useState} from 'react'
 import { Sling as Hamburger } from 'hamburger-react'
 import {Link, useNavigate} from "react-router-dom";
 import axios from 'axios';
-
-export default function HamburgerNavWorkstation() {
+export default function HamburgerNavCv() {
     const [isOpen, setOpen] = useState(false);
     const navigate = useNavigate()
     const logout = () => {
@@ -39,7 +38,8 @@ export default function HamburgerNavWorkstation() {
                     isOpen ? 
                     <div className="hamburgerLinks">
                     <h1><Link to={'/'}>CV CURATOR<span>.</span></Link></h1>
-                    <h2 onClick={logout}>LOGOUT </h2>
+                    <h3><a href="/"><Link to={'/workstation'}>WORKSTATION</Link></a></h3>
+                    <h2 onClick={()=> logout()}>LOGOUT </h2>
                     </div>
                     :
                     <h1><Link to={'/'}>CV CURATOR<span>.</span></Link></h1>

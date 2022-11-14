@@ -18,7 +18,6 @@
   padding-bottom:10px;
   border: 10px solid $lightBlue;
   width: 50%; 
-  min-height:50%;
   color:black;
   max-height:80%;
   display:flex;
@@ -34,8 +33,8 @@
   font-size: 28px;
   font-weight: bold;
   position:absolute;
-  top:140px;
-  right:280px;
+  top: 180px;
+  right: 380px;
   };
 .close:hover,.close:focus {
   color: black;
