@@ -1,0 +1,114 @@
+@media only screen and (max-width: 1000px) {
+    .ball {
+        width: 8em;
+        height: 8em;
+        margin-top: -4em ;
+        margin-left: -4em;
+    
+    }
+    .navWelcome {
+        display:none
+    } 
+
+    /*hide title on welcome screen*/
+   .gridContainer > h1 {
+        display:none;
+    }
+    /*links inside of hamburger*/
+    .hamburgerLinks {
+        color:$lightBlue;
+        font-size:3rem;
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        width:100%;
+    }
+    .hamburgerLinks > a {
+        border-top:1px solid white;
+        width:100%;
+        text-align:center;
+        padding-top:12px;
+        padding-bottom:8px;
+    }
+    /*header inside of hamburger links*/
+    .hamburgerLinks > h1 {
+        position:absolute;
+        top:-10px;
+        color:white;
+        text-align:center;
+        width: 100%;
+        /*overwrite grid container positioning*/
+        left: 0px;
+        font-size:3rem;
+    }
+    /*header inside of hamburger menu*/
+    .hamburgerLinks > h1 a > span  {
+        color:$lightBlue;
+        font-size:4rem;
+    }
+    /*header on main screen*/
+    .hamburger > h1 {
+        position:absolute;
+        top:5px;
+        left:10px;
+        font-size:3rem;
+    }
+    .hamburger > h1 > a span {
+        color:$lightBlue;
+        font-size:3rem;
+    }
+    /*actual hamburger component from react*/
+  .hamburger-react {
+    position:absolute;
+    right:0px;
+    /*sit ontop of header*/
+    z-index:2;
+  }
+  /*hamburger nav container*/
+   .hamburger {
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    align-items: flex-end;
+   }
+ 
+}
+@media only screen and (max-width: 750px) {
+    .ball {
+        width: 6em;
+        height: 6em;
+        margin-top: -3em ;
+        margin-left: -3em;
+    
+    }
+      /*links inside of hamburger*/
+      .hamburgerLinks {
+        font-size:2rem;
+    }
+      /*header inside of hamburger links*/
+      .hamburgerLinks > h1 {
+        font-size:2rem;
+    }
+    .hamburgerLinks > h1 {
+        position:absolute;
+        top:-15px;
+    }
+      /*header on main screen*/
+      .hamburger > h1 {
+        font-size:2rem;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .hamburger > h1 {
+        font-size:2rem;
+    }
+}
+/*very small screens*/
+@media only screen and (max-width: 300px) {
+    .ball {
+        min-width: 4em;
+        min-height: 4em;
+        font-size: 2rem;
+    }
+}
+

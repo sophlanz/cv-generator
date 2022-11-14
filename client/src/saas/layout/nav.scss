@@ -13,6 +13,10 @@
     background-color:white;
     cursor:pointer;
 }
+/*hide hamburger*/
+.hamburger {
+    display:none;
+}
 .navLoginRegister > h1, .navWorkstation > h1 {
     font-weight: 800;
     font-size: 1.7rem;
@@ -60,4 +64,8 @@
 }
 .navWorkstation{
     z-index:3;
+}
+/*set display to none, until the media query requests it*/
+.hamburgerNav {
+    display:none;
 }
