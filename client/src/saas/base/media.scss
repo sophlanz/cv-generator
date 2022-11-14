@@ -1,17 +1,24 @@
 
-@page {
-    size: a4;
-    margin:4(.25mm);
-    
-  };
+
 
   @media print {
-    
+    @page {
+      size: a4;
+      /*  margin:4(.25mm); */
+    /*   margin-left:.25mm;
+      margin-right:.25mm; */
+      
+        margin-left: 0.5in;
+        margin-right: 0.5in;
+        margin-top: 0;
+        margin-bottom: 0;
+      
+    };
    
    body,.paper {
         width: 210mm;
       height: 297mm; 
-      margin:0px;
+      margin:0;
       padding:0px;
    }
    button, .cvButtons,  .navCV, .modal{
