@@ -59,6 +59,11 @@ export default function Login() {
                 
             })
         }
+    const handleClear = () => {
+        //clear state of password and username
+        setUsername("");
+        setPassword("");
+    }
     return (
         <div>
               <div className="leftContainer">
@@ -80,7 +85,8 @@ export default function Login() {
                         <label htmlFor="password">Password:</label>
                     </div>
                     <div className="registerButtons"> 
-                        <button className="clearButton" >Clear</button>
+                        {/*get rid of default submit value */}
+                        <button className="clearButton" type="button" onClick={handleClear} >Clear</button>
                         <button className= "login"type="submit">Login</button>
                     </div>
                 </form>

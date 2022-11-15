@@ -7,6 +7,7 @@ export default function Register() {
     const [password, setPassword] = useState(null);
     const [username, setUsername] = useState(null);
     const [email, setEmail] = useState(null);
+    const[firstName,setFirstName]=useState(null);
     const [error,setError] = useState(null);
     const navigate = useNavigate();
     const SubmitRegister = () => {
@@ -32,6 +33,13 @@ export default function Register() {
           }
         
     };
+    const handleClear = () => {
+        //clear state of password, username, email, and firstName
+        setUsername("");
+        setPassword("");
+        setEmail('');
+        setFirstName("");
+    }
     return (
         <>
         
@@ -46,7 +54,7 @@ export default function Register() {
                 <form onSubmit={SubmitRegister} className="registerForm">
                     <div className="nameUserContainer">
                         <div className="formWrapper">
-                                <input placeholder="  "  name="firstName" id="firstName" type="text"/>
+                                <input placeholder="  "  onChange={(e)=> setFirstName(e.target.value)} value={firstName} name="firstName" id="firstName" type="text"/>
                                 <label htmlFor="firstName">First name </label>
                         </div>
                         <div className="formWrapper">
@@ -63,7 +71,8 @@ export default function Register() {
                         <label htmlFor="password">Password:</label>
                     </div>
                     <div className="registerButtons"> 
-                        <button className="clearButton" >Clear</button>
+                     {/*get rid of default submit value */}
+                        <button className="clearButton" type="button" onClick={handleClear}>Clear</button>
                         <button className="createAccount" type="submit">Create Account</button>
                     </div>
                 </form>
