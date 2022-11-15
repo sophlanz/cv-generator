@@ -64,6 +64,8 @@
 }
 .navWorkstation{
     z-index:3;
+    /*z-index won't work without position relative*/
+    position: relative;
 }
 /*set display to none, until the media query requests it*/
 .hamburgerNav {
