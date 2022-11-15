@@ -125,6 +125,7 @@ const getCvs = () => {
                 description:project.description,
                 technologies:project.technologies,
                 liveDemo:project.liveDemo,
+                sourceCode:project.sourceCode,
                 index:project.index,
                 id:project.id,
             })

@@ -35,7 +35,8 @@ const Cv = new Schema({
             technologies:[{type:String}],
             index:Number,
             id:String,
-            liveDemo:String
+            liveDemo:String,
+            sourceCode:String
         }
     ],
     experiences: [ 
