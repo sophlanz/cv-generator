@@ -37,7 +37,7 @@
   };
   /**/
 
-.liveDemo{
+.liveDemo, .sourceCode{
     display:flex;
     gap:5px;
   };
@@ -45,12 +45,16 @@
       width:290px;
       height:40px;
   } */
-  .liveDemo h1{
+  .liveDemo h1, .sourceCode h1{
     font-size: 1.1rem;
     font-style: italic;
     font-weight: 300;
     border-bottom: 2px solid black;
   }
-  .formWrapper > .titleProjects, .formWrapper > .liveDemo{
+  .formWrapper > .titleProjects, .formWrapper > .liveDemo, .formWrapper > .sourceCode{
     width:290px;
+  }
+  .projectLinks {
+    display:flex;
+    gap:10px;
   }

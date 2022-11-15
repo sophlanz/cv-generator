@@ -54,6 +54,7 @@ export const cvSlice = createSlice({
                 description:action.payload.description,
                 technologies:action.payload.technologies,
                 liveDemo:action.payload.liveDemo,
+                sourceCode:action.payload.sourceCode,
                 index:action.payload.index,
                 id:action.payload.id
             }
@@ -181,6 +182,7 @@ export const cvSlice = createSlice({
                 description:action.payload.description,
                 technologies:action.payload.technologies,
                 liveDemo:action.payload.liveDemo,
+                sourceCode:action.payload.sourceCode,
                 index:action.payload.index,
                 id:action.payload.id
             }

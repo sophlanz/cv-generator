@@ -9,7 +9,7 @@ const dispatch = useDispatch();
 const savedCv = useSelector((state)=> state.cv);
 console.log(savedCv);
 
-  //state where we'll keep track if the user wants to view saved data
+  //state where we'll keep track of if the user wants to view saved data
   //if the projects array is empty, there's no saved data, we want to use default values
 const savedData = savedCv.projects.length === 0 ? false : true;
     //if savedData is true,map the education array, else use the default values and two objects
@@ -22,6 +22,7 @@ const savedData = savedCv.projects.length === 0 ? false : true;
     description:project.description,
     technologies:project.technologies,
     liveDemo:project.liveDemo,
+    sourceCode:project.sourceCode,
     edit:false,
     index:project.index,
     id:project.id,
@@ -34,6 +35,7 @@ const savedData = savedCv.projects.length === 0 ? false : true;
    description:["Fetches weather from the open weather API, and displays it with a user friendly interface."],
    technologies:["Open Weather Api, Vanialla Javascript, HTML & CSS"],
    liveDemo:"superdev.github.io/weatherApp/",
+   sourceCode:"github.com/superdev/weatherApp/",
    edit:false,
    index:0,
    id:uniqid()
@@ -42,6 +44,7 @@ const savedData = savedCv.projects.length === 0 ? false : true;
     description:["Personal twist on mock Facebook site, with new UI"],
     technologies:["Javascript, React , HTML & CSS"],
     liveDemo:"superdev.github.io/mockFacebook/",
+    sourceCode:"github.com/superdev/mockFacebook/",
     edit:false,
     index:1,
     id:uniqid()
@@ -50,10 +53,6 @@ const savedData = savedCv.projects.length === 0 ? false : true;
 )
 //states for editing
 const[edit, setEdit] = useState(false);
-
-
-
-
 const [index, setIndex] = useState(0);
 const [editBullets, setEditBullets] = useState({
     addBullet:false,
@@ -72,6 +71,7 @@ const [editBullets, setEditBullets] = useState({
             description:["Clothing store website made with React"],
             technologies:["Javascript","React","HTML & CSS", "Jest", "Webpack"],
             liveDemo:"superdev.github.io/clothing-store/",
+            sourceCode:"github.com/superdev/clothing-store/",
             edit:false,
             index:index,
             id:uniqid()
@@ -101,6 +101,7 @@ const [editBullets, setEditBullets] = useState({
                         description:project.description,
                         technologies:project.technologies,
                         liveDemo:project.liveDemo,
+                        sourceCode:project.sourceCode,
                         index:project.index,
                         id:project.id
                     })
@@ -126,15 +127,16 @@ const [editBullets, setEditBullets] = useState({
     const handleChange = (e) => {
         //get name from target to know which value to change
         const name = e.target.name;
+        console.log(name);
         //get index of the project we saved we we clicked edit 
         const i = index;
         
         const updateValue=e.target.value
-        
+        console.log(updateValue);
         //map through state and look for matching index, change those values
         setProjects(prevState => prevState.map(
             project => project.index=== i ? {...project, [name]: updateValue} : project
-        ));
+        ), console.log(projects));
     };
     const handleSubmit = () => {
         //set edit back to false
@@ -152,6 +154,7 @@ const [editBullets, setEditBullets] = useState({
                description:project.description,
                technologies:project.technologies,
                liveDemo:project.liveDemo,
+               sourceCode:project.sourceCode,
                index:project.index,
                id:project.id
            })
@@ -182,6 +185,7 @@ const [editBullets, setEditBullets] = useState({
                     description:project.description,
                     technologies:project.technologies,
                     liveDemo:project.liveDemo,
+                    sourceCode:project.sourceCode,
                     index:project.index,
                     id:project.id
                   })
@@ -256,6 +260,7 @@ const [editBullets, setEditBullets] = useState({
                   description:project.description,
                   technologies:project.technologies,
                   liveDemo:project.liveDemo,
+                  sourceCode:project.sourceCode,
                   index:project.index,
                   id:project.id
                 })
@@ -328,6 +333,7 @@ const [editBullets, setEditBullets] = useState({
                 description:project.description,
                 technologies:project.technologies,
                 liveDemo:project.liveDemo,
+                sourceCode:project.sourceCode,
                 index:project.index,
                 id:project.id
             })
@@ -340,6 +346,7 @@ const [editBullets, setEditBullets] = useState({
      
      
      const projectList =  projects.map((project,index)=> {
+        console.log(project)
          //put project.title and project.description in a div
          indexProject=project.index
          return(
@@ -371,8 +378,10 @@ const [editBullets, setEditBullets] = useState({
                      null
                  }
                  <div className="techUsed"><p className="techLabel">Technologies:</p><p>{project.technologies}</p></div>
-                     <div className="liveDemo"><h1 >Live Demo: </h1><a href={`https://${project.liveDemo}`} target="_blank" rel="noreferrer" ><p>{project.liveDemo}</p></a></div>
-                      {/*We don't want to give a delete button to the fist one */}
+                    <div className="projectLinks">
+                            <div className="liveDemo"><h1 >Live Demo: </h1><a href={`https://${project.liveDemo}`} target="_blank" rel="noreferrer" ><p>{project.liveDemo}</p></a></div>
+                            <div className="sourceCode"><h1 >Source Code: </h1><a href={`https://${project.sourceCode}`} target="_blank" rel="noreferrer" ><p>{project.sourceCode}</p></a></div>
+                    </div>
                  </div>
              </div>
          );
@@ -388,12 +397,11 @@ const [editBullets, setEditBullets] = useState({
          {projectList}
          </ul>
          {/*if edit, show input fields and submit button */}
-         
          {edit ? 
          <form className="projects">
                 <h1>Projects</h1>
                 <div className="formWrapper">
-                     <input name="title" className="titleProjects" id="titleProjects" placeHolder="  " onChange = {handleChange}/>
+                     <input name="title" className="titleProjects" id="titleProjects" placeholder="  " onChange = {handleChange}/>
                      <label htmlFor="titleProjects">Title</label>
                 </div>
                 <div className="formWrapper">
@@ -401,8 +409,12 @@ const [editBullets, setEditBullets] = useState({
                      <label htmlFor="technolgoiesProjects">Technologies Used</label>
                 </div>
                  <div className="formWrapper">
-                    <input name="liveDemo" className="liveDemo" id="liveDemo" placeHolder="  "onChange = {handleChange}/>
+                    <input name="liveDemo" className="liveDemo" id="liveDemo" placeholder="  "onChange = {handleChange}/>
                     <label htmlFor="liveDemo">Live Demo: user.github.io/project</label>
+                 </div>
+                 <div className="formWrapper">
+                    <input name="sourceCode" className="sourceCode" id="sourceCode" placeholder="  "onChange = {handleChange}/>
+                    <label htmlFor="sourceCode">Source Code: github.com/superdev/project</label>
                  </div>
                 <div className="formButtons">
                     <button className="add" onClick={addProject}>Add Project</button>
