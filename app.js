@@ -12,7 +12,6 @@ var usersRouter = require('./routes/users');
 var resumeRouter = require('./routes/resume');
 //passport imports
 var passport = require('passport')
-
 var LocalStrategy = require('passport-local').Strategy;
 require('dotenv').config();
 const secret = process.env.SECRET;
@@ -20,15 +19,32 @@ var app = express();
 app.use(express.json());
 //sessions
 const session = require('express-session')
+var MongoDBStore = require('connect-mongodb-session')(session);
 const MemoryStore = require('memorystore')(session)
+var store = new MongoDBStore({
+  uri: process.env.MONGODB_URI,
+  collection: 'mySessions'
+}, 
+function(error) {
+  console.log(error)
+});
+// Catch errors
+store.on('error', function(error) {
+  console.log(error);
+});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.use(cors());
+app.use(
+  cors({
+  origin: process.env.NODE_ENV === 'production' ? 'https://cv-curator.up.railway.app' : 'http://localhost:3000' ,
+  credentials:true
+})
+);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser(secret));
 /* app.use(express.static(path.join(__dirname, 'public'))); */
 app.use(express.static(path.join(__dirname, "client", "build")))
 //connect db
@@ -36,16 +52,8 @@ const dbConnect = require('./config/database')
 dbConnect();
 //require user model for passport
 const User = require('./models/Users')
-/*session for production */
-app.use(session({
-  cookie: { maxAge: 86400000 },
-  store: new MemoryStore({
-    checkPeriod: 86400000 // prune expired entries every 24h
-  }),
-  resave: false,
-  saveUninitialized: true,
-  secret: secret
-}))
+
+
 //expression session
 /*  app.use(require('express-session')({
   secret: secret,
@@ -53,11 +61,28 @@ app.use(session({
   saveUninitialized: true,
 }));  */
 //config passport
+passport.use(new LocalStrategy(User.authenticate())); 
+
+passport.serializeUser(User.serializeUser());
+
+passport.deserializeUser(User.deserializeUser());
+
+
+
+/*session for production */
+app.use(session({
+  cookie: { maxAge: 86400000 },
+ /*  store: new MemoryStore({
+    checkPeriod: 86400000 // prune expired entries every 24h
+  }), */
+  store   : store,
+  resave: false,
+  saveUninitialized: true,
+  secret: secret
+}))
+
 app.use(passport.initialize());
 app.use(passport.session());
- passport.use(new LocalStrategy(User.authenticate())); 
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
 
 //include routes
 app.use('/', indexRouter);

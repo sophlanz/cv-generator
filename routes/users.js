@@ -44,9 +44,8 @@ router.post('/login',  (req,res,next)=> {
     password:req.body.password
   });
   console.log(user)
- try {
- 
-  
+/*  try {
+  console.log("req.session after",req.session);
    req.login(user,(err) => {
     if(err) {
     return next(err)
@@ -56,35 +55,60 @@ router.post('/login',  (req,res,next)=> {
      
    passport.authenticate('local')(req,res,function() {
          res.send(req.user)
-         console.log(req.isAuthenticated())
+         console.log(req.session.passport.user, "req.session.passiort.user")
+         console.log("req.session", req.session)
+         console.log(req.session.passport)
+         console.log(req.isAuthenticated(), "req.isAuthenticated")
          req.session.save(function(err) {
           if(err) {
             console.log(err)
-          } console.log('session saved')
+          } else {
+            console.log('session saved')
+          } 
         })
 
     })
    }  
  
   }) 
- }
+ } */ 
+ try {
+  passport.authenticate('local')(req,res,function() {
+    res.send(req.user)
+    console.log(req.session.passport.user, "req.session.passiort.user")
+    console.log("req.session", req.session)
+    console.log(req.session.passport)
+    console.log(req.isAuthenticated(), "req.isAuthenticated")
+    req.session.save(function(err) {
+     if(err) {
+       console.log(err)
+     } else {
+       console.log('session saved')
+     } 
+   })
+ })}
  catch (error) {
    console.log(error)
  }
 
  })
 router.post('/logout', async function(req, res, next) {
-console.log(req.isAuthenticated())
+
 
   try {
-    console.log(req.isAuthenticated())
+    console.log("req.user", req.user);
+    console.log("req.isAuthenticated",req.isAuthenticated())
+    console.log("req.session", req.session)
+    console.log("req.session.passport", req.session.passport)
+    console.log(req.session.passport.user, "req.session.passiort.user")
+    console.log(req.isAuthenticated(), "before logout called")
   req.logout(req.user, function(err) {
   
   if (err) {   
     console.log(err);
      return next(err);  
      }
-     console.log(req.isAuthenticated())
+     console.log(req.isAuthenticated(), "after logout called")
 });
 } catch (err) {
   console.log(err)

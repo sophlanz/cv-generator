@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "connect-mongo": "^4.6.0",
+    "connect-mongodb-session": "^3.1.1",
     "cookie-parser": "~1.4.6",
     "cookie-session": "^2.0.0",
     "cors": "^2.8.5",
@@ -17,11 +18,14 @@
     "hamburger-react": "^2.5.0",
     "http-errors": "~2.0.0",
     "jade": "~1.11.0",
+    "jsonwebtoken": "^8.5.1",
     "memorystore": "^1.6.7",
     "mongoose": "^6.7.2",
     "morgan": "~1.10.0",
     "nodemon": "^2.0.20",
     "passport": "^0.6.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
     "passport-local-mongoose": "^7.1.2"
   }
 }

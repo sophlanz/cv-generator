@@ -37,7 +37,7 @@ export default function Login() {
             axios.post(`${url}/login`,body)
             .then((response)=> {
                 console.log("hi")
-                console.log(response)
+                console.log("loginResponse",response)
                 id=response.data._id
                 
             })

@@ -25,7 +25,7 @@ const getCvs = () => {
         id:userId
     }
     console.log(body);
-    axios.get(`${url}/savecv/${userId}`,body)
+    axios.get(`${url}/savecv/${userId}`,body,{ withCredentials: true })
     .then((response)=> {
         //save just the resumes
         console.log(response)
