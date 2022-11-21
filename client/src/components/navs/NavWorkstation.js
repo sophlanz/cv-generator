@@ -8,8 +8,9 @@ export default function NavWelcome() {
     const logout = () => {
         console.log('hey')
         const url = process.env.NODE_ENV === 'production' ? 'https://cv-curator.up.railway.app' : 'http://localhost:9000' 
-        axios.post(`${url}/logout` ,{ withCredentials: true })
+        axios.get(`${url}/logout` ,{ withCredentials: true })
         .then((response)=> {
+            console.log('response')
             if(response.status === 200) {
                 navigate("/login");
                 console.log(response)
