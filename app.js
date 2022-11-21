@@ -2,22 +2,33 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+/* var logger = require('morgan'); */
 var cors = require('cors');
-/*session */
-
+const bodyParser = require('body-parser')
+//strategies 
+require('./strategies/JwtStrategy');
+require('./strategies/LocalStrategy');
+require('./authenticate')
 //route imports
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var resumeRouter = require('./routes/resume');
 //passport imports
 var passport = require('passport')
-var LocalStrategy = require('passport-local').Strategy;
+/* var LocalStrategy = require('passport-local').Strategy; */
 require('dotenv').config();
 const secret = process.env.SECRET;
+
+//connect db
+const dbConnect = require('./config/database')
+dbConnect();
+
 var app = express();
 app.use(express.json());
-//sessions
+app.use(bodyParser.json());
+app.use(cookieParser(secret));
+
+/* //sessions
 const session = require('express-session')
 var MongoDBStore = require('connect-mongodb-session')(session);
 const MemoryStore = require('memorystore')(session)
@@ -31,7 +42,7 @@ function(error) {
 // Catch errors
 store.on('error', function(error) {
   console.log(error);
-});
+}); */
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -41,15 +52,13 @@ app.use(
   credentials:true
 })
 );
-app.use(logger('dev'));
-app.use(express.json());
+/* app.use(logger('dev'));
+ */
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser(secret));
+app.use(passport.initialize());
 /* app.use(express.static(path.join(__dirname, 'public'))); */
 app.use(express.static(path.join(__dirname, "client", "build")))
-//connect db
-const dbConnect = require('./config/database')
-dbConnect();
+
 //require user model for passport
 const User = require('./models/Users')
 
@@ -60,29 +69,22 @@ const User = require('./models/Users')
   resave: false, 
   saveUninitialized: true,
 }));  */
-//config passport
-passport.use(new LocalStrategy(User.authenticate())); 
-
-passport.serializeUser(User.serializeUser());
-
-passport.deserializeUser(User.deserializeUser());
 
 
 
 /*session for production */
-app.use(session({
-  cookie: { maxAge: 86400000 },
+/* app.use(session({
+  cookie: { maxAge: 86400000 }, */
  /*  store: new MemoryStore({
     checkPeriod: 86400000 // prune expired entries every 24h
   }), */
-  store   : store,
+/*   store   : store,
   resave: false,
   saveUninitialized: true,
   secret: secret
-}))
+})) */
 
-app.use(passport.initialize());
-app.use(passport.session());
+/* app.use(passport.session()); */
 
 //include routes
 app.use('/', indexRouter);

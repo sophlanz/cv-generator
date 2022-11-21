@@ -4,30 +4,43 @@ var router = express.Router();
 const User = require('../models/Users');
 const passport = require('passport');
 const Cv= require('../models/Cv');
+const { getToken, COOKIE_OPTIONS, getRefreshToken } = require("../authenticate")
 
 router.post('/register',  async (req,res)=> {
     try {
       //get user info from request body
       const { email, password,username } = req.body
       if (!(email && password && username)) {
-       
+       res.send('need all details')
       }  
       //check if user already exists 
       const oldUser = await User.findOne({ email })
       if(oldUser){
-        
+        res.send('please login')
       }
+      //register user, this is a passport-local-mongoose method
       User.register(({
         email:email.toLowerCase(),
         username:username.toLowerCase()
       }), password, function (err, user) {
         if(err) {
-          
+          console.log(err)
           
         } else {
-          passport.authenticate('local')(req,res,function() {
-            
-            
+          //once registered generate jwt
+          const token = getToken({ _id: user._id })
+          //regresh token generated
+          const refreshToken = getRefreshToken({ _id: user._id })
+          //push the refresh token to the user, which will later be saved
+          user.refreshToken.push({ refreshToken })
+          //save the user to the db
+          user.save((err,user)=> {
+            if(err) {
+              res.status(500).send(error.message)
+            } else {
+              res.cookie('refreshToken', refreshToken, COOKIE_OPTIONS)
+              res.send({success:true,token})
+            }
           })
         }
       })
@@ -44,41 +57,9 @@ router.post('/login',  (req,res,next)=> {
     password:req.body.password
   });
   console.log(user)
-/*  try {
-  console.log("req.session after",req.session);
-   req.login(user,(err) => {
-    if(err) {
-    return next(err)
-    }
-    else {
-      console.log(req.user)
-     
-   passport.authenticate('local')(req,res,function() {
-         res.send(req.user)
-         console.log(req.session.passport.user, "req.session.passiort.user")
-         console.log("req.session", req.session)
-         console.log(req.session.passport)
-         console.log(req.isAuthenticated(), "req.isAuthenticated")
-         req.session.save(function(err) {
-          if(err) {
-            console.log(err)
-          } else {
-            console.log('session saved')
-          } 
-        })
-
-    })
-   }  
- 
-  }) 
- } */ 
  try {
   passport.authenticate('local')(req,res,function() {
     res.send(req.user)
-    console.log(req.session.passport.user, "req.session.passiort.user")
-    console.log("req.session", req.session)
-    console.log(req.session.passport)
-    console.log(req.isAuthenticated(), "req.isAuthenticated")
     req.session.save(function(err) {
      if(err) {
        console.log(err)
