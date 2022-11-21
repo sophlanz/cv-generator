@@ -38,7 +38,8 @@ export default function Login() {
             .then((response)=> {
                 console.log("hi")
                 console.log("loginResponse",response)
-                id=response.data._id
+                id=response.data.user._id
+                console.log(id)
                 
             })
             .then(()=> {
