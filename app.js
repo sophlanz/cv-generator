@@ -24,7 +24,7 @@ const dbConnect = require('./config/database')
 dbConnect();
 
 var app = express();
-app.use(express.json());
+/* app.use(express.json()); */
 app.use(bodyParser.json());
 app.use(cookieParser(secret));
 
@@ -54,7 +54,7 @@ app.use(
 );
 /* app.use(logger('dev'));
  */
-app.use(express.urlencoded({ extended: false }));
+/* app.use(express.urlencoded({ extended: false })); */
 app.use(passport.initialize());
 /* app.use(express.static(path.join(__dirname, 'public'))); */
 app.use(express.static(path.join(__dirname, "client", "build")))

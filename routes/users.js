@@ -50,15 +50,33 @@ router.post('/register',  async (req,res)=> {
     }
 });
 //post login
-router.post('/login',  (req,res,next)=> {
-  console.log('hi');
+router.post('/login', passport.authenticate("local"), (req,res,next)=> {
+  const token = getToken({_id:req.user._id});
+  const refreshToken = getRefreshToken({_id:req.user._id});
   const user = new User({
     username: req.body.username,
     password:req.body.password
   });
-  console.log(user)
  try {
-  passport.authenticate('local')(req,res,function() {
+  User.findById(req.user._id).then(
+    user => {
+      //add refresh token to user body
+      user.refreshToken.push({refreshToken})
+      //save refreshToken to user
+      user.save((err,user)=> {
+        if(err) {
+          res.status(500).send(err);
+        }else {
+          //save refresh token to cookies
+          res.cookie("refreshToken", refreshToken, COOKIE_OPTIONS);
+          //send the token
+          res.send({success:true,token, user})
+        }
+      })
+    },
+    err=> next(err)
+  )
+/*   passport.authenticate('local')(req,res,function() {
     res.send(req.user)
     req.session.save(function(err) {
      if(err) {
@@ -67,7 +85,7 @@ router.post('/login',  (req,res,next)=> {
        console.log('session saved')
      } 
    })
- })}
+ }) */}
  catch (error) {
    console.log(error)
  }
