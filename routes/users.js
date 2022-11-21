@@ -6,6 +6,7 @@ const passport = require('passport');
 const Cv= require('../models/Cv');
 const { getToken, COOKIE_OPTIONS, getRefreshToken, verifyUser } = require("../authenticate")
 require('dotenv').config();
+const jwt = require('jsonwebtoken');
 router.post('/register',  async (req,res)=> {
     try {
       //get user info from request body
@@ -51,9 +52,7 @@ router.post('/register',  async (req,res)=> {
 });
 //post login
 router.post('/login', passport.authenticate("local"), (req,res,next)=> {
-  console.log('hi')
   const token = getToken({_id:req.user._id});
-  console.log(token)
   
   const refreshToken = getRefreshToken({_id:req.user._id});
   const user = new User({
@@ -155,7 +154,7 @@ router.post('/refreshToken',   (req,res,next)=> {
             )
             //token doesn't exist, user must be logged out
             if(tokenIndex === -1) {
-              res.status(401).send('unauthorized')
+              res.status(401).send('unauthorized',"not logged in")
             } else {
               const token = getToken({_id:userId})
               //create new refresh token
@@ -175,17 +174,17 @@ router.post('/refreshToken',   (req,res,next)=> {
             }
             /*if not user */
           } else {
-            res.status(401).send("unauthorized")
+            res.status(401).send("unauthorized, user not found")
           }
         },
         err=> next(err)
       )
   } catch (err) {
-    res.status(401).send('unauthorized')
+    res.status(401).send('unauthorized, error')
   }
   /*if not refresh token */
   } else {
-    res.status(400).send('unauthorized')
+    res.status(400).send('unauthorized, no refresh token')
   }
 })
 
