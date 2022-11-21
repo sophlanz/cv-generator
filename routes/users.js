@@ -93,31 +93,38 @@ router.post('/login', passport.authenticate("local"), (req,res,next)=> {
  }
 
  })
-router.post('/logout', async function(req, res, next) {
-
-
+router.get('/logout',  verifyUser, (req, res, next) => {
+  /* extract refresh token from cookies */
+const { signedCookies = {} } = req;
+const { refreshToken } = signedCookies
   try {
-    console.log("req.user", req.user);
-    console.log("req.isAuthenticated",req.isAuthenticated())
-    console.log("req.session", req.session)
-    console.log("req.session.passport", req.session.passport)
-    console.log(req.session.passport.user, "req.session.passiort.user")
-    console.log(req.isAuthenticated(), "before logout called")
-  req.logout(req.user, function(err) {
-  
-  if (err) {   
-    console.log(err);
-     return next(err);  
-     }
-     console.log(req.isAuthenticated(), "after logout called")
-});
+  console.log(req.user)
+    User.findById(req.user._id).then(
+      user => {
+        const tokenIndex = user.refreshToken.findIndex(
+          item => item.refreshToken === refreshToken
+        )
+        /*if it exists */
+        if(tokenIndex !== -1) {
+          /*delete token */
+          user.refreshToken.id(user.refreshToken[tokenIndex]._id).remove()
+        }
+        //save updated db
+        user.save((err,user)=> {
+          if(err) {
+            res.status(500).send(err)
+          } else {
+            /*clear refresh token from cookies */
+            res.clearCookie('refreshToken', COOKIE_OPTIONS)
+            res.status(200).send({sucess:true})
+          }
+        })
+      }
+    )
 } catch (err) {
   console.log(err)
 };
-      if(!req.isAuthenticated()) {
-       console.log('logout called')
-      res.send('Logout Successful') 
- }
+     
 });
 
 router.get('/changePassword', async function (req, res) {
@@ -187,6 +194,9 @@ router.post('/refreshToken',   (req,res,next)=> {
     res.status(400).send('unauthorized, no refresh token')
   }
 })
-
+//verify user method defined in authenticate, verifies the JWT (bearer) and fetches user details
+router.get('/userDetails', verifyUser, (req,res,next)=> {
+  res.status(200).send(req.user)
+})
 
 module.exports = router;
