@@ -53,7 +53,6 @@ router.post('/register',  async (req,res)=> {
 //post login
 router.post('/login', passport.authenticate("local"), (req,res,next)=> {
   const token = getToken({_id:req.user._id});
-  
   const refreshToken = getRefreshToken({_id:req.user._id});
   const user = new User({
     username: req.body.username,
@@ -89,7 +88,7 @@ router.post('/login', passport.authenticate("local"), (req,res,next)=> {
    })
  }) */}
  catch (error) {
-   console.log(error)
+   res.send('invalid details')
  }
 
  })

@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUserName } from '../redux/userSlice';
 import Nav from './navs/NavLogin';
-
+import { UserContext } from '../context/UserContext';
 export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
- 
+    const [userContext, setUserContext] = useContext(UserContext)
+    console.log(userContext)
     const navigate = useNavigate();
     const dispatch = useDispatch();
     //save id from response
@@ -34,25 +34,30 @@ export default function Login() {
            const url = process.env.NODE_ENV === 'production' ? 'https://cv-curator.up.railway.app' : 'http://localhost:9000' 
             console.log(body)
             console.log(url)
-            axios.post(`${url}/login`,body)
+            axios.post(`${url}/login`,body,{withCredentials:true} )
             .then((response)=> {
-                console.log("hi")
-                console.log("loginResponse",response)
-                id=response.data.user._id
-                console.log(id)
+                if(response.status === 200) {
+                    console.log("loginResponse",response)
+                    id=response.data.user._id
+                    console.log(id)
+                    //save token to user contect
+                    setUserContext(oldValues => {
+                        return {...oldValues,token:response.data.token}
+                    })
+                } else {
+                    alert("Invalid login credentials, please try again. ")
+                }
+               
                 
             })
             .then(()=> {
-                 
                     navigate('/workstation')
-                    
                     dispatch(
                      addUserName({
                          username: username,
                          id: id
                      })
                    )
-                   
             })
             .catch((err)=> {
                 console.log(err)
