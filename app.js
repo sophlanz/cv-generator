@@ -64,11 +64,11 @@ const User = require('./models/Users')
 
 
 //expression session
-/*  app.use(require('express-session')({
+  app.use(require('express-session')({
   secret: secret,
   resave: false, 
   saveUninitialized: true,
-}));  */
+}));  
 
 
 

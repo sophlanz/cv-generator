@@ -4,8 +4,8 @@ var router = express.Router();
 const User = require('../models/Users');
 const passport = require('passport');
 const Cv= require('../models/Cv');
-const { getToken, COOKIE_OPTIONS, getRefreshToken } = require("../authenticate")
-
+const { getToken, COOKIE_OPTIONS, getRefreshToken, verifyUser } = require("../authenticate")
+require('dotenv').config();
 router.post('/register',  async (req,res)=> {
     try {
       //get user info from request body
@@ -51,7 +51,10 @@ router.post('/register',  async (req,res)=> {
 });
 //post login
 router.post('/login', passport.authenticate("local"), (req,res,next)=> {
+  console.log('hi')
   const token = getToken({_id:req.user._id});
+  console.log(token)
+  
   const refreshToken = getRefreshToken({_id:req.user._id});
   const user = new User({
     username: req.body.username,
@@ -62,12 +65,12 @@ router.post('/login', passport.authenticate("local"), (req,res,next)=> {
     user => {
       //add refresh token to user body
       user.refreshToken.push({refreshToken})
-      //save refreshToken to user
+      //save refreshToken to db
       user.save((err,user)=> {
         if(err) {
           res.status(500).send(err);
         }else {
-          //save refresh token to cookies
+          //set refresh token in cookie response
           res.cookie("refreshToken", refreshToken, COOKIE_OPTIONS);
           //send the token
           res.send({success:true,token, user})
@@ -131,5 +134,60 @@ res.redirect('/messages')
 
 }
 }); 
+//silent refresh
+router.post('/refreshToken',   (req,res,next)=> {
+  //we sent the cookies in the req
+  const {signedCookies = { }} = req;
+  //get refreshToken from signed cookies
+  const { refreshToken } = signedCookies
+
+  if(refreshToken) {
+    try{
+      //check if refresh token is valid, extract payload portion of jwt
+      const payload = jwt.verify(refreshToken,process.env.REFRESH_TOKEN_SECRET)
+      const userId = payload._id;
+      User.findOne({_id:userId}).then(
+        user => {
+          if(user) {
+            //find token in the db
+            const tokenIndex = user.refreshToken.findIndex(
+              item => item.refreshToken === refreshToken
+            )
+            //token doesn't exist, user must be logged out
+            if(tokenIndex === -1) {
+              res.status(401).send('unauthorized')
+            } else {
+              const token = getToken({_id:userId})
+              //create new refresh token
+              const newRefreshToken = getRefreshToken({_id:userId});
+              //replace old refresh token with new one
+              user.refreshToken[tokenIndex] = { refreshToken: newRefreshToken }
+              //save changes made to the db
+              user.save((err,user)=> {
+                if(err) {
+                  res.status(500).send(err)
+                } else {
+                  res.cookie("refreshToken", newRefreshToken,COOKIE_OPTIONS)
+                  //send token to client
+                  res.send({success:true, token})
+                }
+              })
+            }
+            /*if not user */
+          } else {
+            res.status(401).send("unauthorized")
+          }
+        },
+        err=> next(err)
+      )
+  } catch (err) {
+    res.status(401).send('unauthorized')
+  }
+  /*if not refresh token */
+  } else {
+    res.status(400).send('unauthorized')
+  }
+})
+
 
 module.exports = router;
