@@ -19,6 +19,7 @@ CV generator specifically aimed to assist self-taught developers looking to land
 - Add,edit, and delete capabilities of all CV elements that could require customization. 
 - Print option that also allows for downloading, as well as embedded hyperlinks for added ease to the lives of hiring managers.
 - CRUD operations that allow users to save their CV, and return later to view or edit. 
+- Responsive Design
 ## Future Updates
 - Forgot password
 ## Screenshots Web
