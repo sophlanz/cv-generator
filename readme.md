@@ -10,6 +10,8 @@ CV generator specifically aimed to assist self-taught developers looking to land
 - React Router
 - Redux-Toolkit
 - Node JS
+- Passport
+- JWT
 - Express
 - MongoDB
 
