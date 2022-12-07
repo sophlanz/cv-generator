@@ -13,13 +13,13 @@
 .techSkills, .softSkills{
   display:flex;
   gap:20px;
+  margin-top:.5em;
   };
 /*list items*/
 .techSkillList, .softSkillList {
   display:flex;
   gap:30px;
   font-size:.9rem;
-  align-items:center;
   };
 /*div of skill and trashcan*/ 
 .skillsDelete {

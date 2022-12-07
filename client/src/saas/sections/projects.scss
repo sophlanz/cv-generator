@@ -23,8 +23,12 @@
     display:flex;
     gap:10px;
 };
+.techUsed > p{
+  font-size:.95rem;
+}
 .techLabel{
     border-bottom: 2px solid black;
+    margin-left:1em;
 };
 /*div of project name and trashcan icon*/
 .projectDeleteIcon{
@@ -57,4 +61,8 @@
   .projectLinks {
     display:flex;
     gap:10px;
+    margin-left:1em;
   }
+.liveDemo > a , .sourceCode > a {
+  font-size:.95rem;
+}
