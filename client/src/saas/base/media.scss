@@ -2,26 +2,27 @@
 
 
   @media print {
- 
    @page {
       size: a4;
-        margin-left: 0.5in;
-        margin-right: 0.5in;
+        margin-left: 0.35in;
+        margin-right: 0.35in;
         margin-top: .25in;
-        margin-bottom: 0; 
-
-      
+        margin-bottom: .25in; 
     };
 
  div {
           page-break-inside: avoid;
       }
-   body,.paper {
+      .paper {
         width: 210mm;
       height: 297mm; 
       margin:0;
       padding:0px;
    } 
+    .body {
+      margin:0;
+      padding:0px;
+   }  
    button, .cvButtons,  .navCV, .modal{
     display:none !important;
   }

@@ -10,6 +10,7 @@
     flex-direction:column;
     align-items:flex-end;
     gap:5px;
+    font-size: 1.1rem;
 };
 .dateLocationExp p{
     color:$mainColor;
@@ -18,6 +19,7 @@
 .dateExperience{
     display: flex;
     font-style:italic;
+    font-size:1.1rem;
 };
 /*display the top information of company,title,location,and date*/
 .generalInformation{
@@ -25,6 +27,9 @@
     justify-content:space-between;
     align-items:center;
 };
+.companyTitle  div ~ div{
+    font-size:1.1rem;
+}
 .descriptionExperience {
     text-align:left;
 };
