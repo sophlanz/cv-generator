@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import {Link, useNavigate} from "react-router-dom";
 import axios from 'axios';
-import HamburgerNav from './HamburgerNavWorkstation'
 import HamburgerNavWorkstation from './HamburgerNavWorkstation';
 import { UserContext } from '../../context/UserContext';
 export default function NavWelcome() {
@@ -19,12 +18,7 @@ export default function NavWelcome() {
             } ,
             withCredentials:true
         };
-           const headers= {
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization":`Bearer ${userContext.token}`
-            }   
-           }
+      
         const url = process.env.NODE_ENV === 'production' ? 'https://cv-curator.up.railway.app' : 'http://localhost:9000' 
         axios.get(`${url}/logout` ,config)
         .then((response)=> {
